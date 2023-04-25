@@ -3,27 +3,19 @@ import React, { useEffect, useContext} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
+import Designs from './Designs';
 import PiecesContainer from './PiecesContainer';
 import LandingPageSignUp from './Signup';
 import LandingPageLogin from './Login';
 import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
+
 function App() {
 const {designer, setDesigner} = useContext(UserContext)
 const history= useHistory()
 
-  // const handleResponse = (r) => {
-  //   if (r.ok) {
-  //     console.log("STATUS:", r.status)
-  //     r.json().then(r=> {
-  //       setDesigner(r)
-  //     })
-  //   } else {
-  //     console.log("STATUS:", r.status)
-  //   }
 
-  // }
     useEffect(() => {
       fetch("/check_session")
           .then((r) => {
@@ -37,7 +29,6 @@ const history= useHistory()
     }, [])
 
 
-  console.log(designer)
 
   return (
     <div className="App">
@@ -51,11 +42,13 @@ const history= useHistory()
           <Route exact path='/pieces'>
             <PiecesContainer />
           </Route>
-          
+          <Route exact path='/designs'>
+            <Designs />
+          </Route>
         </Switch>
       ) : (
         <Switch>
-          <Route exact path='/' >
+          <Route exact path='/signup' >
             <LandingPageSignUp />
           </Route>
           <Route exact path='/login'>
