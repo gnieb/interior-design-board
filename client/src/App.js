@@ -1,25 +1,15 @@
 import './styles/App.css';
-import React, {useState, useEffect, useHistory} from 'react';
+import React, { useEffect, useContext} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import PiecesContainer from './PiecesContainer';
 import LandingPageSignUp from './LandingPageSignUp';
+import LandingPageLogin from './LandingPageLogin';
+import { UserContext } from './context/user';
 
 function App() {
-  const [designer, setDesigner] = useState(null);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:5555/checksession")
-      .then(r => {
-        if (r.ok) {
-          console.log("STATUS:", r.status)
-          r.json().then(r => setDesigner(r))
-        }
-      })
-  }, [])
-
-
+const {designer, setDesigner} = useContext(UserContext)
 
   // const handleResponse = (r) => {
   //   if (r.ok) {
@@ -32,8 +22,19 @@ function App() {
   //   }
 
   // }
+    useEffect(() => {
+      fetch("http://127.0.0.1:5555/check_session")
+          .then((r) => {
+              if (r.ok) {
+                  r.json().then(r => setDesigner(r))
+              } else {
+                    console.log("STATUS:", r.status)
+                  }
+          })
+    }, [])
 
 
+  console.log(designer)
 
   return (
     <div className="App">
@@ -41,24 +42,30 @@ function App() {
      <main>
       {designer ? (
         <Switch >
+          <Route exact path='/home'>
+            <Home />
+          </Route>
           <Route exact path='/pieces'>
             <PiecesContainer />
           </Route>
-          <Route exact path='/'>
-            <Home />
-          </Route>
+          
         </Switch>
       ) : (
         <Switch>
-          <Route path exact = '/signup' >
-            <LandingPageSignUp setDesigner={setDesigner}/>
+          <Route exact path='/' >
+            <LandingPageSignUp />
           </Route>
-          <Route>
-            
+          <Route exact path='/login'>
+            <LandingPageLogin />
+          </Route>
+          {/* <Route exact path='/home'>
+            <Home />
+          </Route> */}
+          <Route path ="*">
+            <h1>404 Not Found!!!</h1>
           </Route>
         </Switch>
-      )
-     }
+      )}
      </main>
     </div>
   );

@@ -12,6 +12,8 @@ flask-restful = "*"
 importlib-metadata = "*"
 importlib-resources = "*"
 flask-bcrypt = "*"
+flask-cors = "*"
+flask-session = "*"
 
 [dev-packages]
 
