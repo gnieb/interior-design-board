@@ -3,15 +3,19 @@
 from flask import request, session, make_response
 from flask_restful import Resource
 from config import app, db, api
+from flask_cors import CORS
 from models import Designer, PDInstance, Piece
+from flask_session import Session
 
-
+CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
+Session(app)
+app.secret_key = b'Z\xe1\xf4\xc5<4\x96\xdd\xa9.\xc8\xdfW\x0c#\xb2'
 
 class Home(Resource):
     def get(self):
         return make_response({"message":"you can do this!"}, 200)
 
-class Signup(Resource):
+class Designers(Resource):
     def post(self):
         name = request.get_json()['name']
         username = request.get_json()['username']
@@ -20,6 +24,7 @@ class Signup(Resource):
         if username and password and name:
             try:
                 new_designer = Designer(
+                    name=name,
                     username=username
                 )
                 new_designer.password_hash = password
@@ -41,9 +46,9 @@ class CheckSession(Resource):
     def get(self):
         designer = Designer.query.filter(Designer.id == session.get('designer_id')).first()
         if not designer:
-            return make_response({}, 204)
+            return make_response({"message":"401: Not Authorized!"}, 401)
         
-        return make_response(designer.to_dcit(), 200)
+        return make_response(designer.to_dict(), 200)
 
 class Login(Resource):
     def post(self):
@@ -76,8 +81,9 @@ class DesignerById(Resource):
 
 
 api.add_resource(Home, '/')
-api.add_resource(CheckSession, '/checksession')
-api.add_resource(Signup, '/signup')
+api.add_resource(CheckSession, '/check_session')
+api.add_resource(Designers, '/designers')
+api.add_resource(DesignerById, '/designers/<int:id>')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 
