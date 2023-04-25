@@ -1,15 +1,20 @@
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.ext.associationproxy import association_proxy
 from config import db, bcrypt
 
 
 class Designer(db.Model, SerializerMixin):
     __tablename__ = 'designers'
 
+    serialize_rules = ('-pdinstances',)
+
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String)
+    pieces = association_proxy('pdinstances', 'piece')
+    pdinstances = db.relationship('PDInstance', backref='designer')
 
 
     @hybrid_property
@@ -28,14 +33,24 @@ class Designer(db.Model, SerializerMixin):
         return f'Designer {self.name}, ID: {self.id}'
     
 
-# class Piece(db.Model, SerializerMixin):
-#     __tablename__ = 'pieces'
+class Piece(db.Model, SerializerMixin):
+    __tablename__ = 'pieces'
 
-#     id = db.Column(db.Integer, primary_key = True)
-#     name = db.Column(db.String)
-#     category = db.Column(db.String)
-#     style = db.Column(db.String)
+    serialize_rules = ('-pdinstances',)
+
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String)
+    category = db.Column(db.String)
+    style = db.Column(db.String)
+    designers = association_proxy('pdinstances', 'designer')
+    pdinstances = db.relationship('PDInstance', backref='piece')
 
 
+class PDInstance(db.Model, SerializerMixin):
+    __tablename__ = 'pdinstances'
 
-# class 
+    serialize_rules = ('-piece.pdinstances', '-designer.pdinstances')
+
+    id = db.Column(db.Integer, primary_key = True)
+    piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
+    designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
