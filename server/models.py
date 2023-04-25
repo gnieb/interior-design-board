@@ -26,3 +26,16 @@ class Designer(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'Designer {self.name}, ID: {self.id}'
+    
+
+# class Piece(db.Model, SerializerMixin):
+#     __tablename__ = 'pieces'
+
+#     id = db.Column(db.Integer, primary_key = True)
+#     name = db.Column(db.String)
+#     category = db.Column(db.String)
+#     style = db.Column(db.String)
+
+
+
+# class 
