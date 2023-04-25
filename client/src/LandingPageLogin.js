@@ -15,6 +15,17 @@ export default function LandingPageLogin() {
         password: yup.string().required("Please choose a password")
     })
 
+    const handleResponse = (r) => {
+            if (r.ok) {
+            console.log("STATUS:", r.status)
+            r.json().then(r => {
+                setDesigner(r)
+                history.push('/home')
+            })
+            } else {
+            console.log("STATUS:", r.status)
+            }
+        }
 
     const formik = useFormik({
         initialValues: {
@@ -23,27 +34,18 @@ export default function LandingPageLogin() {
         },
         validationSchema:formSchema,
         onSubmit: (values) => {
-            fetch("http://127.0.0.1:5555/login", {
+            fetch("/login", {
+                credentials: "include",
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
+                
                 body: JSON.stringify(values)
             })
                 .then(handleResponse)
         }
     })
 
-    const handleResponse = (r) => {
-        if (r.ok) {
-          console.log("STATUS:", r.status)
-          r.json().then(r=> {
-            setDesigner(r)
-            history.push('/home')
-          })
-        } else {
-          console.log("STATUS:", r.status)
-        }
-      }
-
+   
     return (
         <>
         <label>Not a Member Yet?</label>

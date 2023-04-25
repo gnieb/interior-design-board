@@ -23,7 +23,7 @@ const {designer, setDesigner} = useContext(UserContext)
 
   // }
     useEffect(() => {
-      fetch("http://127.0.0.1:5555/check_session")
+      fetch("/check_session")
           .then((r) => {
               if (r.ok) {
                   r.json().then(r => setDesigner(r))
@@ -42,7 +42,7 @@ const {designer, setDesigner} = useContext(UserContext)
      <main>
       {designer ? (
         <Switch >
-          <Route exact path='/home'>
+          <Route exact path='/'>
             <Home />
           </Route>
           <Route exact path='/pieces'>
@@ -58,9 +58,6 @@ const {designer, setDesigner} = useContext(UserContext)
           <Route exact path='/login'>
             <LandingPageLogin />
           </Route>
-          {/* <Route exact path='/home'>
-            <Home />
-          </Route> */}
           <Route path ="*">
             <h1>404 Not Found!!!</h1>
           </Route>

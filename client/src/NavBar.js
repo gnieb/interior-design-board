@@ -4,17 +4,17 @@ import { UserContext } from "./context/user";
 export default function NavBar () {
     const {designer, setDesigner} = useContext(UserContext)
 
-    const handleLogout = (e) => {
-
+    const handleClick = (e) => {
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(() => setDesigner(null))
     }
-
-
 
     return (
         <div>
             Links!!!!!
             {designer ? 
-            <button>Log Out</button>:
+            <button onClick={handleClick}>Log Out</button>:
             <div></div> }
         </div>  
     )

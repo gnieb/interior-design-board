@@ -7,9 +7,9 @@ from flask_cors import CORS
 from models import Designer, PDInstance, Piece
 from flask_session import Session
 
-CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
-Session(app)
-app.secret_key = b'Z\xe1\xf4\xc5<4\x96\xdd\xa9.\xc8\xdfW\x0c#\xb2'
+# CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
+# Session(app)
+# app.secret_key = b'Z\xe1\xf4\xc5<4\x96\xdd\xa9.\xc8\xdfW\x0c#\xb2'
 
 class Home(Resource):
     def get(self):
