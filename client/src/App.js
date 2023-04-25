@@ -4,12 +4,14 @@ import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import PiecesContainer from './PiecesContainer';
-import LandingPageSignUp from './LandingPageSignUp';
-import LandingPageLogin from './LandingPageLogin';
+import LandingPageSignUp from './Signup';
+import LandingPageLogin from './Login';
 import { UserContext } from './context/user';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
 const {designer, setDesigner} = useContext(UserContext)
+const history= useHistory()
 
   // const handleResponse = (r) => {
   //   if (r.ok) {
@@ -29,6 +31,7 @@ const {designer, setDesigner} = useContext(UserContext)
                   r.json().then(r => setDesigner(r))
               } else {
                     console.log("STATUS:", r.status)
+                    history.push('/signup')
                   }
           })
     }, [])
