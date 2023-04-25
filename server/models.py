@@ -40,8 +40,10 @@ class Piece(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
-    category = db.Column(db.String)
+    type = db.Column(db.String)
     style = db.Column(db.String)
+    image = db.Column(db.String, nullable=False)
+    color = db.Column(db.String)
     designers = association_proxy('pdinstances', 'designer')
     pdinstances = db.relationship('PDInstance', backref='piece')
 
