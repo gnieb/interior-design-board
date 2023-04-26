@@ -48,8 +48,8 @@ export default function Login() {
    
     return (
         <>
-        <label>Not a Member Yet?</label>
-        <NavLink exact to='/'>Sign Up</NavLink>
+        <label>Don't have an account?</label>
+        <NavLink exact to='/'>Create Account</NavLink>
         <form onSubmit={formik.handleSubmit}>
             <label>Username</label>
             <input type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>

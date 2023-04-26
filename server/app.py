@@ -3,13 +3,9 @@
 from flask import request, session, make_response
 from flask_restful import Resource
 from config import app, db, api
-from flask_cors import CORS
 from models import Designer, PDInstance, Piece
-from flask_session import Session
 
-# CORS(app, supports_credentials=True, allow_headers=['Content-Type', 'session'])
-# Session(app)
-# app.secret_key = b'Z\xe1\xf4\xc5<4\x96\xdd\xa9.\xc8\xdfW\x0c#\xb2'
+
 
 class Home(Resource):
     def get(self):
@@ -17,14 +13,18 @@ class Home(Resource):
 
 class Designers(Resource):
     def post(self):
-        name = request.get_json()['name']
+        first_name = request.get_json()['first_name']
+        last_name = request.get_json()['last_name']
+        email = request.get_json()['email']
         username = request.get_json()['username']
         password = request.get_json()['password']
 
-        if username and password and name:
+        if username and password and first_name and last_name:
             try:
                 new_designer = Designer(
-                    name=name,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
                     username=username
                 )
                 new_designer.password_hash = password
@@ -77,13 +77,18 @@ class DesignerById(Resource):
         
         return make_response(designer.to_dict(), 200)
     
+class Pieces(Resource):
+    def get(self):
+        pieces= [p.to_dict() for p in Piece.query.all()]
 
+        return make_response(pieces, 200)
 
 
 api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Designers, '/designers')
 api.add_resource(DesignerById, '/designers/<int:id>')
+api.add_resource(Pieces, '/pieces')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 

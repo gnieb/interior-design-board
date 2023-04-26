@@ -10,8 +10,10 @@ class Designer(db.Model, SerializerMixin):
     serialize_rules = ('-pdinstances',)
 
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
+    email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     pieces = association_proxy('pdinstances', 'piece')
     pdinstances = db.relationship('PDInstance', backref='designer')

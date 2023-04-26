@@ -11,9 +11,11 @@ export default function Signup() {
 
 // add a confirm password input???
     const formSchema = yup.object().shape({
-        name: yup.string().required("Please enter your name"),
-        username: yup.string().required("Please choose a username"),
-        password: yup.string().required("Please choose a password")
+        first_name: yup.string().required("Enter first name"),
+        last_name: yup.string().required("Enter last name"),
+        email: yup.string().email(),
+        username: yup.string().required("Choose a username"),
+        password: yup.string().required("Choose a password")
     })
 
     const handleResponse = (r) => {
@@ -30,7 +32,9 @@ export default function Signup() {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
+            first_name: "",
+            last_name:"",
+            email: "",
             username: "",
             password: ""
         },
@@ -53,8 +57,12 @@ export default function Signup() {
         <NavLink exact to='/login'>Log In</NavLink>
         {Object.values(formik.errors).map(error => <h2  style={{color:'red'}}>{error}</h2>)}
         <form onSubmit= {formik.handleSubmit} >
-            <label>Name</label>
-            <input type='text' name="name" value={formik.values.name} onChange={formik.handleChange} />
+            <label>First Name</label>
+            <input type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
+            <label>Last Name</label>
+            <input type='text' name="last_name" value={formik.values.last_name} onChange={formik.handleChange} />
+            <label>Email (optional)</label>
+            <input type='text' name="email" value={formik.values.email} onChange={formik.handleChange} />
             <label>Username</label>
             <input type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
             <label>Password</label>

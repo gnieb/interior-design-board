@@ -1,10 +1,17 @@
 import Piece from "./Piece"
 
-export default function PiecesContainer () {
+export default function PiecesContainer ({pieces}) {
+    
+    const displayPieces = pieces.map(p => {
+    return(
+    <Piece key={p.id} p={p}/>
+    )
+    })
+    
+    
     return (
         <div>
-            This is where the list of pieces will go!
-            <Piece />
+            {displayPieces}
         </div>
     )
 }

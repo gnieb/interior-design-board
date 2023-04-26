@@ -1,5 +1,5 @@
 import './styles/App.css';
-import React, { useEffect, useContext} from 'react';
+import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
@@ -13,6 +13,8 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
 const {designer, setDesigner} = useContext(UserContext)
+const [pieces, setPieces] = useState([])
+const [designs, setDesigns] = useState([])
 const history= useHistory()
 
 
@@ -28,6 +30,19 @@ const history= useHistory()
           })
     }, [])
 
+    useEffect(() => {
+      fetch("/pieces")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then(r => {
+            setPieces(r)
+          } )
+        } else {
+          r.json().then(console.log)
+        }
+      })
+    }, [])
+
 
 
   return (
@@ -40,7 +55,7 @@ const history= useHistory()
             <Home />
           </Route>
           <Route exact path='/pieces'>
-            <PiecesContainer />
+            <PiecesContainer pieces={pieces} />
           </Route>
           <Route exact path='/designs'>
             <Designs />
