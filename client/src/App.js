@@ -5,6 +5,7 @@ import Header from './Header';
 import Home from './Home';
 import Designs from './Designs';
 import PiecesContainer from './PiecesContainer';
+import ProfilePage from './ProfilePage';
 import LandingPageSignUp from './Signup';
 import LandingPageLogin from './Login';
 import { UserContext } from './context/user';
@@ -59,6 +60,9 @@ const history= useHistory()
           </Route>
           <Route exact path='/designs'>
             <Designs />
+          </Route>
+          <Route exact path='/profile'>
+            <ProfilePage />
           </Route>
         </Switch>
       ) : (
