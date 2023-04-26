@@ -14,6 +14,7 @@ class Designer(db.Model, SerializerMixin):
     last_name = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String)
+    city = db.Column(db.String)
     _password_hash = db.Column(db.String)
     pieces = association_proxy('pdinstances', 'piece')
     pdinstances = db.relationship('PDInstance', backref='designer')

@@ -77,6 +77,27 @@ class DesignerById(Resource):
         
         return make_response(designer.to_dict(), 200)
     
+
+    def patch(self, id):
+        designer = Designer.query.filter_by(id = id).first()
+        if not designer:
+            return make_response({"error":"No designer found, 404"}, 404)
+        
+        try:
+            data = request.get_json()
+            for key in data.keys():
+                setattr(designer, key, data[key])
+        except:
+            return make_response({"error":"Validation error, unprocessable entity"}, 422)
+        
+        try:
+            db.session.add(designer)
+            db.session.commit()
+        except:
+            return make_response({"error":"Validation error, unprocessable entity, check db constraint"}, 422)
+    
+        return make_response(designer.to_dict(), 200)
+
 class Pieces(Resource):
     def get(self):
         pieces= [p.to_dict() for p in Piece.query.all()]
