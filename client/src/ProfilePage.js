@@ -9,7 +9,7 @@ export default function ProfilePage () {
     const [editMode, setEditMode] = useState(false)
 
    
-    const handleClick = (e) => {
+    const handleEditMode = (e) => {
         setEditMode(!editMode)
     }
 
@@ -17,14 +17,14 @@ export default function ProfilePage () {
     return (
         <>
         {editMode ?
-        <EditProfilePage /> :
+        <EditProfilePage handleEditMode={handleEditMode} /> :
        (<>
        <h2>My Profile</h2>
         <h3>First name - {first_name}</h3>
         <h3>Last name - {last_name}</h3>
         <h3>Email - {email}</h3>
         <h3>Location - {city}</h3>
-        <button onClick={handleClick}>Edit Designer</button>
+        <button onClick={handleEditMode}>Edit Designer</button>
         </> )}
         </>
     )

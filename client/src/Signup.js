@@ -55,7 +55,7 @@ export default function Signup() {
         <>
         <label>Already a Member?</label>
         <NavLink exact to='/login'>Log In</NavLink>
-        {Object.values(formik.errors).map(error => <h2  style={{color:'red'}}>{error}</h2>)}
+        {Object.values(formik.errors).map((error, i) => <h2 key={i} style={{color:'red'}}>{error}</h2>)}
         <form onSubmit= {formik.handleSubmit} >
             <label>First Name</label>
             <input type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />

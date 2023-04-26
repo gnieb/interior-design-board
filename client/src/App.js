@@ -44,7 +44,9 @@ const history= useHistory()
       })
     }, [])
 
-
+    const goBackOne = () => {
+      history.goBack()
+    }
 
   return (
     <div className="App">
@@ -74,7 +76,10 @@ const history= useHistory()
             <LandingPageLogin />
           </Route>
           <Route path ="*">
+            <>
             <h1>404 Not Found!!!</h1>
+            <button onClick={goBackOne}>back to safety</button>
+            </>
           </Route>
         </Switch>
       )}

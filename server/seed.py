@@ -43,7 +43,6 @@ def seed_data():
 
     p16 = Piece(name='Minimal Candle', type='art', color='white', style='Minimal', image='https://static.zara.net/photos///2022/I/4/1/p/5441/705/850/2/w/1920/5441705850_6_8_1.jpg?ts=1657625044332')
 
-
     # ################## TEXTURES ###################
 
     p17 = Piece(name='Wood', type='texture', color='brown', style='', image='https://t4.ftcdn.net/jpg/02/71/30/35/360_F_271303570_x0Ssv4iEUgr0NuNPHHVLjUJnk648ExP2.jpg')
