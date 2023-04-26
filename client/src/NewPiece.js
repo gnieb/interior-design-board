@@ -63,7 +63,7 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
             <input type="text" id="name" value={formData.name} onChange={handleChange}/>
             <label>Element Type</label>
             <select id="type" onChange={handleChange} >
-                <option values="">Select Type</option>
+                <option value="">Select Type</option>
                 <option value="Accessory">Accessory</option>
                 <option value="Flooring">Flooring</option>
                 <option value="Furniture">Furniture</option>

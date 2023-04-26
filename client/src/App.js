@@ -13,10 +13,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function App() {
-const {designer, setDesigner} = useContext(UserContext)
-const [pieces, setPieces] = useState([])
-// const [designs, setDesigns] = useState([])
-const history= useHistory()
+  const {designer, setDesigner} = useContext(UserContext)
+  const [pieces, setPieces] = useState([])
+  const [styleFilter, setStyleFilter] = useState("")
+  const [typeFilter, setTypeFilter] = useState("")
+  // const [designs, setDesigns] = useState([])
+  const history= useHistory()
 
 
     useEffect(() => {
@@ -56,6 +58,15 @@ const history= useHistory()
       setPieces(updatedPieces)
     }
 
+    const handleStyleFilter = (value) => setStyleFilter(value)
+    const filteredByStyle = (styleFilter !== "") ? pieces.filter((p) => p.style === styleFilter) : [...pieces]
+    // console.log("FILTER BY STYLE:", filteredByStyle)
+    const handleTFilter = (value) => setTypeFilter(value)
+    const filteredByStyleAndType = (typeFilter !=="") ? filteredByStyle.filter((p) => p.type ===typeFilter) : [...filteredByStyle]
+    // console.log("FILTER BY STYLE AND TYPE:", filteredByStyleAndType)
+  
+    
+
   return (
     <div className="App">
      <Header />
@@ -66,7 +77,12 @@ const history= useHistory()
             <Home />
           </Route>
           <Route exact path='/pieces'>
-            <PiecesContainer pieces={pieces} addNewPiece={addNewPiece} removePiece={removePiece}/>
+            <PiecesContainer 
+            pieces={filteredByStyleAndType} 
+            addNewPiece={addNewPiece} 
+            removePiece={removePiece}
+            handleStyleFilter={handleStyleFilter}
+            handleTFilter={handleTFilter}/>
           </Route>
           <Route exact path='/designs'>
             <Designs />

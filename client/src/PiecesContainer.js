@@ -1,8 +1,9 @@
 import NewPiece from "./NewPiece"
 import Piece from "./Piece"
 import { useState } from "react"
+import FilterBy from "./FilterBy"
 
-export default function PiecesContainer ({pieces, addNewPiece, removePiece}) {
+export default function PiecesContainer ({pieces, addNewPiece, removePiece, handleStyleFilter, handleTFilter}) {
     const [openForm, setOpenForm] = useState(false)
     
     const displayPieces = pieces.map(p => {
@@ -11,18 +12,18 @@ export default function PiecesContainer ({pieces, addNewPiece, removePiece}) {
     )
     })
 
-    const handleOpenForm = () => {
-        setOpenForm(!openForm)
-    }
-    
-    
+    const handleOpenForm = () => setOpenForm(!openForm)
+
+
     return (
         <>
         <button onClick={handleOpenForm}>{openForm ? "Cancel" : "Add New"}</button>
         {openForm ?
         <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> :
-        displayPieces
-        }
+        (<>
+        <FilterBy handleStyleFilter={handleStyleFilter} handleTFilter={handleTFilter} />
+        {displayPieces}
+        </>)}
         </>
     )
 }
