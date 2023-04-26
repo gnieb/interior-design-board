@@ -2,12 +2,12 @@ import NewPiece from "./NewPiece"
 import Piece from "./Piece"
 import { useState } from "react"
 
-export default function PiecesContainer ({pieces}) {
+export default function PiecesContainer ({pieces, addNewPiece, removePiece}) {
     const [openForm, setOpenForm] = useState(false)
     
     const displayPieces = pieces.map(p => {
     return(
-    <Piece key={p.id} p={p}/>
+    <Piece key={p.id} p={p} removePiece={removePiece}/>
     )
     })
 
@@ -20,7 +20,7 @@ export default function PiecesContainer ({pieces}) {
         <>
         <button onClick={handleOpenForm}>{openForm ? "Cancel" : "Add New"}</button>
         {openForm ?
-        <NewPiece /> :
+        <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> :
         displayPieces
         }
         </>

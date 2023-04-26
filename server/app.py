@@ -103,6 +103,36 @@ class Pieces(Resource):
         pieces= [p.to_dict() for p in Piece.query.all()]
 
         return make_response(pieces, 200)
+    
+    def post(self):
+        data = request.get_json()
+        try:
+            newP = Piece(
+                name=data['name'],
+                type=data['type'],
+                style=data['style'],
+                image=data['image'],
+                color=data['color']
+            )
+        except:
+            return  make_response({"error": "Validation error"}, 400)
+        try:
+            db.session.add(newP)
+            db.session.commit()
+        except:
+            return make_response({"error":"Validation error, unable to post"}, 400)
+        
+        return make_response(newP.to_dict(), 201)
+    
+class PieceById(Resource):
+    def delete(self, id):
+        piece = Piece.query.filter_by(id = id).first()
+        if not piece:
+            return make_response({"error":"404 error: Piece not found"}, 404)
+
+        db.session.delete(piece)
+        db.session.commit()
+        return make_response({}, 204)
 
 
 api.add_resource(Home, '/')
@@ -110,6 +140,7 @@ api.add_resource(CheckSession, '/check_session')
 api.add_resource(Designers, '/designers')
 api.add_resource(DesignerById, '/designers/<int:id>')
 api.add_resource(Pieces, '/pieces')
+api.add_resource(PieceById, '/pieces/<int:id>')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 

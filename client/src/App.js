@@ -15,7 +15,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function App() {
 const {designer, setDesigner} = useContext(UserContext)
 const [pieces, setPieces] = useState([])
-const [designs, setDesigns] = useState([])
+// const [designs, setDesigns] = useState([])
 const history= useHistory()
 
 
@@ -48,6 +48,14 @@ const history= useHistory()
       history.goBack()
     }
 
+    const addNewPiece = (piece) => {
+      setPieces((pieces) => [...pieces, piece])
+    }
+    const removePiece = (piece) => {
+      const updatedPieces = pieces.filter((p) => p.id !== piece.id)
+      setPieces(updatedPieces)
+    }
+
   return (
     <div className="App">
      <Header />
@@ -58,7 +66,7 @@ const history= useHistory()
             <Home />
           </Route>
           <Route exact path='/pieces'>
-            <PiecesContainer pieces={pieces} />
+            <PiecesContainer pieces={pieces} addNewPiece={addNewPiece} removePiece={removePiece}/>
           </Route>
           <Route exact path='/designs'>
             <Designs />
