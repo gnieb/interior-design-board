@@ -1,7 +1,7 @@
 import { UserContext } from "./context/user"
 import { useContext, useState } from "react"
 
-export default function EditProfilePage ({handleEditMode}) {
+export default function UpdateProfilePage ({handleEditMode}) {
     const {designer, setDesigner} = useContext(UserContext)
     // const [newFirst, setNewFirst] = useState('')
     // const [newLast, setNewLast] = useState('')

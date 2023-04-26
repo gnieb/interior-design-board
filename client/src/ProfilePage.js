@@ -1,4 +1,4 @@
-import EditProfilePage from "./EditProfilePage"
+import UpdateProfilePage from "./UpdateProfilePage"
 import { UserContext } from "./context/user"
 import { useContext, useState } from "react"
 
@@ -17,7 +17,7 @@ export default function ProfilePage () {
     return (
         <>
         {editMode ?
-        <EditProfilePage handleEditMode={handleEditMode} /> :
+        <UpdateProfilePage handleEditMode={handleEditMode} /> :
        (<>
        <h2>My Profile</h2>
         <h3>First name - {first_name}</h3>
