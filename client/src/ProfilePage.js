@@ -1,3 +1,4 @@
+import EditProfilePage from "./EditProfilePage"
 import { UserContext } from "./context/user"
 import { useContext, useState } from "react"
 
@@ -10,18 +11,21 @@ export default function ProfilePage () {
    
     const handleClick = (e) => {
         setEditMode(!editMode)
-        console.log("clicking edit!!!!")
     }
 
 
     return (
         <>
-        <h2>My Profile</h2>
+        {editMode ?
+        <EditProfilePage /> :
+       (<>
+       <h2>My Profile</h2>
         <h3>First name - {first_name}</h3>
         <h3>Last name - {last_name}</h3>
         <h3>Email - {email}</h3>
         <h3>Location - {city}</h3>
         <button onClick={handleClick}>Edit Designer</button>
+        </> )}
         </>
     )
 }
