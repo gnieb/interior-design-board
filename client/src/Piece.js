@@ -7,10 +7,10 @@ export default function Piece ({p, removePiece}) {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((r) => {
-                    console.log(r, "piece deleted!")
-
-                })
+                    console.log( "piece deleted!")
+                    removePiece(p)
+            } else {
+                console.log(r.status)
             }
         })
     }
