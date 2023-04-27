@@ -25,7 +25,11 @@ function App() {
       fetch("/check_session")
           .then((r) => {
               if (r.ok) {
-                  r.json().then(r => setDesigner(r))
+                  r.json().then(r => {
+                    setDesigner(r)
+                    setPieces(r.pieces)
+                    })
+                 
               } else {
                     console.log("STATUS:", r.status)
                     history.push('/signup')
@@ -33,22 +37,23 @@ function App() {
           })
     }, [])
 
+   
 
-    useEffect(() => {
-      if (designer !== null) {
-        fetch(`/designers/${designer.id}`)
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((r) => {
-              console.log(r.pieces)
-              setPieces(r.pieces)
-            } )
-          } else {
-            r.json().then(console.log)
-          }
-        })
-      }
-    }, [])
+    // useEffect(() => {
+    //   if (designer !== null) {
+    //     fetch(`/designers/${designer.id}`)
+    //     .then((r) => {
+    //       if (r.ok) {
+    //         r.json().then((r) => {
+    //           console.log(r.pieces)
+    //           setPieces(r.pieces)
+    //         } )
+    //       } else {
+    //         r.json().then(console.log)
+    //       }
+    //     })
+    //   }
+    // }, [])
 
     const goBackOne = () => {
       history.goBack()
@@ -68,7 +73,6 @@ function App() {
     const handleTFilter = (value) => setTypeFilter(value)
     const filteredByStyleAndType = (typeFilter !=="") ? filteredByStyle.filter((p) => p.type ===typeFilter) : [...filteredByStyle]
     // console.log("FILTER BY STYLE AND TYPE:", filteredByStyleAndType)
-  
     
 
   return (
