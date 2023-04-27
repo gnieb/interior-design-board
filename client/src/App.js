@@ -33,17 +33,20 @@ function App() {
           })
     }, [])
 
+
     useEffect(() => {
-      fetch("/pieces")
-      .then((r) => {
-        if (r.ok) {
-          r.json().then(r => {
-            setPieces(r)
-          } )
-        } else {
-          r.json().then(console.log)
-        }
-      })
+      if (designer !== null) {
+        fetch(`/designers/${designer.id}`)
+        .then((r) => {
+          if (r.ok) {
+            r.json().then(r => {
+              setPieces(r.pieces)
+            } )
+          } else {
+            r.json().then(console.log)
+          }
+        })
+      }
     }, [])
 
     const goBackOne = () => {

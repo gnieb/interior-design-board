@@ -75,7 +75,7 @@ class DesignerById(Resource):
         if not designer:
             return make_response({"error":"No designer found, 404"}, 404)
         
-        return make_response(designer.to_dict(), 200)
+        return make_response(designer.to_dict(rules=('pieces',)), 200)
     
 
     def patch(self, id):

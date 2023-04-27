@@ -41,7 +41,7 @@ class Designer(db.Model, SerializerMixin):
 class Piece(db.Model, SerializerMixin):
     __tablename__ = 'pieces'
 
-    serialize_rules = ('-pdinstances','-designs')
+    serialize_rules = ('-pdinstances','-designs', '-designer')
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
@@ -56,6 +56,8 @@ class Piece(db.Model, SerializerMixin):
 
 class Design(db.Model, SerializerMixin):
     __tablename__ = 'designs'
+
+    serialize_rules = ('-pieces','-pdinstances')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
