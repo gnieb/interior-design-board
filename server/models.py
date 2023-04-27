@@ -52,7 +52,7 @@ class Piece(db.Model, SerializerMixin):
     designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
     # designers = association_proxy('pdinstances', 'designer')
     designs = association_proxy('pdinstances', 'design')
-    pdinstances = db.relationship('PDInstance', backref='piece')
+    pdinstances = db.relationship('PDInstance', backref='piece', cascade="all, delete-orphan")
 
 class Design(db.Model, SerializerMixin):
     __tablename__ = 'designs'
@@ -62,7 +62,7 @@ class Design(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     pieces = association_proxy('pdinstances', 'piece')
-    pdinstances = db.relationship('PDInstance', backref='design')
+    pdinstances = db.relationship('PDInstance', backref='design', cascade="all, delete-orphan")
 
 
 
