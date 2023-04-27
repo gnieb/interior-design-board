@@ -16,7 +16,9 @@ export default function DesignContainer ({designs}) {
 
     return (
         <>
+        <h2>My Designs</h2>
         {listDesigns}
+        <h2>---------------------------------------</h2>
         <Route exact path={`${match.url}/:dID`}>
             <DesignDisplay designs={designs}/>
         </Route>
