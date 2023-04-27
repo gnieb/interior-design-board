@@ -39,7 +39,8 @@ function App() {
         fetch(`/designers/${designer.id}`)
         .then((r) => {
           if (r.ok) {
-            r.json().then(r => {
+            r.json().then((r) => {
+              console.log(r.pieces)
               setPieces(r.pieces)
             } )
           } else {

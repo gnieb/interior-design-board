@@ -1,8 +1,9 @@
-import { useState, } from "react"
-
+import { useState, useContext } from "react"
+import { UserContext } from "./context/user"
 
 
 export default function NewPiece ({addNewPiece, handleOpenForm}) {
+   const {designer} = useContext(UserContext)
 
 
     const newP = {
@@ -29,6 +30,7 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
             style: formData.style,
             image: formData.image,
             color: formData.color,
+            designer_id: designer.id,
         }
         fetch("/pieces", {
             method: "POST",
