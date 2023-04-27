@@ -7,7 +7,7 @@ from config import db, bcrypt
 class Designer(db.Model, SerializerMixin):
     __tablename__ = 'designers'
 
-    serialize_rules = ('-pdinstances',)
+    serialize_rules = ('-pdinstances','-pieces')
 
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String, nullable=False)
@@ -16,8 +16,9 @@ class Designer(db.Model, SerializerMixin):
     email = db.Column(db.String)
     city = db.Column(db.String)
     _password_hash = db.Column(db.String)
-    pieces = association_proxy('pdinstances', 'piece')
+    pieces = db.relationship('Piece', backref='designer')
     pdinstances = db.relationship('PDInstance', backref='designer')
+    designs = association_proxy('pdinstances', 'design')
 
 
     @hybrid_property
@@ -34,13 +35,13 @@ class Designer(db.Model, SerializerMixin):
             self._password_hash, password.encode('utf-8'))
     
     def __repr__(self):
-        return f'Designer {self.name}, ID: {self.id}'
+        return f'Designer {self.first_name}, ID: {self.id}'
     
 
 class Piece(db.Model, SerializerMixin):
     __tablename__ = 'pieces'
 
-    serialize_rules = ('-pdinstances',)
+    serialize_rules = ('-pdinstances','-designs')
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
@@ -48,15 +49,27 @@ class Piece(db.Model, SerializerMixin):
     style = db.Column(db.String)
     image = db.Column(db.String, nullable=False)
     color = db.Column(db.String)
-    designers = association_proxy('pdinstances', 'designer')
+    designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
+    # designers = association_proxy('pdinstances', 'designer')
+    designs = association_proxy('pdinstances', 'design')
     pdinstances = db.relationship('PDInstance', backref='piece')
+
+class Design(db.Model, SerializerMixin):
+    __tablename__ = 'designs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    pieces = association_proxy('pdinstances', 'piece')
+    pdinstances = db.relationship('PDInstance', backref='design')
+
 
 
 class PDInstance(db.Model, SerializerMixin):
     __tablename__ = 'pdinstances'
 
-    serialize_rules = ('-piece.pdinstances', '-designer.pdinstances')
+    serialize_rules = ('-piece.pdinstances', '-design.pdinstances')
 
     id = db.Column(db.Integer, primary_key = True)
     piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
+    design_id = db.Column(db.Integer, db.ForeignKey('designs.id'))
     designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
