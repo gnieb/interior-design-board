@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import Designs from './Designs';
+import NewDesign from './NewDesign';
 import PiecesContainer from './PiecesContainer';
 import ProfilePage from './ProfilePage';
 import LandingPageSignUp from './Signup';
@@ -17,7 +18,7 @@ function App() {
   const [pieces, setPieces] = useState([])
   const [styleFilter, setStyleFilter] = useState("")
   const [typeFilter, setTypeFilter] = useState("")
-  // const [designs, setDesigns] = useState([])
+  const [designs, setDesigns] = useState([])
   const history= useHistory()
 
 
@@ -28,6 +29,7 @@ function App() {
                   r.json().then(r => {
                     setDesigner(r)
                     setPieces(r.pieces)
+                    setDesigns(r.designs)
                     })
                  
               } else {
@@ -37,23 +39,6 @@ function App() {
           })
     }, [])
 
-   
-
-    // useEffect(() => {
-    //   if (designer !== null) {
-    //     fetch(`/designers/${designer.id}`)
-    //     .then((r) => {
-    //       if (r.ok) {
-    //         r.json().then((r) => {
-    //           console.log(r.pieces)
-    //           setPieces(r.pieces)
-    //         } )
-    //       } else {
-    //         r.json().then(console.log)
-    //       }
-    //     })
-    //   }
-    // }, [])
 
     const goBackOne = () => {
       history.goBack()
@@ -93,10 +78,13 @@ function App() {
             handleTFilter={handleTFilter}/>
           </Route>
           <Route exact path='/designs'>
-            <Designs />
+            <Designs designs={designs}/>
           </Route>
           <Route exact path='/profile'>
             <ProfilePage />
+          </Route>
+          <Route >
+            <NewDesign />
           </Route>
         </Switch>
       ) : (
