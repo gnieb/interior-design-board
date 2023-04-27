@@ -4,10 +4,13 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from config import db, bcrypt
 
 
+# Designer ---< Pieces -----< p/d >------ Designs
+
+
 class Designer(db.Model, SerializerMixin):
     __tablename__ = 'designers'
 
-    serialize_rules = ('-pdinstances','-pieces')
+    serialize_rules = ('-pdinstances','-pieces', '-designs')
 
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String, nullable=False)
@@ -17,9 +20,11 @@ class Designer(db.Model, SerializerMixin):
     city = db.Column(db.String)
     _password_hash = db.Column(db.String)
     pieces = db.relationship('Piece', backref='designer')
-    pdinstances = db.relationship('PDInstance', backref='designer')
-    designs = association_proxy('pdinstances', 'design')
+    designs = db.relationship('Design', backref='designer') 
 
+    # pdinstances = association_proxy('pieces', 'pdinstance')
+    # pdinstances = db.relationship('PDInstance', backref='designer')
+    ###### THIS IS THE PROBLEM CHILD #######  
 
     @hybrid_property
     def password_hash(self):
@@ -41,7 +46,7 @@ class Designer(db.Model, SerializerMixin):
 class Piece(db.Model, SerializerMixin):
     __tablename__ = 'pieces'
 
-    serialize_rules = ('-pdinstances','-designs', '-designer')
+    serialize_rules = ('-pdinstances','-designs')
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
@@ -50,9 +55,9 @@ class Piece(db.Model, SerializerMixin):
     image = db.Column(db.String, nullable=False)
     color = db.Column(db.String)
     designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
-    # designers = association_proxy('pdinstances', 'designer')
-    designs = association_proxy('pdinstances', 'design')
     pdinstances = db.relationship('PDInstance', backref='piece', cascade="all, delete-orphan")
+    designs = association_proxy('pdinstances', 'design')
+   
 
 class Design(db.Model, SerializerMixin):
     __tablename__ = 'designs'
@@ -61,6 +66,7 @@ class Design(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
     pieces = association_proxy('pdinstances', 'piece')
     pdinstances = db.relationship('PDInstance', backref='design', cascade="all, delete-orphan")
 
@@ -69,9 +75,11 @@ class Design(db.Model, SerializerMixin):
 class PDInstance(db.Model, SerializerMixin):
     __tablename__ = 'pdinstances'
 
-    serialize_rules = ('-piece.pdinstances', '-design.pdinstances')
+    serialize_rules = ('-piece.pdinstances', '-design.pdinstances', '-designer.pdinstances')
 
     id = db.Column(db.Integer, primary_key = True)
     piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
     design_id = db.Column(db.Integer, db.ForeignKey('designs.id'))
-    designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
+    # designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
+
+    # designs can only belong to ONE designer. 

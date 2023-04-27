@@ -21,7 +21,7 @@ export default function NavBar () {
             <NavLink to='/' exact >Home</NavLink>
             <NavLink to='/pieces' exact>My Pieces</NavLink>
             <NavLink to='/designs' exact>Designs</NavLink>
-            <NavLink to='/new_design'>New Design</NavLink>
+            <NavLink to='/designs/new'>New Design</NavLink>
             <NavLink to='/profile' exact>Profile</NavLink>
             {designer ? 
             <button onClick={handleClick}>Log Out</button>:

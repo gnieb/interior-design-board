@@ -112,7 +112,8 @@ class Pieces(Resource):
                 type=data['type'],
                 style=data['style'],
                 image=data['image'],
-                color=data['color']
+                color=data['color'],
+                designer_id=data['designer_id']
             )
         except:
             return  make_response({"error": "Validation error"}, 400)

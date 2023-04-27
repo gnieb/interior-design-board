@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
-import Designs from './Designs';
+import DesignContainer from './DesignContainer';
 import NewDesign from './NewDesign';
 import PiecesContainer from './PiecesContainer';
 import ProfilePage from './ProfilePage';
@@ -27,6 +27,7 @@ function App() {
           .then((r) => {
               if (r.ok) {
                   r.json().then(r => {
+                    console.log(r.designs)
                     setDesigner(r)
                     setPieces(r.pieces)
                     setDesigns(r.designs)
@@ -77,13 +78,13 @@ function App() {
             handleStyleFilter={handleStyleFilter}
             handleTFilter={handleTFilter}/>
           </Route>
-          <Route exact path='/designs'>
-            <Designs designs={designs}/>
+          <Route path='/designs'>
+            <DesignContainer designs={designs}/>
           </Route>
           <Route exact path='/profile'>
             <ProfilePage />
           </Route>
-          <Route >
+          <Route exact path='/designs/new'>
             <NewDesign />
           </Route>
         </Switch>

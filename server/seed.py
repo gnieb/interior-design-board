@@ -4,15 +4,18 @@
 
 from app import app
 from config import db
-from models import Designer, Piece, PDInstance
+from models import Designer, Piece, PDInstance, Design
 
 def seed_data():
     Piece.query.delete()
     PDInstance.query.delete()
+    Design.query.delete()
     # Designer.query.delete()
     db.create_all()
 
     print("Seeding Pieces...")
+
+#################### PIECES #######################
 
     p1 = Piece(name='Basic Sectional', type='Furniture', color='beige', style='Traditional', image='https://assets.pbimgs.com/pbimgs/ab/images/dp/wcm/202314/0230/pb-basic-slipcovered-sofa-chaise-sectional-c.jpg', designer_id=2)
     p2 = Piece(name='Basic Sectional', type='Furniture', color='gray', style='Traditional', image='https://cdn.shopify.com/s/files/1/0572/6188/3569/products/Copper-Featured-600x600_600x600.jpg?v=1676985703', designer_id=1)
@@ -43,7 +46,6 @@ def seed_data():
 
     p16 = Piece(name='Minimal Candle', type='Accessory', color='white', style='Minimalist', image='https://static.zara.net/photos///2022/I/4/1/p/5441/705/850/2/w/1920/5441705850_6_8_1.jpg?ts=1657625044332', designer_id=1)
 
-    # ################## TEXTURES ###################
 
     p17 = Piece(name='Wood', type='Flooring', color='brown', style='Any', image='https://t4.ftcdn.net/jpg/02/71/30/35/360_F_271303570_x0Ssv4iEUgr0NuNPHHVLjUJnk648ExP2.jpg', designer_id=2)
 
@@ -64,10 +66,25 @@ def seed_data():
 
     p25 = Piece(name='Aloe Plant', type='Accessory', color='green', style='Any', image='https://thegardeningdad.com/wp-content/uploads/2022/01/Indoor-Aloe-Vera.jpg', designer_id=2)
 
+ #################### DESIGNS ######################   
+    
+    print("Seeding Designs....")
+    d1 = Design(name='Minimal Main Room', designer_id=1)
+    d2 = Design(name='Minimal Bedroom Inspo', designer_id=1)
+
+################# PDInstances #######################
+    print("Seeding PDinstances...")
+    pd1 = PDInstance(piece_id=2, design_id=1, )
+    pd2 = PDInstance(piece_id=3, design_id=1, )
+    pd3 = PDInstance(piece_id=7, design_id=1, )
 
 
-    db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25])
+
+
+    db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, d1, d2, pd1, pd2, pd3])
     db.session.commit()
+
+    print("Seeding complete")
 
 
 
