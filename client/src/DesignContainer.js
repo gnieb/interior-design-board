@@ -6,7 +6,7 @@ import { Switch } from "react-router-dom/cjs/react-router-dom";
 export default function DesignContainer ({designs}) {
     const match = useRouteMatch()
 
-    const listDesigns = designs.map(d => {
+    const designMenu = designs.map(d => {
         return (
             <div key={d.id}>
                 <Link to={`/designs/${d.id}`}>{d.name}</Link>
@@ -25,7 +25,7 @@ export default function DesignContainer ({designs}) {
     return (
         <>
         <h2>My Designs</h2>
-        {listDesigns}
+        {designMenu}
         <h2>---------------------------------------</h2>
         <Switch>
             {displayDesigns}
