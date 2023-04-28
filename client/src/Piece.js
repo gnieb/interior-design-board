@@ -1,5 +1,17 @@
+import { useState } from "react"
+
 export default function Piece ({p, removePiece}) {
     const {name, type, style, image, color, id} = p
+    const [showDesigns, setShowDesigns] = useState(false)
+
+
+    const handleShowDesigns = (e) => setShowDesigns(!showDesigns)
+
+    const displayAssociatedDesigns = p.designs.map(d => {
+        return (
+            <h2 key={d.id}>{d.name}</h2>
+        )
+    })
     
     const handleDelete = () => {
         fetch(`/pieces/${id}`, {
@@ -15,6 +27,8 @@ export default function Piece ({p, removePiece}) {
         })
     }
 
+
+
     return (
        <div>
         <h3>{name}</h3>
@@ -23,6 +37,10 @@ export default function Piece ({p, removePiece}) {
         <p>{style}</p>
         <p>{color}</p>
         <button onClick={handleDelete}>Remove from Collection</button>
+        <button onClick={handleShowDesigns}>{ showDesigns ? "Hide Designs":"Show Assocciated Designs"}</button>
+        {showDesigns ? 
+        displayAssociatedDesigns :
+        <div></div>}
        </div> 
     )
 }
