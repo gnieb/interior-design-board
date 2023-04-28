@@ -76,7 +76,14 @@ def seed_data():
     print("Seeding PDinstances...")
     pd1 = PDInstance(piece_id=2, design_id=1, )
     pd2 = PDInstance(piece_id=3, design_id=1, )
-    pd3 = PDInstance(piece_id=7, design_id=1, )
+    pd3 = PDInstance(piece_id=21, design_id=1, )
+    pd4 = PDInstance(piece_id=24, design_id=1, )
+    pd5 = PDInstance(piece_id=12, design_id=1, )
+
+    pd6 = PDInstance(piece_id=14, design_id=2, )
+    pd7 = PDInstance(piece_id=23, design_id=2, )
+    pd8 = PDInstance(piece_id=16, design_id=2, )
+
 
 
 
