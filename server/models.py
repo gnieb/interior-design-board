@@ -75,11 +75,12 @@ class Design(db.Model, SerializerMixin):
 class PDInstance(db.Model, SerializerMixin):
     __tablename__ = 'pdinstances'
 
-    serialize_rules = ('-piece.pdinstances', '-design.pdinstances', '-designer.pdinstances')
+    serialize_rules = ('-piece.pdinstances', '-design.pdinstances')
 
     id = db.Column(db.Integer, primary_key = True)
     piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
     design_id = db.Column(db.Integer, db.ForeignKey('designs.id'))
-    # designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
+    position = db.Column(db.Integer)
 
-    # designs can only belong to ONE designer. 
+    # 
+   
