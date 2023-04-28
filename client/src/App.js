@@ -28,7 +28,6 @@ function App() {
               if (r.ok) {
                   r.json().then(r => {
                     console.log(r.designs)
-                    console.log(r)
                     setDesigner(r)
                     setPieces(r.pieces)
                     setDesigns(r.designs)

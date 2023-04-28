@@ -7,21 +7,15 @@ import DesignCanvas from "./DesignCanvas"
 
 export default function DesignDisplay ({d}) {
    
-    console.log(d)
-    const usedPieces = d.pieces.map(p => {
-        return (
-            <>
-            <p>{p.name}</p>
-            <img src={p.image} />
-            </>
-        )
+    const listPieces = d.pieces.map(p => {
+        return  <p key={p.id}>{p.name}</p>
     })
-
 
     return (
         <>
         <h3>{d.name}</h3>
-        <h3>{usedPieces}</h3>
+        <h5>{listPieces}</h5>
+        <DesignCanvas d={d} />
         </>
     )
 } 
