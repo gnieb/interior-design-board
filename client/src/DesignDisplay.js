@@ -1,14 +1,22 @@
-import { useParams } from "react-router-dom";
 
-export default function DesignDisplay ({designs}) {
 
-    const params = useParams()
-    console.log(params)
+export default function DesignDisplay ({d}) {
+   
+    console.log(d)
+    const usedPieces = d.pieces.map(p => {
+        return (
+            <>
+            <p>{p.name}</p>
+            <img src={p.image} />
+            </>
+        )
+    })
+
 
     return (
         <>
-        <h2>{designs[params.dID].name}</h2>
-        <h3>design display will go here</h3>
+        <h3>{d.name}</h3>
+        <h3>{usedPieces}</h3>
         </>
     )
 } 

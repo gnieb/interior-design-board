@@ -3,7 +3,7 @@
 from flask import request, session, make_response
 from flask_restful import Resource
 from config import app, db, api
-from models import Designer, PDInstance, Piece
+from models import Designer, PDInstance, Piece, Design
 
 
 
@@ -48,7 +48,7 @@ class CheckSession(Resource):
         if not designer:
             return make_response({"message":"401: Not Authorized!"}, 401)
         
-        return make_response(designer.to_dict(rules=('pieces', 'designs')), 200)
+        return make_response(designer.to_dict(rules=('pieces', 'designs', 'designs.pieces')), 200)
 
 class Login(Resource):
     def post(self):
@@ -134,7 +134,15 @@ class PieceById(Resource):
         db.session.delete(piece)
         db.session.commit()
         return make_response({}, 204)
+    
+class DesignById(Resource):
+    def get(self, id):
+        design = Design.query.filter_by(id=id).first()
 
+        if not design:
+            return make_response({"error":"404, Design not found"}, 404)
+
+        return make_response(design.to_dict(rules=('pieces',)), 200)
 
 api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
@@ -142,6 +150,7 @@ api.add_resource(Designers, '/designers')
 api.add_resource(DesignerById, '/designers/<int:id>')
 api.add_resource(Pieces, '/pieces')
 api.add_resource(PieceById, '/pieces/<int:id>')
+api.add_resource(DesignById, '/designs/<int:id>')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 
