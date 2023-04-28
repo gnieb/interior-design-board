@@ -88,7 +88,7 @@ def seed_data():
 
 
 
-    db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, d1, d2, pd1, pd2, pd3])
+    db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, d1, d2, pd1, pd2, pd3, pd4, pd5, pd6, pd7, pd8])
     db.session.commit()
 
     print("Seeding complete")
