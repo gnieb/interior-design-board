@@ -5,12 +5,12 @@ import DesignCanvas from "./DesignCanvas"
 // list of pieces
 // form to add another piece? - either from collection or new - upload or from the internet
 
-export default function DesignDisplay ({d}) {
+export default function DesignDisplay ({d, pieces}) {
    
 
     return (
         <>
-        <DesignCanvas d={d} />
+        <DesignCanvas d={d} pieces={pieces} />
         </>
     )
 } 

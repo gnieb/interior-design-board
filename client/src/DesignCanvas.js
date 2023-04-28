@@ -2,7 +2,7 @@ import DraggableImage from "./DraggableImage"
 import { useState } from "react"
 import { useDrop } from "react-dnd"
 
-export default function DesignCanvas ({d}) {
+export default function DesignCanvas ({d, pieces}) {
     const [moodboard, setMoodboard] = useState([])
     const [{isOver}, drop] = useDrop(() => ({
         accept:"image",
@@ -13,11 +13,11 @@ export default function DesignCanvas ({d}) {
     }))
 
     const addImageToMoodboard = (id) => {
-        const imageList = d.pieces.filter((piece) => id===piece.id)
+        const imageList = pieces.filter((piece) => id===piece.id)
         setMoodboard((moodboard) => [...moodboard, imageList[0]])
     }
 
-    const displayDraggableImages = d.pieces.map(piece => {
+    const displayDraggableImages = pieces.map(piece => {
         return <DraggableImage  image={piece.image} key={piece.id} id={piece.id}/>
     }) 
 

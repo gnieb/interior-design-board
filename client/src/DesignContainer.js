@@ -17,21 +17,21 @@ export default function DesignContainer ({designs, pieces}) {
     const displayDesigns = designs.map(d => {
         return (
             <Route key={d.id} exact path={`/designs/${d.id}`}>
-                <DesignDisplay d={d} />
+                <DesignDisplay d={d} pieces={pieces}/>
             </Route>
         )
     })
 
-    const displayPiecesLibrary = pieces.map(p => {
-        return <img key={p.id} src={p.image} alt={p.name} width ={'250px'.toString()}  />
-    })
+    // const displayPiecesLibrary = pieces.map(p => {
+    //     return <img key={p.id} src={p.image} alt={p.name} width ={'250px'.toString()}  />
+    // })
 
     return (
         <>
         <h2>My Designs</h2>
         {designMenu}
         <h2>---------------------------------------</h2>
-        {displayPiecesLibrary}
+        {/* {displayPiecesLibrary} */}
         <Switch>
             {displayDesigns}
         </Switch>
