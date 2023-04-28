@@ -3,8 +3,8 @@ import { Route, useRouteMatch } from "react-router-dom";
 import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 
-export default function DesignContainer ({designs}) {
-    const match = useRouteMatch()
+export default function DesignContainer ({designs, pieces}) {
+    // const match = useRouteMatch()
 
     const designMenu = designs.map(d => {
         return (
@@ -22,11 +22,16 @@ export default function DesignContainer ({designs}) {
         )
     })
 
+    const displayPiecesLibrary = pieces.map(p => {
+        return <img key={p.id} src={p.image} alt={p.name} width ={'250px'.toString()}  />
+    })
+
     return (
         <>
         <h2>My Designs</h2>
         {designMenu}
         <h2>---------------------------------------</h2>
+        {displayPiecesLibrary}
         <Switch>
             {displayDesigns}
         </Switch>

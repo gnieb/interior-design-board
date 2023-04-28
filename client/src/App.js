@@ -79,7 +79,7 @@ function App() {
             handleTFilter={handleTFilter}/>
           </Route>
           <Route path='/designs'>
-            <DesignContainer designs={designs}/>
+            <DesignContainer designs={designs} pieces={filteredByStyleAndType}/>
           </Route>
           <Route exact path='/profile'>
             <ProfilePage />
