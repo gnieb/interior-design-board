@@ -23,7 +23,7 @@ export default function DesignContainer ({designs, pieces}) {
     })
 
     // const displayPiecesLibrary = pieces.map(p => {
-    //     return <img key={p.id} src={p.image} alt={p.name} width ={'250px'.toString()}  />
+    //     return <img key={p.id} src={p.image} alt={p.name} width ={'150px'.toString()}  />
     // })
 
     return (

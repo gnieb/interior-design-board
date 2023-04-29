@@ -19,3 +19,7 @@ The touch drag-and-drop API is supported on touch devices
 CANVAS:
 
 need to build a canvas that contains several other components of different sizes, how many... maybe 6 - 8
+
+allright frick this. 
+
+they can choose what goes in, but the app will render it
