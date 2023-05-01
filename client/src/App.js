@@ -92,7 +92,8 @@ function App() {
             designs={designs} 
             pieces={filteredByStyleAndType} 
             handleNewD={handleNewD}
-            removeDesign={removeDesign}/>
+            removeDesign={removeDesign}
+            addNewPiece={addNewPiece}/>
           </Route>
           <Route exact path='/profile'>
             <ProfilePage />
