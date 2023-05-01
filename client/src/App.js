@@ -1,4 +1,5 @@
 import './styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
@@ -60,6 +61,14 @@ function App() {
     const filteredByStyleAndType = (typeFilter !=="") ? filteredByStyle.filter((p) => p.type ===typeFilter) : [...filteredByStyle]
     // console.log("FILTER BY STYLE AND TYPE:", filteredByStyleAndType)
     
+    const handleNewD = (newDObj) => {
+      setDesigns([...designs, newDObj])
+    }
+
+    const removeDesign = (doomedD) => {
+      const updatedDesigns = designs.filter(design => design !== doomedD )
+      setDesigns(updatedDesigns)
+    }
 
   return (
     <div className="App">
@@ -79,13 +88,14 @@ function App() {
             handleTFilter={handleTFilter}/>
           </Route>
           <Route path='/designs'>
-            <DesignContainer designs={designs} pieces={filteredByStyleAndType}/>
+            <DesignContainer 
+            designs={designs} 
+            pieces={filteredByStyleAndType} 
+            handleNewD={handleNewD}
+            removeDesign={removeDesign}/>
           </Route>
           <Route exact path='/profile'>
             <ProfilePage />
-          </Route>
-          <Route exact path='/designs/new'>
-            <NewDesign />
           </Route>
         </Switch>
       ) : (

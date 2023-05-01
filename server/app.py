@@ -77,7 +77,6 @@ class DesignerById(Resource):
         
         return make_response(designer.to_dict(rules=('pieces',)), 200)
     
-
     def patch(self, id):
         designer = Designer.query.filter_by(id = id).first()
         if not designer:
@@ -135,6 +134,27 @@ class PieceById(Resource):
         db.session.commit()
         return make_response({}, 204)
     
+class Designs(Resource):
+    def post(self):
+        name=request.get_json()['name']
+        designer_id=request.get_json()['designer_id']
+
+        try:
+            newD = Design(
+                name=name,
+                designer_id=designer_id
+            )
+        except:
+            return make_response({"error":"validation error, unable to create new design"}, 401)
+        
+        try:
+            db.session.add(newD)
+            db.session.commit()
+        except:
+            return make_response({"error":"Validation error, unprocessable entity, check db constraint"}, 422)
+
+        return make_response(newD.to_dict(), 201)
+
 class DesignById(Resource):
     def get(self, id):
         design = Design.query.filter_by(id=id).first()
@@ -143,6 +163,20 @@ class DesignById(Resource):
             return make_response({"error":"404, Design not found"}, 404)
 
         return make_response(design.to_dict(rules=('pieces',)), 200)
+    
+    def delete(self, id):
+            design = Design.query.filter_by(id=id).first()
+
+            if not design:
+                return make_response({"error":"404, Design not found"}, 404)
+
+            try:
+                db.session.delete(design)
+                db.session.commit()
+            except:
+                return make_response({"error":"422 Unprocessable entity"}, 422)
+            
+            return make_response({}, 204)
 
 api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
@@ -150,6 +184,7 @@ api.add_resource(Designers, '/designers')
 api.add_resource(DesignerById, '/designers/<int:id>')
 api.add_resource(Pieces, '/pieces')
 api.add_resource(PieceById, '/pieces/<int:id>')
+api.add_resource(Designs, '/designs')
 api.add_resource(DesignById, '/designs/<int:id>')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')

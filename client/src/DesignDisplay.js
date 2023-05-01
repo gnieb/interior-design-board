@@ -10,11 +10,25 @@ import Moodboard from "./Moodboard"
 //pieces refers to ALL pieces in library
 //associatedPieces refers to the pieces that belong in this design so far. 
 
-export default function DesignDisplay ({d, pieces}) {
-   const assocPieces = d.pieces
+export default function DesignDisplay ({d, pieces, removeDesign}) {
+    const assocPieces = d.pieces
+    const handleDelete = (e) => {
+        fetch(`/designs/${d.id}`, {
+            method: "DELETE"
+        })
+        .then( r => {
+            if (r.ok) {
+              removeDesign(d)
+              console.log(r.status)  
+            } else {
+                console.log(r.status)
+            }
+        })
+    }
 
     return (
         <>
+        <button onClick={handleDelete} >Delete this Design</button>
         {/* <DesignCanvas d={d} pieces={pieces} /> */}
         <Moodboard assocPieces={assocPieces}/>
         </>

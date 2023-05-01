@@ -3,6 +3,7 @@ import { UserContext } from "./context/user";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+
 export default function NavBar () {
     const {designer, setDesigner} = useContext(UserContext)
     const history = useHistory()
@@ -19,9 +20,9 @@ export default function NavBar () {
     return (
         <div>
             <NavLink to='/' exact >Home</NavLink>
-            <NavLink to='/pieces' exact>My Pieces</NavLink>
+            <NavLink to='/pieces' exact>Piece Collection</NavLink>
             <NavLink to='/designs' exact>Designs</NavLink>
-            <NavLink to='/designs/new'>New Design</NavLink>
+            <NavLink to='/designs/new' exact >New Design</NavLink>
             <NavLink to='/profile' exact>Profile</NavLink>
             {designer ? 
             <button onClick={handleClick}>Log Out</button>:

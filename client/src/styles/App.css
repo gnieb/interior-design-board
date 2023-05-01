@@ -1,6 +1,12 @@
 .App {
   text-align: center;
+  /* font-family: Montserrat; */
+  font-family: Arial, Helvetica, sans-serif;
 }
+/* #title {
+  font-family: GFS Didot;
+  font-size:xx-large
+} */
 
 .moodboard {
   border-style: solid;

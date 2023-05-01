@@ -1,10 +1,18 @@
 TO DO
+- commit to a CSS library => bootstrap
+- choose fonts
+- modal with a form to add a new piece
+
+- Start a new Design form, hook it up to the design menu
+- remove a piece from the design via a pdinstance!
+- add a delete functiomm for the design, with a MODAL
+- push the user to the new design they made after they create it
 
 
-seed file - re-do the type and styles for seed data
 
 
-possibly may need to comment back in the designer and pdinstance relationship... not sure yet.
+finish the seed file - re-do the type and styles for seed data
+
 
 
 REACT DND:
@@ -16,10 +24,18 @@ REACT DND Back end
 HTML5 Drag and Drop API is supported only on the web, not on touch devices
 The touch drag-and-drop API is supported on touch devices
 
-CANVAS:
+Moodboard - React responsive Masonry
 
-need to build a canvas that contains several other components of different sizes, how many... maybe 6 - 8
 
-allright frick this. 
 
 they can choose what goes in, but the app will render it
+
+
+NEW DESIGN - 
+- add the collection picture with the modal 
+- add the 
+
+
+
+DESIGN
+- ask Noah about fonts

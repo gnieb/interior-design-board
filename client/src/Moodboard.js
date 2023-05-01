@@ -1,11 +1,12 @@
-import React from "react"
+import React, {useState} from "react"
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import addtocollection from "././styles/addtocollection.png"
 
 
 export default function Moodboard ({assocPieces}) {
 
-//onClick, bring up a modal with a form in it to add an image!!!!
+    const [openAdd, setOpenAdd] = useState()
+    const handleClickAdd = (e) => setOpenAdd(!openAdd)
 
 
     return (
@@ -26,7 +27,8 @@ export default function Moodboard ({assocPieces}) {
                         ))}
                         <img 
                         src={addtocollection}
-                         />
+                        onClick={handleClickAdd} 
+                        />
                     </Masonry>
                 </ResponsiveMasonry>
             </div>
