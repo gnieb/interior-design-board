@@ -1,12 +1,10 @@
 TO DO
-- commit to a CSS library => bootstrap
 - choose fonts
 - modal with a form to add a new piece
 
 - Start a new Design form, hook it up to the design menu
 - remove a piece from the design via a pdinstance!
-- add a delete functiomm for the design, with a MODAL
-- push the user to the new design they made after they create it
+- push the user to the new design they made after they create it???
 
 
 
@@ -36,6 +34,3 @@ NEW DESIGN -
 - add the 
 
 
-
-DESIGN
-- ask Noah about fonts

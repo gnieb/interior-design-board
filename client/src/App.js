@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
-import Home from './Home';
 import DesignContainer from './DesignContainer';
 import PiecesContainer from './PiecesContainer';
 import ProfilePage from './ProfilePage';
