@@ -11,20 +11,21 @@ export default function Moodboard ({ addNewPiece, d}) {
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const {designer} = useContext(UserContext)
-    const [associatedPieces, setAssociatedPieces] = useState([])
+    const [showAssocPieces, setShowAssocPieces] = useState([d.pieces])
+    const handleAssociatedPieces = (p) => setShowAssocPieces([...showAssocPieces, p])
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
             .then(r => {
                 if (r.ok) {
                     r.json().then( r => {
-                        setAssociatedPieces(r.pieces)
+                        setShowAssocPieces(r.pieces)
                     })
                 }
             })
     }, [])
 
-    const handleAssociatedPieces = (p) => setAssociatedPieces([...d.pieces, p])
+    
 
     const newP = {
         name: "",
@@ -103,13 +104,13 @@ export default function Moodboard ({ addNewPiece, d}) {
 
     return (
         <> 
-        {associatedPieces ?
+        {showAssocPieces ?
             <div style={{padding: '10px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                     >
                     <Masonry gutter="20px" >
-                        {associatedPieces.map((piece, i) => (
+                        {showAssocPieces.map((piece, i) => (
                             <img
                                 key={i}
                                 src={piece.image}
@@ -121,6 +122,7 @@ export default function Moodboard ({ addNewPiece, d}) {
                         src={addtocollection}
                         onClick={handleShow} 
                         style={{ display: "block", cursor: "pointer"}}
+                        alt="add to collection"
                         />
                     </Masonry>
                 </ResponsiveMasonry>
@@ -129,6 +131,7 @@ export default function Moodboard ({ addNewPiece, d}) {
             src={addtocollection}
             onClick={handleShow} 
             style={{ display: "block", cursor: "pointer"}}
+            alt="add to collection"
             /> }
 
             <Modal show={showModal} onHide={handleClose}>

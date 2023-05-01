@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { Route, useRouteMatch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 import NewDesign from "./NewDesign";
 
 export default function DesignContainer ({designs, handleNewD, removeDesign, addNewPiece}) {
-    // const match = useRouteMatch()
     
 
     const designMenu = designs.map(d => {
