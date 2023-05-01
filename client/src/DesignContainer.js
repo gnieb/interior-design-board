@@ -22,18 +22,11 @@ export default function DesignContainer ({designs, handleNewD, removeDesign, add
             </Route>
         )
     })
-
-    // const displayPiecesLibrary = pieces.map(p => {
-    //     return <img key={p.id} src={p.image} alt={p.name} width ={'150px'.toString()}  />
-    // })
-
  
     return (
         <>
         <h2>My Designs</h2>
         {designMenu}
-        <h2>---------------------------------------</h2>
-        {/* {displayPiecesLibrary} */}
         <Switch>
             <Route exact path='/designs/new'>
                 <NewDesign designs={designs} handleNewD={handleNewD} />

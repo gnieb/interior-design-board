@@ -13,7 +13,7 @@ export default function Moodboard ({ addNewPiece, d}) {
     const {designer} = useContext(UserContext)
     const [showAssocPieces, setShowAssocPieces] = useState([d.pieces])
     const handleAssociatedPieces = (p) => setShowAssocPieces([...showAssocPieces, p])
-
+    
     useEffect(() => {
         fetch(`/designs/${d.id}`)
             .then(r => {
@@ -25,8 +25,6 @@ export default function Moodboard ({ addNewPiece, d}) {
             })
     }, [])
 
-    
-
     const newP = {
         name: "",
         type: "",
@@ -34,7 +32,6 @@ export default function Moodboard ({ addNewPiece, d}) {
         image: "",
         color: "",
     }
-
     const [formData, setFormData] = useState(newP)
     
     const handleChange = (e) => {
@@ -80,7 +77,6 @@ export default function Moodboard ({ addNewPiece, d}) {
         })
     }
 
-
     const createPDInstance = (r) => {
         fetch("/pdinstances", {
             method: "POST",
@@ -106,7 +102,7 @@ export default function Moodboard ({ addNewPiece, d}) {
     return (
         <> 
         {showAssocPieces ?
-            <div style={{padding: '10px'}}  >
+            <div style={{padding: '50px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                     >
@@ -199,10 +195,6 @@ export default function Moodboard ({ addNewPiece, d}) {
                 </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
         </>
-        
     )
 }
