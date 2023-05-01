@@ -25,7 +25,6 @@ function App() {
           .then((r) => {
               if (r.ok) {
                   r.json().then(r => {
-                    console.log(r.designs)
                     setDesigner(r)
                     setPieces(r.pieces)
                     setDesigns(r.designs)
@@ -35,7 +34,7 @@ function App() {
                     console.log("STATUS:", r.status)
                   }
           })
-    }, [])
+    }, [pieces])
 
 
     const goBackOne = () => history.goBack()

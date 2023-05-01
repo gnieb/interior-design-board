@@ -61,8 +61,9 @@ export default function Moodboard ({ addNewPiece, d}) {
         .then(r => {
             if (r.ok) {
                 r.json().then((r) => {
-                    addNewPiece(r)
+                    console.log(r)
                     createPDInstance(r)
+                    addNewPiece(r)
                     handleAssociatedPieces(r)
                     setFormData({
                         name: "",

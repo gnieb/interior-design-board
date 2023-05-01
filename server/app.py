@@ -122,7 +122,7 @@ class Pieces(Resource):
         except:
             return make_response({"error":"Validation error, unable to post"}, 400)
         
-        return make_response(newP.to_dict(), 201)
+        return make_response(newP.to_dict(rules=('designs',)), 201)
     
 class PieceById(Resource):
     def delete(self, id):
