@@ -1,5 +1,7 @@
 import { useState, useContext } from "react"
 import { UserContext } from "./context/user"
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 export default function NewPiece ({addNewPiece, handleOpenForm}) {
@@ -60,11 +62,11 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
     return (
         <>
         <h1>New Piece Form Here</h1>
-        <form onSubmit={handleSubmit}>
-            <label>Piece Name</label>
-            <input type="text" id="name" value={formData.name} onChange={handleChange}/>
-            <label>Element Type</label>
-            <select id="type" onChange={handleChange} >
+        <Form onSubmit={handleSubmit}>
+            <Form.Label>Piece Name</Form.Label>
+            <Form.Control type="text" id="name" value={formData.name} onChange={handleChange}/>
+            <Form.Label>Element Type</Form.Label>
+            <Form.Select id="type" onChange={handleChange} >
                 <option value="">Select Type</option>
                 <option value="Accessory">Accessory</option>
                 <option value="Flooring">Flooring</option>
@@ -72,9 +74,9 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
                 <option value="Lighting">Lighting</option>
                 <option value="Misc">MISC</option>
                 <option value="Texture" >Texture</option>
-            </select>
-            <label>Interior Design Style</label>
-            <select id="style" onChange={handleChange} >
+            </Form.Select>
+            <Form.Label>Interior Design Style</Form.Label>
+            <Form.Select id="style" onChange={handleChange} >
                 <option value="">Select Style</option>
                 <option value="Any" >Any</option>
                 <option value="Bohemian">Bohemian</option>
@@ -86,9 +88,9 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
                 <option value="Modern Farmhouse">Modern Farmhouse</option>
                 <option value="Rustic">Rustic</option>
                 <option value="Traditional">Traditional</option>
-            </select>
-            <label>Color</label>
-            <select id="color" onChange={handleChange} >
+            </Form.Select>
+            <Form.Label>Color</Form.Label>
+            <Form.Select id="color" onChange={handleChange} >
                 <option value="" >Select Color</option>
                 <option value="Mulit">Multi</option>
                 <option value="White">White</option>
@@ -106,12 +108,12 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
                 <option value="Silver">Silver</option>
                 <option value="Gold">Gold</option>
                 <option value="Bronze">Bronze</option>
-            </select>
-            <label>Add Image</label>
-            <input type="text" id="image" value={formData.image} onChange={handleChange}/>
+            </Form.Select>
+            <Form.Label>Add Image</Form.Label>
+            <Form.Control  type="text" id="image" value={formData.image} onChange={handleChange}/>
             <br />
-            <button type="submit">Add to Collection</button>
-        </form>    
+            <Button type="submit">Add to Collection</Button>
+        </Form>    
         </>
     )
 }
