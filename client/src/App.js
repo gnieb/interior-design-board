@@ -34,15 +34,13 @@ function App() {
                  
               } else {
                     console.log("STATUS:", r.status)
-                    // history.push('/signup')
                   }
           })
     }, [])
 
 
-    const goBackOne = () => {
-      history.goBack()
-    }
+    const goBackOne = () => history.goBack()
+    
 
     const addNewPiece = (piece) => {
       setPieces((pieces) => [...pieces, piece])

@@ -57,17 +57,17 @@ export default function SignUp() {
         <>
         {Object.values(formik.errors).map((error, i) => <h2 key={i} style={{color:'red'}}>{error}</h2>)}
         <Form onSubmit= {formik.handleSubmit} >
-            <label>First Name</label>
-            <input type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
-            <label>Last Name</label>
-            <input type='text' name="last_name" value={formik.values.last_name} onChange={formik.handleChange} />
-            <label>Email (optional)</label>
-            <input type='text' name="email" value={formik.values.email} onChange={formik.handleChange} />
-            <label>Username</label>
-            <input type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-            <label>Password</label>
-            <input type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange} />
-            <button type = 'submit'>Sign Up</button>
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type='text' name="last_name" value={formik.values.last_name} onChange={formik.handleChange} />
+            <Form.Label>Email (optional)</Form.Label>
+            <Form.Control type='text' name="email" value={formik.values.email} onChange={formik.handleChange} />
+            <Form.Label>Username</Form.Label>
+            <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange} />
+            <Button type = 'submit'>Sign Up</Button>
         </Form> 
         </>
     )   

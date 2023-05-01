@@ -4,6 +4,8 @@ import { UserContext } from "./context/user";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup"
+import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/esm/Button";
 
 export default function Login() {
 
@@ -50,13 +52,13 @@ export default function Login() {
         <>
         <label>Don't have an account?</label>
         <NavLink exact to='/'>Create Account</NavLink>
-        <form onSubmit={formik.handleSubmit}>
-            <label>Username</label>
-            <input type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-            <label>Password</label>
-            <input type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
-            <button type = 'submit'>Log In</button>
-        </form>
+        <Form onSubmit={formik.handleSubmit}>
+            <Form.Label>Username</Form.Label>
+            <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
+            <Form.Label>Password</Form.Label>
+            <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
+            <Button type = 'submit'>Log In</Button>
+        </Form>
         </>
 
     ) 

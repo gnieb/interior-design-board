@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { UserContext } from "./context/user";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Button from "react-bootstrap/esm/Button";
-import Form from 'react-bootstrap/Form';
 import SignUp from "./SignUp";
 import Login from "./Login";
 
