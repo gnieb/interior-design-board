@@ -5,12 +5,15 @@ import addtocollection from "././styles/addtocollection.png"
 
 export default function Moodboard ({assocPieces}) {
 
-    const [openAdd, setOpenAdd] = useState()
+    const [openAdd, setOpenAdd] = useState(false)
     const handleClickAdd = (e) => setOpenAdd(!openAdd)
 
 
     return (
-        <>
+        <> 
+        {assocPieces ?
+        
+   
             <div style={{padding: '10px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -28,10 +31,16 @@ export default function Moodboard ({assocPieces}) {
                         <img 
                         src={addtocollection}
                         onClick={handleClickAdd} 
+                        style={{ display: "block", cursor: "pointer"}}
                         />
                     </Masonry>
                 </ResponsiveMasonry>
-            </div>
+            </div> :
+            <img 
+            src={addtocollection}
+            onClick={handleClickAdd} 
+            style={{ display: "block", cursor: "pointer"}}
+            /> }
         </>
         
     )
