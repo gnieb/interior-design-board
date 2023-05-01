@@ -4,7 +4,7 @@ import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 import NewDesign from "./NewDesign";
 
-export default function DesignContainer ({designs, pieces, handleNewD, removeDesign, addNewPiece}) {
+export default function DesignContainer ({designs, handleNewD, removeDesign, addNewPiece}) {
     // const match = useRouteMatch()
     
 
@@ -19,7 +19,7 @@ export default function DesignContainer ({designs, pieces, handleNewD, removeDes
     const displayDesigns = designs.map(d => {
         return (
             <Route key={d.id} exact path={`/designs/${d.id}`}>
-                <DesignDisplay d={d} pieces={pieces} removeDesign={removeDesign} addNewPiece={addNewPiece}/>
+                <DesignDisplay d={d} removeDesign={removeDesign} addNewPiece={addNewPiece}/>
             </Route>
         )
     })

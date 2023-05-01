@@ -3,16 +3,18 @@ import { useState } from "react"
 export default function Piece ({p, removePiece}) {
     const {name, type, style, image, color, id} = p
     const [showDesigns, setShowDesigns] = useState(false)
-
-
     const handleShowDesigns = (e) => setShowDesigns(!showDesigns)
 
-    const displayAssociatedDesigns = p.designs.map(d => {
+// do we need this conditional logic??
+    const displayAssociatedDesigns = p.designs ? (p.designs.map(d => {
         return (
             <h2 key={d.id}>{d.name}</h2>
         )
-    })
-    
+    })) :
+
+    (<h2>no designs associated yet</h2>)
+
+
     const handleDelete = () => {
         fetch(`/pieces/${id}`, {
             method: "DELETE",

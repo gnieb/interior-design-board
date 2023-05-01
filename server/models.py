@@ -80,7 +80,5 @@ class PDInstance(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key = True)
     piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
     design_id = db.Column(db.Integer, db.ForeignKey('designs.id'))
-    position = db.Column(db.Integer)
 
-    # 
    

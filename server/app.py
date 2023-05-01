@@ -177,6 +177,27 @@ class DesignById(Resource):
                 return make_response({"error":"422 Unprocessable entity"}, 422)
             
             return make_response({}, 204)
+    
+class PDInstances(Resource):
+    def post(self):
+        design_id= request.get_json()['design_id']
+        piece_id= request.get_json()['piece_id']
+
+        try:
+            newPD = PDInstance(
+                design_id=design_id,
+                piece_id=piece_id
+            )
+        except:
+            return make_response({"error":"422 Unprocessable entity"}, 422)\
+        
+        try:
+            db.session.add(newPD)
+            db.session.commit()
+        except:
+            return make_response({"error":"422 Unprocessable entity"}, 422)
+        return make_response(newPD.to_dict(), 201)
+
 
 api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
@@ -186,6 +207,7 @@ api.add_resource(Pieces, '/pieces')
 api.add_resource(PieceById, '/pieces/<int:id>')
 api.add_resource(Designs, '/designs')
 api.add_resource(DesignById, '/designs/<int:id>')
+api.add_resource(PDInstances, '/pdinstances')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 

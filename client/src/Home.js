@@ -7,7 +7,7 @@ export default function Home () {
 
     return (
         <>
-            <h1>WELCOME, {designer.first_name.toUpperCase()}</h1>
+            <h1>WELCOME, {designer.first_name.toUpperCase()}</h1> 
         </>
     )
 }

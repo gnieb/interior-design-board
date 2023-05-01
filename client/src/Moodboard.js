@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react"
+import React, {useState, useContext, useEffect} from "react"
 import { UserContext } from "./context/user";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import addtocollection from "././styles/addtocollection.png"
@@ -6,11 +6,25 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-export default function Moodboard ({assocPieces, addNewPiece}) {
+export default function Moodboard ({ addNewPiece, d}) {
     const [showModal, setShowModal] = useState(false)
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const {designer} = useContext(UserContext)
+    const [associatedPieces, setAssociatedPieces] = useState([])
+
+    useEffect(() => {
+        fetch(`/designs/${d.id}`)
+            .then(r => {
+                if (r.ok) {
+                    r.json().then( r => {
+                        setAssociatedPieces(r.pieces)
+                    })
+                }
+            })
+    }, [])
+
+    const handleAssociatedPieces = (p) => setAssociatedPieces([...d.pieces, p])
 
     const newP = {
         name: "",
@@ -25,7 +39,7 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.id] : e.target.value
+            [e.target.name] : e.target.value
         })
     }
     const handleSubmit = (e) => {
@@ -47,6 +61,8 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
             if (r.ok) {
                 r.json().then((r) => {
                     addNewPiece(r)
+                    createPDInstance(r)
+                    handleAssociatedPieces(r)
                     setFormData({
                         name: "",
                         type: "",
@@ -63,15 +79,37 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
     }
 
 
+    const createPDInstance = (r) => {
+        fetch("/pdinstances", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({
+                piece_id: r.id,
+                design_id: d.id
+            })
+        })
+        .then(r => {
+            if (r.ok) {
+                r.json().then( r => {
+                    console.log(r)
+                })
+            } else {
+                r.json().then(console.log)
+            }
+        })
+    }
+
+
+
     return (
         <> 
-        {assocPieces ?
+        {associatedPieces ?
             <div style={{padding: '10px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                     >
                     <Masonry gutter="20px" >
-                        {assocPieces.map((piece, i) => (
+                        {associatedPieces.map((piece, i) => (
                             <img
                                 key={i}
                                 src={piece.image}
@@ -100,9 +138,9 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Label>Piece Name</Form.Label>
-                        <Form.Control type="text" id="name" value={formData.name} onChange={handleChange}/>
+                        <Form.Control type="text" name="name" value={formData.name} onChange={handleChange}/>
                         <Form.Label>Element Type</Form.Label>
-                        <Form.Select id="type" onChange={handleChange} >
+                        <Form.Select name="type" onChange={handleChange} >
                             <option value="">Select Type</option>
                             <option value="Accessory">Accessory</option>
                             <option value="Flooring">Flooring</option>
@@ -112,7 +150,7 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
                             <option value="Texture" >Texture</option>
                         </Form.Select>
                         <Form.Label>Interior Design Style</Form.Label>
-                        <Form.Select id="style" onChange={handleChange} >
+                        <Form.Select name="style" onChange={handleChange} >
                             <option value="">Select Style</option>
                             <option value="Any" >Any</option>
                             <option value="Bohemian">Bohemian</option>
@@ -126,7 +164,7 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
                             <option value="Traditional">Traditional</option>
                         </Form.Select>
                         <Form.Label>Color</Form.Label>
-                        <Form.Select id="color" onChange={handleChange} >
+                        <Form.Select name="color" onChange={handleChange} >
                             <option value="" >Select Color</option>
                             <option value="Mulit">Multi</option>
                             <option value="White">White</option>
@@ -146,7 +184,7 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
                             <option value="Bronze">Bronze</option>
                         </Form.Select>
                         <Form.Label>Add Image</Form.Label>
-                        <Form.Control  type="text" id="image" value={formData.image} onChange={handleChange}/>
+                        <Form.Control  type="text" name="image" value={formData.image} onChange={handleChange}/>
                         <br />
                         <Button type="submit">Add to Collection</Button>
                     </Form>
@@ -154,9 +192,6 @@ export default function Moodboard ({assocPieces, addNewPiece}) {
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Cancel
-                </Button>
-                <Button variant="primary" onClick={handleSubmit}>
-                    Save Changes
                 </Button>
                 </Modal.Footer>
             </Modal>

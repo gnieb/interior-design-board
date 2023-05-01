@@ -5,13 +5,11 @@ import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Home from './Home';
 import DesignContainer from './DesignContainer';
-import NewDesign from './NewDesign';
 import PiecesContainer from './PiecesContainer';
 import ProfilePage from './ProfilePage';
-import LandingPageSignUp from './Signup';
-import LandingPageLogin from './Login';
 import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import LandingPage from './LandingPage';
 
 
 function App() {
@@ -36,7 +34,7 @@ function App() {
                  
               } else {
                     console.log("STATUS:", r.status)
-                    history.push('/signup')
+                    // history.push('/signup')
                   }
           })
     }, [])
@@ -77,7 +75,7 @@ function App() {
       {designer ? (
         <Switch >
           <Route exact path='/'>
-            <Home />
+            <LandingPage />
           </Route>
           <Route exact path='/pieces'>
             <PiecesContainer 
@@ -90,7 +88,6 @@ function App() {
           <Route path='/designs'>
             <DesignContainer 
             designs={designs} 
-            pieces={filteredByStyleAndType} 
             handleNewD={handleNewD}
             removeDesign={removeDesign}
             addNewPiece={addNewPiece}/>
@@ -101,11 +98,8 @@ function App() {
         </Switch>
       ) : (
         <Switch>
-          <Route exact path='/signup' >
-            <LandingPageSignUp />
-          </Route>
-          <Route exact path='/login'>
-            <LandingPageLogin />
+          <Route exact path='/' >
+            <LandingPage />
           </Route>
           <Route path ="*">
             <>

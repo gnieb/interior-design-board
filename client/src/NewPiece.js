@@ -26,6 +26,7 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+    
         const newPiece = {
             name: formData.name,
             type: formData.type,
@@ -34,6 +35,7 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
             color: formData.color,
             designer_id: designer.id,
         }
+        console.log(newPiece)
         fetch("/pieces", {
             method: "POST",
             headers: {"Content-Type":"application/json"},
@@ -42,6 +44,7 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
         .then(r => {
             if (r.ok) {
                 r.json().then((r) => {
+                    console.log(r)
                     addNewPiece(r)
                     setFormData({
                         name: "",
@@ -57,7 +60,6 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
             }
         })
     }
-
 
     return (
         <>

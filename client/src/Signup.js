@@ -4,10 +4,13 @@ import { UserContext } from "./context/user";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup"
+import Button from "react-bootstrap/esm/Button";
+import Form from 'react-bootstrap/Form';
 
-export default function Signup() {
+export default function SignUp() {
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
+
 
 // add a confirm password input???
     const formSchema = yup.object().shape({
@@ -50,13 +53,10 @@ export default function Signup() {
         }
     })
 
-
     return (
         <>
-        <label>Already a Member?</label>
-        <NavLink exact to='/login'>Log In</NavLink>
         {Object.values(formik.errors).map((error, i) => <h2 key={i} style={{color:'red'}}>{error}</h2>)}
-        <form onSubmit= {formik.handleSubmit} >
+        <Form onSubmit= {formik.handleSubmit} >
             <label>First Name</label>
             <input type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
             <label>Last Name</label>
@@ -68,8 +68,7 @@ export default function Signup() {
             <label>Password</label>
             <input type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange} />
             <button type = 'submit'>Sign Up</button>
-        </form>
+        </Form> 
         </>
-
-    ) 
+    )   
 }
