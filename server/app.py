@@ -112,7 +112,7 @@ class Pieces(Resource):
                 style=data['style'],
                 image=data['image'],
                 color=data['color'],
-                designer_id=data['designer_id']
+                designer_id= session['designer_id']
             )
         except:
             return  make_response({"error": "Validation error"}, 400)
@@ -137,12 +137,12 @@ class PieceById(Resource):
 class Designs(Resource):
     def post(self):
         name=request.get_json()['name']
-        designer_id=request.get_json()['designer_id']
+        
 
         try:
             newD = Design(
                 name=name,
-                designer_id=designer_id
+                designer_id= session['designer_id']
             )
         except:
             return make_response({"error":"validation error, unable to create new design"}, 401)

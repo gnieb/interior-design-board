@@ -35,7 +35,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             style: formData.style,
             image: formData.image,
             color: formData.color,
-            designer_id: designer.id,
         }
         fetch("/pieces", {
             method: "POST",

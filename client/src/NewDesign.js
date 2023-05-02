@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 export default function NewDesign ({designs, handleNewD}) {
-    
+
     const new_design = {
         name: "",
         designer_id: "",
@@ -19,7 +19,6 @@ export default function NewDesign ({designs, handleNewD}) {
         e.preventDefault()
         const newD = {
             name: formData.name,
-            designer_id: designs[0].designer_id
         }
         fetch("/designs", {
             method: "POST",
@@ -36,7 +35,6 @@ export default function NewDesign ({designs, handleNewD}) {
 
         setFormData({
             name: "",
-            designer_id: ""
         })
     }
 

@@ -26,7 +26,7 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
         setShowAssocPD(updatedPieces)
     }
 
-
+    console.log(d.id)
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
