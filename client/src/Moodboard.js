@@ -7,10 +7,16 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
-    const [showModal, setShowModal] = useState(false)
-    const handleShow = () => setShowModal(true)
-    const handleClose = () => setShowModal(false)
+    const [showSecondModal, setShowSecondModal] = useState(false)
+    const [showFirstModal, setShowFirstModal] = useState(false)
+    const handleShowSecond = () => {
+        setShowSecondModal(true)
+        setShowFirstModal(false)
+    }
+    const handleCloseSecond = () => setShowSecondModal(false)
     const {designer} = useContext(UserContext)
+    const handleShowFirstModal = () => setShowFirstModal(true)
+    const handleCloseFirstModal = () => setShowFirstModal(false)
 
     const newP = {
         name: "",
@@ -53,7 +59,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                         image: "",
                         color: "",
                     })
-                    handleClose()
+                    handleCloseSecond()
                 })
             } else {
                 r.json().then(console.log)
@@ -75,7 +81,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                 r.json().then( r => {
                     console.log(r)
                     handleAssociatedPD(r)
-                    // addNewPiece(r.piece)
                 })
             } else {
                 r.json().then(console.log)
@@ -97,13 +102,13 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                             <img
                                 key={i}
                                 src={pd.piece.image}
-                                style={{width: "100%", display: "block", cursor: "pointer"}}
+                                style={{width: "100%", display: "block"}}
                                 alt={pd.piece.name}
                             />
                         ))}
                         <img 
                         src={addtocollection}
-                        onClick={handleShow} 
+                        onClick={handleShowFirstModal} 
                         style={{ display: "block", cursor: "pointer"}}
                         alt="add to collection"
                         />
@@ -112,12 +117,27 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             </div> :
             <img 
             src={addtocollection}
-            onClick={handleShow} 
+            onClick={handleShowFirstModal} 
             style={{ display: "block", cursor: "pointer"}}
             alt="add to collection"
             /> }
 
-            <Modal show={showModal} onHide={handleClose}>
+<Modal show={showFirstModal} onHide={handleCloseFirstModal}>
+                <Modal.Header closeButton>
+                <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Button >Add From Library</Button>
+                    <Button onClick={handleShowSecond} >Add New</Button>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseFirstModal}>
+                    Cancel
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showSecondModal} onHide={handleCloseSecond}>
                 <Modal.Header closeButton>
                 <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
                 </Modal.Header>
@@ -176,7 +196,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={handleCloseSecond}>
                     Cancel
                 </Button>
                 </Modal.Footer>
