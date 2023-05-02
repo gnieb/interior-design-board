@@ -50,8 +50,6 @@ export default function Login() {
    
     return (
         <>
-        <label>Don't have an account?</label>
-        <NavLink exact to='/'>Create Account</NavLink>
         <Form onSubmit={formik.handleSubmit}>
             <Form.Label>Username</Form.Label>
             <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>

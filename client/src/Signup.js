@@ -6,7 +6,7 @@ import * as yup from "yup"
 import Button from "react-bootstrap/esm/Button";
 import Form from 'react-bootstrap/Form';
 
-export default function SignUp() {
+export default function Signup() {
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
 

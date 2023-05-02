@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 export default function NewDesign ({designs, handleNewD}) {
+    
     const new_design = {
         name: "",
         designer_id: "",
