@@ -1,12 +1,51 @@
 // all the pieces in and map thru them, give them all a delete button, add a add modal
 // ?
 
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ListSubheader from '@mui/material/ListSubheader';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
 
-export default function DesignEdit () {
+
+//need access to the pd instance to delete it only from this design, not all designs. 
+
+export default function DesignEdit ({handleAssociatedPieces, showAssocPD, handleRemovePiece}) {
+
+    const handleDelete = (pd) => {
+        handleRemovePiece(pd)
+    }
 
     return (
-        <>
-        Edit Page!!!!!
-        </>
+        <ImageList sx={{ width: 500, height: 450 }}>
+        <ImageListItem key="Subheader" cols={2}>
+        <ListSubheader component="div">December</ListSubheader>
+        </ImageListItem>
+        {showAssocPD.map((item) => (
+        <ImageListItem key={item.id}>
+            {console.log(item)}
+          <img
+            src={`${item.piece.image}?w=248&fit=crop&auto=format`}
+            srcSet={`${item.piece.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={item.piece.name}
+            loading="lazy"
+          />
+          <ImageListItemBar
+            title={item.piece.name}
+            actionIcon={
+              <IconButton
+                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                aria-label={`Remove ${item.piece.name}`}
+                onClick={()=> handleDelete(item) }
+              >
+                <InfoIcon />
+              </IconButton>
+            }
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
     )
 }

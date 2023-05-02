@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Button from '@mui/material/Button';
 
 export default function Piece ({p, removePiece}) {
     const {name, type, style, image, color, id} = p
@@ -38,8 +39,8 @@ export default function Piece ({p, removePiece}) {
         <p>{type}</p>
         <p>{style}</p>
         <p>{color}</p>
-        <button onClick={handleDelete}>Remove from Collection</button>
-        <button onClick={handleShowDesigns}>{ showDesigns ? "Hide Designs":"Show Assocciated Designs"}</button>
+        <Button onClick={handleDelete}>Remove from Collection</Button>
+        <Button onClick={handleShowDesigns}>{ showDesigns ? "Hide Designs":"Show Assocciated Designs"}</Button>
         {showDesigns ? 
         displayAssociatedDesigns :
         <div></div>}

@@ -6,24 +6,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-export default function Moodboard ({ addNewPiece, d}) {
+export default function Moodboard ({ addNewPiece, d, handleAssociatedPieces, showAssocPD}) {
     const [showModal, setShowModal] = useState(false)
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const {designer} = useContext(UserContext)
-    const [showAssocPieces, setShowAssocPieces] = useState([d.pieces])
-    const handleAssociatedPieces = (p) => setShowAssocPieces([...showAssocPieces, p])
-    
-    useEffect(() => {
-        fetch(`/designs/${d.id}`)
-            .then(r => {
-                if (r.ok) {
-                    r.json().then( r => {
-                        setShowAssocPieces(r.pieces)
-                    })
-                }
-            })
-    }, [])
 
     const newP = {
         name: "",
@@ -101,18 +88,18 @@ export default function Moodboard ({ addNewPiece, d}) {
 
     return (
         <> 
-        {showAssocPieces ?
+        {showAssocPD ?
             <div style={{padding: '50px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
                     >
                     <Masonry gutter="20px" >
-                        {showAssocPieces.map((piece, i) => (
+                        {showAssocPD.map((pd, i) => (
                             <img
                                 key={i}
-                                src={piece.image}
+                                src={pd.piece.image}
                                 style={{width: "100%", display: "block", cursor: "pointer"}}
-                                alt="piece.name"
+                                alt={pd.piece.name}
                             />
                         ))}
                         <img 

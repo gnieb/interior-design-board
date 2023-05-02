@@ -122,7 +122,7 @@ class Pieces(Resource):
         except:
             return make_response({"error":"Validation error, unable to post"}, 400)
         
-        return make_response(newP.to_dict(rules=('designs',)), 201)
+        return make_response(newP.to_dict(rules=('designs', 'pdinstances')), 201)
     
 class PieceById(Resource):
     def delete(self, id):
@@ -162,7 +162,7 @@ class DesignById(Resource):
         if not design:
             return make_response({"error":"404, Design not found"}, 404)
 
-        return make_response(design.to_dict(rules=('pieces',)), 200)
+        return make_response(design.to_dict(rules=('pieces', 'pdinstances')), 200)
     
     def delete(self, id):
             design = Design.query.filter_by(id=id).first()
@@ -198,6 +198,17 @@ class PDInstances(Resource):
             return make_response({"error":"422 Unprocessable entity"}, 422)
         return make_response(newPD.to_dict(), 201)
 
+class PDInstanceById(Resource):
+    def delete(self, id):
+        instance = PDInstance.query.filter_by(id=id).first()
+        if not instance:
+            return make_response({"error":"404 Not found" }, 404)
+        
+        db.session.delete(instance)
+        db.session.commit()
+
+        return make_response({}, 204)
+
 
 api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
@@ -208,6 +219,7 @@ api.add_resource(PieceById, '/pieces/<int:id>')
 api.add_resource(Designs, '/designs')
 api.add_resource(DesignById, '/designs/<int:id>')
 api.add_resource(PDInstances, '/pdinstances')
+api.add_resource(PDInstanceById, '/pdinstances/<int:id>')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 

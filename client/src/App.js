@@ -34,7 +34,7 @@ function App() {
                     console.log("STATUS:", r.status)
                   }
           })
-    }, [pieces])
+    }, [])
 
 
     const goBackOne = () => history.goBack()

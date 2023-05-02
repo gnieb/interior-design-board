@@ -1,4 +1,6 @@
 TO DO
+- refactor the design - need to actually get the pdinstances, not the pieces, you dum dum dummy
+
 - uploads
 
 - push the user to the new design they made after they create it???

@@ -6,7 +6,7 @@
 // form to add another piece? - either from collection or new - upload or from the internet
 
 import Moodboard from "./Moodboard"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
@@ -18,6 +18,29 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
     const [editMode, setEditMode] = useState(false)
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
+    const [showAssocPD, setShowAssocPD] = useState([])
+    const handleAssociatedPieces = (p) => setShowAssocPD([...showAssocPD, p])
+    
+    const handleRemovePiece = (pObj) => {
+        const updatedPieces = showAssocPD.filter(pd => pd !== pObj )
+        setShowAssocPD(updatedPieces)
+    }
+
+
+
+    useEffect(() => {
+        fetch(`/designs/${d.id}`)
+            .then(r => {
+                if (r.ok) {
+                    r.json().then( r => {
+                        setShowAssocPD(r.pdinstances)
+                    })
+                }
+            })
+    }, [])
+    
+    
+    
     const handleCloseAndDelete = (e) => {
         fetch(`/designs/${d.id}`, {
             method: "DELETE"
@@ -41,9 +64,11 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
         {/* <DesignCanvas d={d} pieces={pieces} /> */}
         <h2>{d.name}</h2>
         {editMode ?
-        <DesignEdit /> :
+        <DesignEdit handleAssociatedPieces={handleAssociatedPieces}
+        showAssocPD={showAssocPD}
+         handleRemovePiece={handleRemovePiece}/> :
        <>
-        <Moodboard addNewPiece={addNewPiece} d={d}/>
+        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPieces={handleAssociatedPieces} showAssocPD={showAssocPD}/>
         <Modal show={showModal} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>DELETE DESIGN</Modal.Title>
