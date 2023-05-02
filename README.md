@@ -1,17 +1,12 @@
 TO DO
-- refactor the design - need to actually get the pdinstances, not the pieces, you dum dum dummy
 
 - uploads
 
 - push the user to the new design they made after they create it???
 
-- create an edit view for the design. Can't do it as it is now. 
-    - remove a piece from the design
-
 NEW DESIGN - 
 - add the collection picture with the modal 
-- add the 
-- add to the collection from LIBRARY
+- add to the collection from LIBRARY??
 
 
 

@@ -10,10 +10,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Button from '@mui/material/Button';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-
-//need access to the pd instance to delete it only from this design, not all designs. 
-
-export default function DesignEdit ({handleAssociatedPieces, showAssocPD, handleRemovePiece}) {
+export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemovePiece}) {
 
     const handleDelete = (pd) => {
         handleRemovePiece(pd)
@@ -22,7 +19,7 @@ export default function DesignEdit ({handleAssociatedPieces, showAssocPD, handle
     return (
         <ImageList sx={{ width: 500, height: 450 }}>
         <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">December</ListSubheader>
+        <ListSubheader component="div">Pieces</ListSubheader>
         </ImageListItem>
         {showAssocPD.map((item) => (
         <ImageListItem key={item.id}>

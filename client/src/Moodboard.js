@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-export default function Moodboard ({ addNewPiece, d, handleAssociatedPieces, showAssocPD}) {
+export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
     const [showModal, setShowModal] = useState(false)
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
@@ -48,7 +48,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPieces, sho
                     console.log(r)
                     createPDInstance(r)
                     addNewPiece(r)
-                    handleAssociatedPieces(r)
                     setFormData({
                         name: "",
                         type: "",
@@ -77,6 +76,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPieces, sho
             if (r.ok) {
                 r.json().then( r => {
                     console.log(r)
+                    handleAssociatedPD(r)
                 })
             } else {
                 r.json().then(console.log)
@@ -171,7 +171,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPieces, sho
                             <option value="Bronze">Bronze</option>
                         </Form.Select>
                         <Form.Label>Add Image</Form.Label>
-                        <Form.Control  type="text" name="image" value={formData.image} onChange={handleChange}/>
+                        <Form.Control placeholder="image url..." type="text" name="image" value={formData.image} onChange={handleChange}/>
                         <br />
                         <Button type="submit">Add to Collection</Button>
                     </Form>

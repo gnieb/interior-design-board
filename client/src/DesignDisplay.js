@@ -19,7 +19,7 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const [showAssocPD, setShowAssocPD] = useState([])
-    const handleAssociatedPieces = (p) => setShowAssocPD([...showAssocPD, p])
+    const handleAssociatedPD = (p) => setShowAssocPD([...showAssocPD, p])
     
     const handleRemovePiece = (pObj) => {
         const updatedPieces = showAssocPD.filter(pd => pd !== pObj )
@@ -64,11 +64,11 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
         {/* <DesignCanvas d={d} pieces={pieces} /> */}
         <h2>{d.name}</h2>
         {editMode ?
-        <DesignEdit handleAssociatedPieces={handleAssociatedPieces}
+        <DesignEdit handleAssociatedPD={handleAssociatedPD}
         showAssocPD={showAssocPD}
          handleRemovePiece={handleRemovePiece}/> :
        <>
-        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPieces={handleAssociatedPieces} showAssocPD={showAssocPD}/>
+        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPD={handleAssociatedPD} showAssocPD={showAssocPD}/>
         <Modal show={showModal} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>DELETE DESIGN</Modal.Title>
