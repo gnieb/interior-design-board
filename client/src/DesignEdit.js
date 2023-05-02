@@ -8,6 +8,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import Button from '@mui/material/Button';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 
 //need access to the pd instance to delete it only from this design, not all designs. 
@@ -40,7 +41,7 @@ export default function DesignEdit ({handleAssociatedPieces, showAssocPD, handle
                 aria-label={`Remove ${item.piece.name}`}
                 onClick={()=> handleDelete(item) }
               >
-                <InfoIcon />
+               <DeleteOutlinedIcon/>
               </IconButton>
             }
           />
