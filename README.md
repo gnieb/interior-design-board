@@ -1,7 +1,8 @@
 TO DO
-
+- add another modal to ask 
+- the pieces currently cannot belong to more than one design -> this will work hopefully when 
+    - backup for this is to load up the seed file!!!!!!
 - uploads
-
 - push the user to the new design they made after they create it???
 
 NEW DESIGN - 

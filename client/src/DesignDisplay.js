@@ -26,7 +26,6 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
         setShowAssocPD(updatedPieces)
     }
 
-    console.log(d.id)
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
@@ -59,17 +58,16 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
 
     return (
         <>
-        <Button onClick={handleEdit}>Edit design</Button>
-        <Button onClick={handleShow} >Delete Design</Button>
-        {/* <DesignCanvas d={d} pieces={pieces} /> */}
         <h2>{d.name}</h2>
+        <Button onClick={handleEdit}>{editMode ? "View Moodboard" :"Edit design"}</Button>
+        
         {editMode ?
+        <>
+        <Button onClick={handleShow} >Delete Design</Button>
         <DesignEdit handleAssociatedPD={handleAssociatedPD}
         showAssocPD={showAssocPD}
-         handleRemovePiece={handleRemovePiece}/> :
-       <>
-        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPD={handleAssociatedPD} showAssocPD={showAssocPD}/>
-        <Modal show={showModal} onHide={handleClose}>
+         handleRemovePiece={handleRemovePiece}/> 
+         <Modal show={showModal} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>DELETE DESIGN</Modal.Title>
             </Modal.Header>
@@ -82,9 +80,11 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
                     I'M SURE
                 </Button>
             </Modal.Footer>
-        </Modal>
+            </Modal>
+         </> :
+       <>
+        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPD={handleAssociatedPD} showAssocPD={showAssocPD}/>
         </> }
-       
         </> 
     )
 } 

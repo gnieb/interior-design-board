@@ -22,9 +22,6 @@ class Designer(db.Model, SerializerMixin):
     pieces = db.relationship('Piece', backref='designer')
     designs = db.relationship('Design', backref='designer') 
 
-    # pdinstances = association_proxy('pieces', 'pdinstance')
-    # pdinstances = db.relationship('PDInstance', backref='designer')
-    ###### THIS IS THE PROBLEM CHILD #######  
 
     @hybrid_property
     def password_hash(self):
@@ -69,7 +66,6 @@ class Design(db.Model, SerializerMixin):
     designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
     pieces = association_proxy('pdinstances', 'piece')
     pdinstances = db.relationship('PDInstance', backref='design', cascade="all, delete-orphan")
-
 
 
 class PDInstance(db.Model, SerializerMixin):

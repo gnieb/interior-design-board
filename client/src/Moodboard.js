@@ -46,7 +46,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                 r.json().then((r) => {
                     console.log(r)
                     createPDInstance(r)
-                    addNewPiece(r)
                     setFormData({
                         name: "",
                         type: "",
@@ -76,6 +75,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                 r.json().then( r => {
                     console.log(r)
                     handleAssociatedPD(r)
+                    // addNewPiece(r.piece)
                 })
             } else {
                 r.json().then(console.log)

@@ -13,7 +13,15 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemovePiece}) {
 
     const handleDelete = (pd) => {
-        handleRemovePiece(pd)
+      fetch(`/pdinstances/${pd.id}`, {
+        method: "DELETE"
+      })
+        .then(r => {
+          if (r.ok) {
+            console.log("delete successful!")
+            handleRemovePiece(pd)
+          }
+        })
     }
 
     return (
@@ -23,7 +31,7 @@ export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemo
         </ImageListItem>
         {showAssocPD.map((item) => (
         <ImageListItem key={item.id}>
-            {console.log(item)}
+            {/* {console.log(item)} */}
           <img
             src={`${item.piece.image}?w=248&fit=crop&auto=format`}
             srcSet={`${item.piece.image}?w=248&fit=crop&auto=format&dpr=2 2x`}

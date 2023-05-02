@@ -48,7 +48,7 @@ class CheckSession(Resource):
         if not designer:
             return make_response({"message":"401: Not Authorized!"}, 401)
         
-        return make_response(designer.to_dict(rules=('pieces', 'designs', 'designs.pieces', 'pieces.designs')), 200)
+        return make_response(designer.to_dict(rules=('pieces', 'designs', 'designs.pieces', 'pieces.designs', )), 200)
 
 class Login(Resource):
     def post(self):
