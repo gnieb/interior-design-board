@@ -2,19 +2,28 @@ import React, {useState, useContext, useEffect} from "react"
 import { UserContext } from "./context/user";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import addtocollection from "././styles/addtocollection.png"
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
+    const {designer} = useContext(UserContext)
     const [showSecondModal, setShowSecondModal] = useState(false)
     const [showFirstModal, setShowFirstModal] = useState(false)
+    const [showLibraryForm, setShowLibraryForm] = useState(false)
+
+    const handleShowLibraryForm = () => {
+        setShowFirstModal(false)
+        setShowLibraryForm(true)
+    }
+
+    const handleCloseLibraryForm = () => setShowLibraryForm(false)
     const handleShowSecond = () => {
         setShowSecondModal(true)
         setShowFirstModal(false)
     }
     const handleCloseSecond = () => setShowSecondModal(false)
-    const {designer} = useContext(UserContext)
+    
     const handleShowFirstModal = () => setShowFirstModal(true)
     const handleCloseFirstModal = () => setShowFirstModal(false)
 
@@ -122,12 +131,12 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             alt="add to collection"
             /> }
 
-<Modal show={showFirstModal} onHide={handleCloseFirstModal}>
+            <Modal show={showFirstModal} onHide={handleCloseFirstModal}>
                 <Modal.Header closeButton>
                 <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Button >Add From Library</Button>
+                    <Button onClick={handleShowLibraryForm}>Add From Library</Button>
                     <Button onClick={handleShowSecond} >Add New</Button>
                 </Modal.Body>
                 <Modal.Footer>
@@ -197,6 +206,21 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseSecond}>
+                    Cancel
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showLibraryForm} onHide={handleCloseLibraryForm}>
+                <Modal.Header closeButton>
+                <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>library ish</p>
+                    <Button onClick={handleShowSecond} >Add New</Button>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseLibraryForm}>
                     Cancel
                 </Button>
                 </Modal.Footer>

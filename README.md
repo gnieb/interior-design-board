@@ -1,5 +1,6 @@
 TO DO
-- add another modal to ask 
+- add another modal to ask about adding from library
+- password length validation
 - the pieces currently cannot belong to more than one design -> this will work hopefully when 
     - backup for this is to load up the seed file!!!!!!
 - uploads
