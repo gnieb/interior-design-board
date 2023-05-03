@@ -1,20 +1,23 @@
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./context/user";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup"
 import Form from 'react-bootstrap/Form';
-import Button from "react-bootstrap/esm/Button";
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 export default function Login() {
 
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
+    const [noMatch, setNoMatch] = useState(false)
 
     const formSchema = yup.object().shape({
-        username: yup.string().required("Please choose a username"),
-        password: yup.string().required("Please choose a password")
+        username: yup.string().required("Username required"),
+        password: yup.string().required("Password required")
     })
 
     const handleResponse = (r) => {
@@ -26,6 +29,10 @@ export default function Login() {
             })
             } else {
             console.log("STATUS:", r.status)
+            setNoMatch(true)
+            setTimeout(() => {
+                setNoMatch(false)
+            }, 7000)
             }
         }
 
@@ -56,6 +63,11 @@ export default function Login() {
             <Form.Label>Password</Form.Label>
             <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
             <Button type = 'submit'>Log In</Button>
+            {noMatch ? 
+            <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            <strong>Username and password do not match</strong>
+            </Alert>: <></>}
         </Form>
         </>
 
