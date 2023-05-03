@@ -3,9 +3,9 @@ import Piece from "./Piece"
 import { useState, useEffect } from "react"
 import FilterBy from "./FilterBy"
 
-export default function PiecesContainer () {
+export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
     const [openForm, setOpenForm] = useState(false)
-    const [pieces, setPieces] = useState([])
+    // const [pieces, setPieces] = useState([])
     const [styleFilter, setStyleFilter] = useState("")
     const [typeFilter, setTypeFilter] = useState("")
 
@@ -14,7 +14,7 @@ export default function PiecesContainer () {
             .then((r) => {
                 if (r.ok) {
                     r.json().then(r => {
-                      setPieces(r.pieces)
+                      setPiecesLibrary(r.pieces)
                       })
                    
                 } else {
@@ -24,10 +24,10 @@ export default function PiecesContainer () {
       }, [])
 
 
-    const addNewPiece = (piece) => setPieces([...pieces, piece])
+    const addNewPiece = (piece) => setPiecesLibrary([...piecesLibrary, piece])
 
     const handleStyleFilter = (value) => setStyleFilter(value)
-    const filteredByStyle = (styleFilter !== "") ? pieces.filter((p) => p.style === styleFilter) : [...pieces]
+    const filteredByStyle = (styleFilter !== "") ? piecesLibrary.filter((p) => p.style === styleFilter) : [...piecesLibrary]
     // console.log("FILTER BY STYLE:", filteredByStyle)
     const handleTFilter = (value) => setTypeFilter(value)
     const filteredByStyleAndType = (typeFilter !=="") ? filteredByStyle.filter((p) => p.type ===typeFilter) : [...filteredByStyle]
@@ -35,8 +35,8 @@ export default function PiecesContainer () {
     
 
     const removePiece = (piece) => {
-        const updatedPieces = pieces.filter((p) => p.id !== piece.id)
-        setPieces(updatedPieces)
+        const updatedPieces = piecesLibrary.filter((p) => p.id !== piece.id)
+        setPiecesLibrary(updatedPieces)
       }
     
     const displayPieces = filteredByStyleAndType.map(p => {

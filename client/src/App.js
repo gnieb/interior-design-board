@@ -60,7 +60,9 @@ function App() {
             <LandingPage />
           </Route>
           <Route exact path='/pieces'>
-            <PiecesContainer 
+            <PiecesContainer
+            piecesLibrary={piecesLibrary}
+            setPiecesLibrary={setPiecesLibrary} 
             />
           </Route>
           <Route path='/designs'>
