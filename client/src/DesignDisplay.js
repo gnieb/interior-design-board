@@ -7,7 +7,7 @@
 
 import Moodboard from "./Moodboard"
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
 

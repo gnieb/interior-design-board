@@ -15,3 +15,7 @@
   height: 800px;
   margin: auto;
 }
+
+.pieceLibrary:hover {
+  background-color: gray;
+}

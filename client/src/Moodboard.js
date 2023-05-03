@@ -5,18 +5,37 @@ import addtocollection from "././styles/addtocollection.png"
 import Button from '@mui/material/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import AddFromCollection from "./AddFromCollection";
 
 export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
     const {designer} = useContext(UserContext)
     const [showSecondModal, setShowSecondModal] = useState(false)
     const [showFirstModal, setShowFirstModal] = useState(false)
     const [showLibraryForm, setShowLibraryForm] = useState(false)
+    const [libraryDisplay, setLibraryDisplay] = useState(designer.pieces)
+
+   
 
     const handleShowLibraryForm = () => {
         setShowFirstModal(false)
         setShowLibraryForm(true)
     }
 
+    const galleryToSelect = libraryDisplay.map(piece => {
+        return (
+            <img 
+            className="pieceLibrary"
+            key={piece.id} 
+            src={piece.image}
+            style={{width:"150px", padding:"10px", cursor:"pointer"}}
+            onClick={()=>handleAddFromLibrary(piece)}/>
+        )
+    })
+
+    const handleAddFromLibrary = (piece) => {
+        createPDInstance(piece)
+        handleCloseLibraryForm()
+    }
     const handleCloseLibraryForm = () => setShowLibraryForm(false)
     const handleShowSecond = () => {
         setShowSecondModal(true)
@@ -101,7 +120,8 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
 
     return (
         <> 
-        {showAssocPD ?
+        {showLibraryForm ? <AddFromCollection libraryDisplay={libraryDisplay} handleCloseLibraryForm={handleCloseLibraryForm} /> :
+        (showAssocPD ?
             <div style={{padding: '50px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -129,7 +149,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             onClick={handleShowFirstModal} 
             style={{ display: "block", cursor: "pointer"}}
             alt="add to collection"
-            /> }
+            /> )}
 
             <Modal show={showFirstModal} onHide={handleCloseFirstModal}>
                 <Modal.Header closeButton>
@@ -148,7 +168,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
 
             <Modal show={showSecondModal} onHide={handleCloseSecond}>
                 <Modal.Header closeButton>
-                <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
+                <Modal.Title>ADD A PIECE TO {d.name.toUpperCase()}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
@@ -213,11 +233,11 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
 
             <Modal show={showLibraryForm} onHide={handleCloseLibraryForm}>
                 <Modal.Header closeButton>
-                <Modal.Title>ADD A PIECE TO DESIGN</Modal.Title>
+                <Modal.Title>ADD A PIECE TO {d.name.toUpperCase()}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>library ish</p>
-                    <Button onClick={handleShowSecond} >Add New</Button>
+                    {galleryToSelect}
+                    <Button onClick={()=> console.log("hi")} >Add New</Button>
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseLibraryForm}>
