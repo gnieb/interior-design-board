@@ -59,7 +59,7 @@ class Login(Resource):
 
         if designer.authenticate(password):
             session['designer_id'] = designer.id
-            return make_response(designer.to_dict(), 200) 
+            return make_response(designer.to_dict(rules=('designs', 'pieces')), 200) 
         
         return make_response({"error":"Unauthorized"}, 401)
 

@@ -23,7 +23,6 @@ function App() {
               if (r.ok) {
                   r.json().then(r => {
                     setDesigner(r)
-                    // setPieces(r.pieces)
                     setDesigns(r.designs)
                     })
                  
@@ -32,6 +31,8 @@ function App() {
                   }
           })
     }, [])
+
+    // const settingUserDesigns
 
 
     const goBackOne = () => history.goBack()
@@ -84,7 +85,7 @@ function App() {
       ) : (
         <Switch>
           <Route exact path='/' >
-            <LandingPage />
+            <LandingPage setDesigns={setDesigns} />
           </Route>
           <Route path ="*">
             <>

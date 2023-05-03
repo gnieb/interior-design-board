@@ -3,7 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import Signup from "./Signup";
 import Login from "./Login";
 
-export default function SignupOrLogin() {
+export default function SignupOrLogin({setDesigns}) {
     const [showSignup, setShowSignUp] = useState(false)
     const handleSwitchView = () => setShowSignUp(!showSignup)
 
@@ -12,7 +12,7 @@ export default function SignupOrLogin() {
         <Button onClick={handleSwitchView}>{ showSignup ? "Log In" :"Become a Member"}</Button>
         { showSignup ?
         <Signup /> :
-        <Login />
+        <Login setDesigns={setDesigns} />
         }
         </>
 

@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
-export default function Login() {
+export default function Login({setDesigns}) {
 
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
@@ -25,6 +25,7 @@ export default function Login() {
             console.log("STATUS:", r.status)
             r.json().then(r => {
                 setDesigner(r)
+                console.log(r)
                 history.push('/')
             })
             } else {
