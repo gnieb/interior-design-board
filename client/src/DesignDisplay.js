@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
+export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, removeDesign, addNewPiece}) {
     const [showModal, setShowModal] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const handleShow = () => setShowModal(true)
@@ -85,7 +85,13 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
             </Modal>
          </> :
        <>
-        <Moodboard addNewPiece={addNewPiece} d={d} handleAssociatedPD={handleAssociatedPD} showAssocPD={showAssocPD}/>
+        <Moodboard 
+        addNewPiece={addNewPiece} 
+        d={d} 
+        handleAssociatedPD={handleAssociatedPD} 
+        showAssocPD={showAssocPD}
+        setPiecesLibrary={setPiecesLibrary}
+        piecesLibrary={piecesLibrary}/>
         </> }
         </> 
     )

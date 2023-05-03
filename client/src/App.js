@@ -14,6 +14,7 @@ import LandingPage from './LandingPage';
 function App() {
   const {designer, setDesigner} = useContext(UserContext)
   const [designs, setDesigns] = useState([])
+  const [piecesLibrary, setPiecesLibrary] = useState([])
   const history= useHistory()
 
 
@@ -24,6 +25,7 @@ function App() {
                   r.json().then(r => {
                     setDesigner(r)
                     setDesigns(r.designs)
+                    setPiecesLibrary(r.pieces)
                     })
                  
               } else {
@@ -31,9 +33,6 @@ function App() {
                   }
           })
     }, [])
-
-    // const settingUserDesigns
-
 
     const goBackOne = () => history.goBack()
 
@@ -69,7 +68,8 @@ function App() {
             designs={designs} 
             handleNewD={handleNewD}
             removeDesign={removeDesign}
-            // addNewPiece={addNewPiece}
+            piecesLibrary={piecesLibrary}
+            setPiecesLibrary={setPiecesLibrary}
             />
           </Route>
           <Route exact path='/profile'>

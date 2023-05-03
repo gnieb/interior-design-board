@@ -7,21 +7,18 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 
-export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
+export default function Moodboard ({piecesLibrary, setPiecesLibrary, addNewPiece, d, handleAssociatedPD, showAssocPD}) {
     const {designer} = useContext(UserContext)
     const [showSecondModal, setShowSecondModal] = useState(false)
     const [showFirstModal, setShowFirstModal] = useState(false)
     const [showLibraryForm, setShowLibraryForm] = useState(false)
-    const [libraryDisplay, setLibraryDisplay] = useState(designer.pieces)
-
-   
 
     const handleShowLibraryForm = () => {
         setShowFirstModal(false)
         setShowLibraryForm(true)
     }
 
-    const galleryToSelect = libraryDisplay.map(piece => {
+    const galleryToSelect = piecesLibrary.map(piece => {
         return (
             <img 
             className="pieceLibrary"
@@ -36,7 +33,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
         console.log(d.pieces)
         createPDInstance(piece)
         handleCloseLibraryForm()
-        setLibraryDisplay(d.pieces)
     }
     const handleCloseLibraryForm = () => setShowLibraryForm(false)
     const handleShowSecond = () => {
@@ -44,7 +40,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
         setShowFirstModal(false)
     }
     const handleCloseSecond = () => setShowSecondModal(false)
-    
     const handleShowFirstModal = () => setShowFirstModal(true)
     const handleCloseFirstModal = () => setShowFirstModal(false)
 
@@ -56,7 +51,6 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
         color: "",
     }
     const [formData, setFormData] = useState(newP)
-    
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -81,6 +75,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             if (r.ok) {
                 r.json().then((r) => {
                     console.log(r)
+                    setPiecesLibrary([...piecesLibrary, r])
                     createPDInstance(r)
                     setFormData({
                         name: "",
