@@ -13,9 +13,6 @@ import LandingPage from './LandingPage';
 
 function App() {
   const {designer, setDesigner} = useContext(UserContext)
-  // const [pieces, setPieces] = useState([])
-  // const [styleFilter, setStyleFilter] = useState("")
-  // const [typeFilter, setTypeFilter] = useState("")
   const [designs, setDesigns] = useState([])
   const history= useHistory()
 
@@ -38,29 +35,20 @@ function App() {
 
 
     const goBackOne = () => history.goBack()
-    
 
-    
     // const removePiece = (piece) => {
     //   const updatedPieces = pieces.filter((p) => p.id !== piece.id)
     //   setPieces(updatedPieces)
     // }
 
-    // const handleStyleFilter = (value) => setStyleFilter(value)
-    // const filteredByStyle = (styleFilter !== "") ? pieces.filter((p) => p.style === styleFilter) : [...pieces]
-    // // console.log("FILTER BY STYLE:", filteredByStyle)
-    // const handleTFilter = (value) => setTypeFilter(value)
-    // const filteredByStyleAndType = (typeFilter !=="") ? filteredByStyle.filter((p) => p.type ===typeFilter) : [...filteredByStyle]
-    // // console.log("FILTER BY STYLE AND TYPE:", filteredByStyleAndType)
-    
     const handleNewD = (newDObj) => {
       setDesigns([...designs, newDObj])
     }
 
-    // const removeDesign = (doomedD) => {
-    //   const updatedDesigns = designs.filter(design => design !== doomedD )
-    //   setDesigns(updatedDesigns)
-    // }
+    const removeDesign = (doomedD) => {
+      const updatedDesigns = designs.filter(design => design !== doomedD )
+      setDesigns(updatedDesigns)
+    }
 
   return (
     <div className="App">
@@ -73,17 +61,13 @@ function App() {
           </Route>
           <Route exact path='/pieces'>
             <PiecesContainer 
-           
-            // removePiece={removePiece}
-            // handleStyleFilter={handleStyleFilter}
-            // handleTFilter={handleTFilter}
             />
           </Route>
           <Route path='/designs'>
             <DesignContainer 
             designs={designs} 
             handleNewD={handleNewD}
-            // removeDesign={removeDesign}
+            removeDesign={removeDesign}
             // addNewPiece={addNewPiece}
             />
           </Route>

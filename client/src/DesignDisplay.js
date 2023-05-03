@@ -10,8 +10,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
-
-//associatedPieces refers to the pieces that belong in this design so far. 
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
     const [showModal, setShowModal] = useState(false)
@@ -63,21 +62,24 @@ export default function DesignDisplay ({d, removeDesign, addNewPiece}) {
         
         {editMode ?
         <>
-        <Button onClick={handleShow} >Delete Design</Button>
+        <Button onClick={handleShow} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+        Delete
+      </Button>
         <DesignEdit handleAssociatedPD={handleAssociatedPD}
         showAssocPD={showAssocPD}
          handleRemovePiece={handleRemovePiece}/> 
          <Modal show={showModal} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>DELETE DESIGN</Modal.Title>
+                <Modal.Title>DELETE {d.name.toUpperCase()}</Modal.Title>
             </Modal.Header>
             <Modal.Body>ARE YOU SURE YOU WANT TO DELETE THIS DESIGN?</Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     I CHANGED MY MIND
                 </Button>
-                <Button variant="danger" onClick={handleCloseAndDelete}>
-                    I'M SURE
+                
+                <Button onClick={handleCloseAndDelete} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+                I'm Sure
                 </Button>
             </Modal.Footer>
             </Modal>

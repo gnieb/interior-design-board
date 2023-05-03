@@ -1,15 +1,7 @@
 TO DO
-- add another modal to ask about adding from library
 - password length validation
-- the pieces currently cannot belong to more than one design -> this will work hopefully when 
-    - backup for this is to load up the seed file!!!!!!
 - uploads
 - push the user to the new design they made after they create it???
-
-NEW DESIGN - 
-- add the collection picture with the modal 
-- add to the collection from LIBRARY??
-
 
 
 REACT DND:
