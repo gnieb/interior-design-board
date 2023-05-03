@@ -5,7 +5,7 @@ import addtocollection from "././styles/addtocollection.png"
 import Button from '@mui/material/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import AddFromCollection from "./AddFromCollection";
+
 
 export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAssocPD}) {
     const {designer} = useContext(UserContext)
@@ -120,8 +120,8 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
 
     return (
         <> 
-        {showLibraryForm ? <AddFromCollection libraryDisplay={libraryDisplay} handleCloseLibraryForm={handleCloseLibraryForm} /> :
-        (showAssocPD ?
+        
+       { showAssocPD ?
             <div style={{padding: '50px'}}  >
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -149,7 +149,8 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
             onClick={handleShowFirstModal} 
             style={{ display: "block", cursor: "pointer"}}
             alt="add to collection"
-            /> )}
+            /> 
+            }
 
             <Modal show={showFirstModal} onHide={handleCloseFirstModal}>
                 <Modal.Header closeButton>
@@ -236,6 +237,7 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
                 <Modal.Title>ADD A PIECE TO {d.name.toUpperCase()}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <h5>Select any piece from your collection to add it to your {d.name} moodboard...</h5>
                     {galleryToSelect}
                     <Button onClick={()=> console.log("hi")} >Add New</Button>
                 </Modal.Body>
