@@ -1,12 +1,8 @@
-import { useState, useContext } from "react"
-import { UserContext } from "./context/user"
+import { useState } from "react"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
 export default function NewPiece ({addNewPiece, handleOpenForm}) {
-   const {designer} = useContext(UserContext)
-
 
     const newP = {
         name: "",
@@ -15,7 +11,6 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
         image: "",
         color: "",
     }
-
     const [formData, setFormData] = useState(newP)
     
     const handleChange = (e) => {
@@ -26,7 +21,6 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-    
         const newPiece = {
             name: formData.name,
             type: formData.type,
