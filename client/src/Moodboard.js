@@ -33,8 +33,10 @@ export default function Moodboard ({ addNewPiece, d, handleAssociatedPD, showAss
     })
 
     const handleAddFromLibrary = (piece) => {
+        console.log(d.pieces)
         createPDInstance(piece)
         handleCloseLibraryForm()
+        setLibraryDisplay(d.pieces)
     }
     const handleCloseLibraryForm = () => setShowLibraryForm(false)
     const handleShowSecond = () => {
