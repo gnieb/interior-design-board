@@ -30,7 +30,7 @@ function Copyright() {
 
   const theme = createTheme();
 
-export default function Login({setDesigns}) {
+export default function Login({setDesigns, showSignup, handleSwitchView}) {
 
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
@@ -119,6 +119,7 @@ export default function Login({setDesigns}) {
                         <strong>Username and password do not match</strong>
                         </Alert>: <></>}
                     </Form>
+                    <Button onClick={handleSwitchView}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
                     <Copyright sx={{ mt: 5 }} />
                 </Box>
             </Grid>

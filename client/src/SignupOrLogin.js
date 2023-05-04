@@ -9,10 +9,9 @@ export default function SignupOrLogin({setDesigns}) {
 
     return (
         <>
-        <Button onClick={handleSwitchView}>{ showSignup ? "Log In" :"Become a Member"}</Button>
         { showSignup ?
-        <Signup /> :
-        <Login setDesigns={setDesigns} />
+        <Signup showSignup={showSignup} handleSwitchView={handleSwitchView}/> :
+        <Login setDesigns={setDesigns} showSignup={showSignup} handleSwitchView={handleSwitchView} />
         }
         </>
 

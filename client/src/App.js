@@ -52,9 +52,11 @@ function App() {
 
   return (
     <div className="App">
-     <Header />
+     
      <main>
       {designer ? (
+        <>
+        <Header />
         <Switch >
           <Route exact path='/'>
             <LandingPage />
@@ -84,6 +86,7 @@ function App() {
             </>
           </Route>
         </Switch>
+        </>
       ) : (
         <Switch>
           <Route exact path='/' >

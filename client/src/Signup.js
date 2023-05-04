@@ -32,7 +32,7 @@ function Copyright() {
 const theme = createTheme();
 
 
-export default function Signup() {
+export default function Signup({handleSwitchView, showSignup}) {
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
     const [notUnique, setNotUnique] = useState(false)
@@ -93,7 +93,7 @@ export default function Signup() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60)',
+              backgroundImage: 'url(https://images.unsplash.com/photo-1511974212900-b42a18e19eb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fHdhbGxwYXBlciUyMGludGVyaW9yJTIwZGVzaWdufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -139,6 +139,7 @@ export default function Signup() {
              <p style={{ color: "red" }}> {formik.errors.password}</p>
             <Button type = 'submit'>Sign Up</Button>
         </Form> 
+        <Button onClick={handleSwitchView}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
         <Copyright sx={{ mt: 5 }} />
         </Box>
         </Grid>
