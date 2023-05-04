@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-from flask import request, session, make_response
+from flask import request, session, make_response, jsonify
 from flask_restful import Resource
 from config import app, db, api
 from models import Designer, PDInstance, Piece, Design
+import requests
+import json
 
 
 
@@ -208,6 +210,19 @@ class PDInstanceById(Resource):
         db.session.commit()
 
         return make_response({}, 204)
+
+@app.route('/randpalette')
+def randpalette():
+
+    data = '{"model":"default"}'
+    response = requests.post('http://colormind.io/api/', data=data)
+
+    return make_response(response.json())
+
+
+    
+
+
 
 
 api.add_resource(Home, '/')

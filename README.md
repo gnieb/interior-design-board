@@ -2,11 +2,6 @@ TO DO
 
 - uploads
 - push the user to the new design they made after they create it???
-______________________________
-fix the library thing
--BUG - when first logging in, MY Designs are empty......
-
-
 
 
 REACT DND:

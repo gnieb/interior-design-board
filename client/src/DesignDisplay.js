@@ -36,6 +36,8 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 }
             })
     }, [])
+
+    
     
     
     
