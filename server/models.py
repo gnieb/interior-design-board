@@ -66,8 +66,14 @@ class Design(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     designer_id = db.Column(db.Integer, db.ForeignKey('designers.id'))
+    color1 = db.Column(db.String)
+    color2 = db.Column(db.String)
+    color3 = db.Column(db.String)
+    color4 = db.Column(db.String)
+    color5 = db.Column(db.String)
     pieces = association_proxy('pdinstances', 'piece')
     pdinstances = db.relationship('PDInstance', backref='design', cascade="all, delete-orphan")
+# either need to store an array, or store colors separately....... fudge
 
 
 class PDInstance(db.Model, SerializerMixin):

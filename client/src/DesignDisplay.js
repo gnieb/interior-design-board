@@ -21,7 +21,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         const updatedPieces = showAssocPD.filter(pd => pd !== pObj )
         setShowAssocPD(updatedPieces)
     }
-    const example= [[107, 197, 162],[238, 229, 185],[232, 215, 162],[240, 154, 102], [201, 88, 87]]
+    const example= [[56, 58, 53],[108, 59, 57],[181, 181, 165],[196, 200, 173], [154, 156, 158]]
     const [randomPalette, setRandomPalette] = useState(example)
 
     useEffect(() => {
@@ -35,21 +35,6 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
             })
     }, [])
 
-    
-    // useEffect(() =>{
-    //     fetch('/randpalette')
-    //     .then(r => {
-    //         if (r.ok) {
-    //             r.json().then(r => {
-    //                 setRandomPalette(r.result)
-    //             })
-    //         } else {
-    //             r.json().then(console.log)
-    //         }
-    //     })
-            
-    // }, [])
-
         const generateRandomPalette = () => {
             fetch('/randpalette')
                 .then(r => {
@@ -60,7 +45,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                     } else {
                         r.json().then(console.log)
                     }
-        })
+                })
         }
 
 
