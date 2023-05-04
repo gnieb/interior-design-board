@@ -17,6 +17,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import photo7 from "././styles/photo7.avif"
 
 function Copyright() {
     return (
@@ -86,7 +87,7 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1556702571-3e11dd2b1a92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGludGVyaW9yJTIwZGVzaWdufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)',
+                    backgroundImage: `url(${photo7})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundColor: (t) =>
                     t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

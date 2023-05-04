@@ -3,9 +3,30 @@ import { Route } from "react-router-dom";
 import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 import NewDesign from "./NewDesign";
+import { useEffect } from "react";
 
-export default function DesignContainer ({piecesLibrary, setPiecesLibrary ,designs, handleNewD, removeDesign, addNewPiece}) {
+export default function DesignContainer ({piecesLibrary, 
+                                        setPiecesLibrary ,
+                                        designs, 
+                                        setDesigns, 
+                                        handleNewD, 
+                                        removeDesign, 
+                                        addNewPiece}) {
     
+    useEffect(() => {
+        fetch("/check_session")
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then(r => {
+                      setDesigns(r.designs)
+                      setPiecesLibrary(r.pieces)
+                      })
+                   
+                } else {
+                      console.log("STATUS:", r.status)
+                    }
+            })
+      }, [])
 
     const designMenu = designs.map(d => {
         return (

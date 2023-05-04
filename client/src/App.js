@@ -69,7 +69,8 @@ function App() {
           </Route>
           <Route path='/designs'>
             <DesignContainer 
-            designs={designs} 
+            designs={designs}
+            setDesigns={setDesigns} 
             handleNewD={handleNewD}
             removeDesign={removeDesign}
             piecesLibrary={piecesLibrary}
