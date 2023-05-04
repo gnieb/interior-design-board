@@ -9,9 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
 
-
-
-
 export default function ColorPalette ({d}) {
     const [color1, setColor1] = useState(d.color1 ? d.color1 : "#EEEEEE" )
     const [color2, setColor2] = useState(d.color2 ? d.color2 : "#CCCCCC")
