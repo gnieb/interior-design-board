@@ -140,11 +140,10 @@ class Designs(Resource):
     def post(self):
         name=request.get_json()['name']
         
-
         try:
             newD = Design(
                 name=name,
-                designer_id= session['designer_id']
+                designer_id= session['designer_id'],
             )
         except:
             return make_response({"error":"validation error, unable to create new design"}, 401)
@@ -179,6 +178,24 @@ class DesignById(Resource):
                 return make_response({"error":"422 Unprocessable entity"}, 422)
             
             return make_response({}, 204)
+    
+    def patch(self, id):
+        design = Design.query.filter_by(id=id).first()
+        if not design:
+            return make_response({"error":"404, Design not found"}, 404)
+        
+        data= request.get_json()
+        for key in data.keys():
+            setattr(design, key, data[key])
+
+        try:
+            db.session.add(design)
+            db.session.commit() 
+        except:
+            return make_response({"error":"422 Unprocessable entity"}, 422)   
+        
+        return make_response(design.to_dict(), 200)
+
     
 class PDInstances(Resource):
     def post(self):
