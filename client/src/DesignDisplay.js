@@ -7,6 +7,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, removeDesign, addNewPiece}) {
     const [showModal, setShowModal] = useState(false)
@@ -23,6 +25,21 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     }
     const example= [[56, 58, 53],[108, 59, 57],[181, 181, 165],[196, 200, 173], [154, 156, 158]]
     const [randomPalette, setRandomPalette] = useState(example)
+    const [color1, setColor1] = useState(randomPalette[0])
+    const [color2, setColor2] = useState(randomPalette[1])
+    const [color3, setColor3] = useState(randomPalette[2])
+    const [color4, setColor4] = useState(randomPalette[3])
+    const [color5, setColor5] = useState(randomPalette[4])
+
+    const setIndividualColors = (palette) => {
+        setColor1(palette[0])
+        setColor2(palette[1])
+        setColor3(palette[2])
+        setColor4(palette[3])
+        setColor5(palette[4])
+    }
+   
+    console.log(color1)
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
@@ -35,45 +52,31 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
             })
     }, [])
 
-        const generateRandomPalette = () => {
-            fetch('/randpalette')
-                .then(r => {
-                    if (r.ok) {
-                        r.json().then(r => {
-                            setRandomPalette(r.result)
-                        })
-                    } else {
-                        r.json().then(console.log)
-                    }
-                })
-        }
+    const generateRandomPalette = () => {
+        fetch('/randpalette')
+            .then(r => {
+                if (r.ok) {
+                    r.json().then(r => {
+                        setRandomPalette(r.result)
+                        setIndividualColors(r.result)
+                    })
+                } else {
+                    r.json().then(console.log)
+                }
+            })
+    }
 
 
-        console.log(randomPalette)
-        const toHex = (color) => {
+    console.log(randomPalette)
+    const toHex = (color) => {
            const hex = color.toString(16)
            return hex.length == 1 ? "0" + hex : hex
         }
-        const rgbToHex = (array) => `#${toHex(array[0])}${toHex(array[1])}${toHex(array[2])}`
-        
-        // TEST
-        // console.log(rgbToHex([255, 51, 255]))
-        
-          const displayColors = randomPalette.map((colorArray, i) => {
-            // const color = rgbToHex(colorArray)
-            return ( 
-            <Box key={i}
-                sx={{
-                    width: 200,
-                    height: 200,
-                    backgroundColor: rgbToHex(colorArray),
-                    '&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7],
-                    },
-                }}
-            /> )
-        })
+    const rgbToHex = (array) => `#${toHex(array[0])}${toHex(array[1])}${toHex(array[2])}`
+    
+    const handleSavePalette = () => {
+        console.log("SAVINGGGGGG")
+    }
     
     const handleCloseAndDelete = (e) => {
         fetch(`/designs/${d.id}`, {
@@ -122,8 +125,71 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
          </> :
        <>
         <Container>
-            {displayColors}
-            <Button onClick={generateRandomPalette}>Generate Palette</Button>
+        <Box 
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(color1),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            />
+            <Box 
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(color2),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            />
+            <Box
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(color3),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            />
+            <Box 
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(color4),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            />
+            <Box
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(color5),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            />
+            <IconButton
+                sx={{ color: "gray" }}
+                // aria-label={`Remove ${item.piece.name}`}
+                // onClick={()=> handleDelete(item) }
+              >
+               <InfoIcon/>
+              </IconButton>
+            <p>How to use the palettes: click the generate button to see new palette suggestions. Only click the save button if you'd like to replace your old palette.</p>
+            <Button onClick={generateRandomPalette}>Generate Random Palette</Button>
+            <Button onClick={handleSavePalette}>Save Palette</Button>
         </Container>
 
 
