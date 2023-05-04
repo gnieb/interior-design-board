@@ -23,23 +23,18 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         const updatedPieces = showAssocPD.filter(pd => pd !== pObj )
         setShowAssocPD(updatedPieces)
     }
-    const example= [[56, 58, 53],[108, 59, 57],[181, 181, 165],[196, 200, 173], [154, 156, 158]]
-    const [randomPalette, setRandomPalette] = useState(example)
-    const [color1, setColor1] = useState(randomPalette[0])
-    const [color2, setColor2] = useState(randomPalette[1])
-    const [color3, setColor3] = useState(randomPalette[2])
-    const [color4, setColor4] = useState(randomPalette[3])
-    const [color5, setColor5] = useState(randomPalette[4])
 
-    const setIndividualColors = (palette) => {
-        setColor1(palette[0])
-        setColor2(palette[1])
-        setColor3(palette[2])
-        setColor4(palette[3])
-        setColor5(palette[4])
-    }
-   
-    console.log(color1)
+    const [color1, setColor1] = useState(d.color1 ? d.color1 : "#EEEEEE" )
+    const [color2, setColor2] = useState(d.color2 ? d.color2 : "#CCCCCC")
+    const [color3, setColor3] = useState(d.color3 ? d.color3 : "#999999")
+    const [color4, setColor4] = useState(d.color4 ? d.color4 : "#666666")
+    const [color5, setColor5] = useState(d.color5 ? d.color5 : "#333333")
+
+    /////////////////////// 2 separate things://////////
+    //1. randome geneator: coming from color palette API: comes in an array of 5 arrays
+    // => translate that into rbgtoHex colors and distribute them to the boxes. 
+
+    //2. saving to the database and setting randompalette though... that will be strings. why not just store these as hex string??
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
@@ -57,7 +52,6 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
             .then(r => {
                 if (r.ok) {
                     r.json().then(r => {
-                        setRandomPalette(r.result)
                         setIndividualColors(r.result)
                     })
                 } else {
@@ -67,15 +61,42 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     }
 
 
-    console.log(randomPalette)
+    
     const toHex = (color) => {
            const hex = color.toString(16)
            return hex.length == 1 ? "0" + hex : hex
         }
     const rgbToHex = (array) => `#${toHex(array[0])}${toHex(array[1])}${toHex(array[2])}`
     
+    const setIndividualColors = (palette) => {
+        setColor1(rgbToHex(palette[0]))
+        setColor2(rgbToHex(palette[1]))
+        setColor3(rgbToHex(palette[2]))
+        setColor4(rgbToHex(palette[3]))
+        setColor5(rgbToHex(palette[4]))
+    }
+    
+
     const handleSavePalette = () => {
         console.log("SAVINGGGGGG")
+        const newPal = {
+            color1:color1,
+            color2:color2,
+            color3:color3,
+            color4:color4,
+            color5:color5
+        }
+        fetch(`/designs/${d.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(newPal)
+        })
+        .then(r=> {
+            if(r.ok) {
+                console.log(r)
+                setIndividualColors(newPal)
+            }
+        })
     }
     
     const handleCloseAndDelete = (e) => {
@@ -129,7 +150,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 sx={{
                     width: 200,
                     height: 200,
-                    backgroundColor: rgbToHex(color1),
+                    backgroundColor: color1,
                     '&:hover': {
                     backgroundColor: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
@@ -140,7 +161,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 sx={{
                     width: 200,
                     height: 200,
-                    backgroundColor: rgbToHex(color2),
+                    backgroundColor: color2,
                     '&:hover': {
                     backgroundColor: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
@@ -151,7 +172,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 sx={{
                     width: 200,
                     height: 200,
-                    backgroundColor: rgbToHex(color3),
+                    backgroundColor: color3,
                     '&:hover': {
                     backgroundColor: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
@@ -162,7 +183,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 sx={{
                     width: 200,
                     height: 200,
-                    backgroundColor: rgbToHex(color4),
+                    backgroundColor: color4,
                     '&:hover': {
                     backgroundColor: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
@@ -173,7 +194,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
                 sx={{
                     width: 200,
                     height: 200,
-                    backgroundColor: rgbToHex(color5),
+                    backgroundColor: color5,
                     '&:hover': {
                     backgroundColor: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
