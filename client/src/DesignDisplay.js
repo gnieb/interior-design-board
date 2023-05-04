@@ -5,6 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, removeDesign, addNewPiece}) {
     const [showModal, setShowModal] = useState(false)
@@ -12,14 +14,15 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const [showAssocPD, setShowAssocPD] = useState([])
-    const [randomPalette, setRandomPalette] = useState([])
+    
     const handleAssociatedPD = (p) => setShowAssocPD([...showAssocPD, p])
     
     const handleRemovePiece = (pObj) => {
         const updatedPieces = showAssocPD.filter(pd => pd !== pObj )
         setShowAssocPD(updatedPieces)
     }
-
+    const example= [[107, 197, 162],[238, 229, 185],[232, 215, 162],[240, 154, 102], [201, 88, 87]]
+    const [randomPalette, setRandomPalette] = useState(example)
 
     useEffect(() => {
         fetch(`/designs/${d.id}`)
@@ -33,38 +36,59 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     }, [])
 
     
-    useEffect(() =>{
-        fetch('/randpalette')
-        .then(r => {
-            if (r.ok) {
-                r.json().then(r => {
-                    console.log(r.result)
-                    setRandomPalette(r.result)
-                })
-            } else {
-                r.json().then(console.log)
-            }
-        })
+    // useEffect(() =>{
+    //     fetch('/randpalette')
+    //     .then(r => {
+    //         if (r.ok) {
+    //             r.json().then(r => {
+    //                 setRandomPalette(r.result)
+    //             })
+    //         } else {
+    //             r.json().then(console.log)
+    //         }
+    //     })
             
-    }, [])
-         console.log(randomPalette)
+    // }, [])
 
+        const generateRandomPalette = () => {
+            fetch('/randpalette')
+                .then(r => {
+                    if (r.ok) {
+                        r.json().then(r => {
+                            setRandomPalette(r.result)
+                        })
+                    } else {
+                        r.json().then(console.log)
+                    }
+        })
+        }
+
+
+        console.log(randomPalette)
         const toHex = (color) => {
            const hex = color.toString(16)
            return hex.length == 1 ? "0" + hex : hex
         }
-
-        
         const rgbToHex = (array) => `#${toHex(array[0])}${toHex(array[1])}${toHex(array[2])}`
         
         // TEST
         // console.log(rgbToHex([255, 51, 255]))
         
-          const displayColors = randomPalette.map(colorArray => {
-            rgbToHex(colorArray)
+          const displayColors = randomPalette.map((colorArray, i) => {
+            // const color = rgbToHex(colorArray)
+            return ( 
+            <Box key={i}
+                sx={{
+                    width: 200,
+                    height: 200,
+                    backgroundColor: rgbToHex(colorArray),
+                    '&:hover': {
+                    backgroundColor: 'primary.main',
+                    opacity: [0.9, 0.8, 0.7],
+                    },
+                }}
+            /> )
         })
-    
-    
     
     const handleCloseAndDelete = (e) => {
         fetch(`/designs/${d.id}`, {
@@ -112,9 +136,10 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
             </Modal>
          </> :
        <>
-
-        
-
+        <Container>
+            {displayColors}
+            <Button onClick={generateRandomPalette}>Generate Palette</Button>
+        </Container>
 
 
         <Moodboard 
