@@ -1,12 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import DesignEdit from "./DesignEdit";
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 
 export default function ColorPalette ({d}) {
@@ -124,14 +122,17 @@ export default function ColorPalette ({d}) {
                     },
                 }}
             />
-            <IconButton
-                sx={{ color: "gray" }}
-                // aria-label={`Remove ${item.piece.name}`}
+            
+            <Tooltip title="How to use the palettes: click the generate button to see new palette suggestions. Only click the save button if you'd like to replace your old palette">
+                <IconButton
+                sx={{ color: "gray", m:1 }}
+                aria-label={`How to use the palettes`}
                 // onClick={()=> handleDelete(item) }
               >
                <InfoIcon/>
               </IconButton>
-            <p>How to use the palettes: click the generate button to see new palette suggestions. Only click the save button if you'd like to replace your old palette.</p>
+            </Tooltip>
+            
             <Button onClick={generateRandomPalette}>Generate Random Palette</Button>
             <Button onClick={handleSavePalette}>Save Palette</Button>
             
