@@ -8,13 +8,33 @@ import Form from 'react-bootstrap/Form';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Avatar from '@mui/material/Avatar';
+import CssBaseline from '@mui/material/CssBaseline';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+function Copyright() {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" >
+        {'Copyright © '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
+  const theme = createTheme();
 
 export default function Login({setDesigns}) {
 
     const { setDesigner} = useContext(UserContext)
     const history = useHistory()
     const [noMatch, setNoMatch] = useState(false)
-
     const formSchema = yup.object().shape({
         username: yup.string().required("Username required"),
         password: yup.string().required("Password required")
@@ -57,20 +77,53 @@ export default function Login({setDesigns}) {
 
    
     return (
-        <>
-        <Form onSubmit={formik.handleSubmit}>
-            <Form.Label>Username</Form.Label>
-            <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
-            <Button type = 'submit'>Log In</Button>
-            {noMatch ? 
-            <Alert severity="error">
-            <AlertTitle>Error</AlertTitle>
-            <strong>Username and password do not match</strong>
-            </Alert>: <></>}
-        </Form>
-        </>
+        <ThemeProvider theme={theme}>
+            <Grid container component="main" sx={{ height: '100vh' }}>
+                <CssBaseline />
+                <Grid
+                item
+                xs={false}
+                sm={4}
+                md={7}
+                sx={{
+                    backgroundImage: 'url(https://images.unsplash.com/photo-1556702571-3e11dd2b1a92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGludGVyaW9yJTIwZGVzaWdufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: (t) =>
+                    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+                />
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Box
+                    sx={{
+                    my: 8,
+                    mx: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Form onSubmit={formik.handleSubmit}>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
+                        <Button type = 'submit'>Log In</Button>
+                        {noMatch ? 
+                        <Alert severity="error">
+                        <AlertTitle>Error</AlertTitle>
+                        <strong>Username and password do not match</strong>
+                        </Alert>: <></>}
+                    </Form>
+                    <Copyright sx={{ mt: 5 }} />
+                </Box>
+            </Grid>
+        </Grid>
+        </ThemeProvider>
 
     ) 
 }
