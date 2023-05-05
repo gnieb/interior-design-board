@@ -245,14 +245,16 @@ def explore():
     html = requests.get(url)
     doc = BeautifulSoup(html.text, 'html.parser')
 
-    articles = doc.find_all("a", class_="SummaryItemHedLink-ciaMYZ cRxRdq summary-item-tracking__hed-link summary-item__hed-link")
-    # print(articles)
+    articles = doc.find_all("div", class_="SummaryItemContent-gZLXlp jiwQnS summary-item__content")
+
+
 
     articleList =[]
     for article in articles:
         article = {
-            'href': article.attrs['href'],
-            'title':article.select("h3")[0].text
+            'href': article.select("a")[0].attrs['href'],
+            'title':article.select("h3")[0].text,
+            'subtitle': article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text
         }
         articleList.append(article)
         
