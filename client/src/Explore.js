@@ -23,7 +23,7 @@ export default function Explore() {
     return (
         <>
         <p>Welcome to EXPLORE</p>
-        <p>All Articles will take you to external links</p>
+        <p>All Articles are courtesy of Architectural Digest TRENDS</p>
         {articleList}
         </>
     )
