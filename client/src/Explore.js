@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Article from "./Article"
 
 
 export default function Explore() {
@@ -16,10 +17,11 @@ export default function Explore() {
     }, [])
 
 
-
+    const articleList = articles.map((a, i) => <Article key={i} a={a}/>)
 
     return (
         <>
+        {articleList}
         </>
     )
 }
