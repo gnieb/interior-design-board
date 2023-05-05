@@ -35,10 +35,11 @@ export default function NavBar () {
 
     return (
         <div>
-            <NavLink to='/' exact >Home</NavLink>
-            <NavLink to='/pieces' exact>Piece Collection</NavLink>
-            <NavLink to='/designs' exact>Designs</NavLink>
-            <NavLink to='/designs/new' exact >New Design</NavLink>
+            <NavLink to='/' exact >HOME</NavLink>
+            <NavLink to='/explore'>EXPLORE</NavLink>
+            <NavLink to='/pieces' exact>COLLECTION</NavLink>
+            <NavLink to='/designs' exact>DESIGNS</NavLink>
+            <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
             <div>
                 <Button
                     id="basic-button"

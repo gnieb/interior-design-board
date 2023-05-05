@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
+import Explore from './Explore';
 import DesignContainer from './DesignContainer';
 import PiecesContainer from './PiecesContainer';
 import ProfilePage from './ProfilePage';
@@ -60,6 +61,9 @@ function App() {
         <Switch >
           <Route exact path='/'>
             <LandingPage />
+          </Route>
+          <Route exact path='/explore'>
+            <Explore />
           </Route>
           <Route exact path='/pieces'>
             <PiecesContainer
