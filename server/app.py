@@ -247,7 +247,7 @@ def explore():
 
     articles = doc.find_all("a", class_="SummaryItemHedLink-ciaMYZ cRxRdq summary-item-tracking__hed-link summary-item__hed-link")
     # print(articles)
-    
+
     articleList =[]
     for article in articles:
         article = {
@@ -257,7 +257,7 @@ def explore():
         articleList.append(article)
         
         
-    print(articleList)   
+    return make_response(articleList, 200) 
 
 
 
