@@ -252,8 +252,8 @@ def explore():
     articleList =[]
     for article in articles:
         article = {
-            'href': article.select("a")[0].attrs['href'],
-            'title':article.select("h3")[0].text,
+            'href': f'https://www.architecturaldigest.com{article.select("a")[0].attrs["href"]}',
+            'title': article.select("h3")[0].text,
             'subtitle': article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text
         }
         articleList.append(article)

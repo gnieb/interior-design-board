@@ -1,22 +1,22 @@
-from bs4 import BeautifulSoup
-import requests
-# headers = {'user-agent': 'my-app/0.0.1'}, headers=headers ( would go behind url below
-url = "https://www.architecturaldigest.com/ad-it-yourself"
-html = requests.get(url)
-doc = BeautifulSoup(html.text, 'html.parser')
+# from bs4 import BeautifulSoup
+# import requests
+# # headers = {'user-agent': 'my-app/0.0.1'}, headers=headers ( would go behind url below
+# url = "https://www.architecturaldigest.com/ad-it-yourself"
+# html = requests.get(url)
+# doc = BeautifulSoup(html.text, 'html.parser')
 
-articles = doc.find_all("div", class_="SummaryItemContent-gZLXlp jiwQnS summary-item__content")
-# print(articles)
+# articles = doc.find_all("div", class_="SummaryItemContent-gZLXlp jiwQnS summary-item__content")
+# # print(articles)
 
 
-articleList =[]
-for article in articles:
-    article = {
-        'href': article.select("a")[0].attrs['href'],
-        'title':article.select("h3")[0].text,
-        'subtitle': article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text
-    }
-    articleList.append(article)
+# articleList =[]
+# for article in articles:
+#     article = {
+#         'href': article.select("a")[0].attrs['href'],
+#         'title':article.select("h3")[0].text,
+#         'subtitle': article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text
+#     }
+#     articleList.append(article)
     
     
     # print(articleList)

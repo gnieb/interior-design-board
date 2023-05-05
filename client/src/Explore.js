@@ -10,6 +10,7 @@ export default function Explore() {
             .then((r) => {
                 if (r.ok) {
                     r.json().then(r => {
+                        console.log(r)
                         setArticles(r)
                     })
                 }
