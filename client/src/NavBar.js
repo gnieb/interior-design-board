@@ -35,11 +35,11 @@ export default function NavBar () {
 
     return (
         <div>
-            <NavLink to='/' exact >HOME</NavLink>
-            <NavLink to='/explore'>EXPLORE</NavLink>
-            <NavLink to='/pieces' exact>COLLECTION</NavLink>
-            <NavLink to='/designs' exact>DESIGNS</NavLink>
-            <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
+            <NavLink className="menuItem" to='/' exact >HOME</NavLink>
+            <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
+            <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>
+            <NavLink className="menuItem" to='/designs' exact>DESIGNS</NavLink>
+            <NavLink className="menuItem" to='/designs/new' exact >NEW DESIGN</NavLink>
             <div>
                 <Button
                     id="basic-button"

@@ -1,12 +1,11 @@
 import NavBar from "./NavBar"
 
 
-export default function Header() {
+export default function Sidebar() {
 
 
     return (
         <header>
-            <h1 id="title" >INSPIRED INTERIORS </h1>
             <NavBar />
         </header>
     )

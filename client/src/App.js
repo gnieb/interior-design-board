@@ -2,7 +2,7 @@ import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
-import Header from './Header';
+import Sidebar from './Sidebar';
 import Explore from './Explore';
 import DesignContainer from './DesignContainer';
 import PiecesContainer from './PiecesContainer';
@@ -53,11 +53,12 @@ function App() {
 
   return (
     <div className="App">
-     
-     <main>
       {designer ? (
         <>
-        <Header />
+        <div id="sidebar">
+        <Sidebar />
+        </div> 
+        <main id="main">
         <Switch >
           <Route exact path='/'>
             <LandingPage />
@@ -91,6 +92,7 @@ function App() {
             </>
           </Route>
         </Switch>
+        </main>
         </>
       ) : (
         <Switch>
@@ -105,7 +107,8 @@ function App() {
           </Route>
         </Switch>
       )}
-     </main>
+      
+     
     </div>
   );
 }

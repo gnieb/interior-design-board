@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Article from "./Article"
+import Grid from '@mui/material/Grid';
 
 
 export default function Explore() {
@@ -22,9 +23,10 @@ export default function Explore() {
 
     return (
         <>
-        <p>Welcome to EXPLORE</p>
-        <p>All Articles are courtesy of Architectural Digest TRENDS</p>
+        <h3>Welcome to EXPLORE</h3>
+        <Grid container spacing={4}>
         {articleList}
+        </Grid>
         </>
     )
 }

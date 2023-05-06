@@ -12,8 +12,13 @@ import mag10 from '././styles/mag10.avif'
 import mag11 from '././styles/mag11.avif'
 import mag12 from '././styles/mag12.avif'
 import mag13 from '././styles/mag12.avif'
-
-
+import PropTypes from 'prop-types';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 
 export default function Article ({a}) {
@@ -21,12 +26,31 @@ export default function Article ({a}) {
     const randomPic = imageArray[Math.floor(Math.random() * imageArray.length)];
 
     return (
-        <>
-        <img src={randomPic} alt="Article image" style={{width:'100px'}} />
-        <Link href={a.href} target="_blank" underline="hover">
-        <h4>{a.title}</h4>
-        </Link>
-        <h6>{a.subtitle}</h6>
-        </>
+        <Grid item xs={12} md={6}>
+        <CardActionArea component="a" href={a.href} target="_blank" style={{padding: "20px"}}>
+            <Card sx={{ display: 'flex' }}>
+                <CardContent sx={{ flex: 1 }}>
+                    <Typography component="h2" variant="h5">
+                        {a.title}
+                    </Typography>
+                    <Typography variant="subtitle1" color="text.secondary">
+                        {a.subtitle}
+                    </Typography>
+                    <Typography variant="subtitle1" paragraph>
+                        Architectural Digest
+                    </Typography>
+                    <Typography variant="subtitle1" color="primary">
+                        Continue reading...
+                    </Typography>
+                </CardContent>
+                <CardMedia 
+                component="img"
+                sx={{ width: 200, height: 250, display: { xs: 'none', sm: 'block' } }}
+                image={randomPic} 
+                alt="articleImage"/>
+            </Card>
+
+        </CardActionArea>
+        </Grid>
     )
 }
