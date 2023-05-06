@@ -79,7 +79,7 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
    
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main" sx={{ height: '100vh' }} >
                 <CssBaseline />
                 <Grid
                 item
@@ -87,7 +87,7 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: `url(${photo7})`,
+                    backgroundImage: `url(https://images.unsplash.com/photo-1649185884993-16fac666380e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80)`,
                     backgroundRepeat: 'no-repeat',
                     backgroundColor: (t) =>
                     t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -95,7 +95,8 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                     backgroundPosition: 'center',
                 }}
                 />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square
+                style={{top:'50%'}}>
                 <Box
                     sx={{
                     my: 8,
