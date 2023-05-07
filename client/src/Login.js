@@ -79,7 +79,7 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
    
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }} >
+            <Grid container component="main" sx={{ height: '100vh' }}  >
                 <CssBaseline />
                 <Grid
                 item
@@ -96,20 +96,22 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                 }}
                 />
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square
-                style={{top:'50%'}}>
+                sx={{
+                background: '#EFEFEF'}}>
                 <Box
                     sx={{
                     my: 8,
                     mx: 4,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
+                    alignItems: 'center', 
+                    padding: "200px 0",
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Form onSubmit={formik.handleSubmit}>
+                    <Form onSubmit={formik.handleSubmit} >
                         <Form.Label>Username</Form.Label>
                         <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
                         <Form.Label>Password</Form.Label>

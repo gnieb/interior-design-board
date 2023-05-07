@@ -102,7 +102,8 @@ export default function Signup({handleSwitchView, showSignup}) {
               backgroundPosition: 'center',
             }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square
+        sx={{background:'#DEE3E2'}}>
           <Box
             sx={{
               my: 8,
@@ -110,25 +111,27 @@ export default function Signup({handleSwitchView, showSignup}) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              padding: '70px 0',
+              
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#116979' }}>
               <LockOutlinedIcon />
             </Avatar>
           <p>Required fields *</p>
         <Form onSubmit= {formik.handleSubmit} >
             <Form.Label>First Name *</Form.Label>
             <Form.Control type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
-            <p style={{ color: "red" }}> {formik.errors.first_name}</p>
+            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.first_name}</em></p>
             <Form.Label>Last Name *</Form.Label>
             <Form.Control type='text' name="last_name" value={formik.values.last_name} onChange={formik.handleChange} />
-            <p style={{ color: "red" }}> {formik.errors.last_name}</p>
+            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.last_name}</em></p>
             <Form.Label>Email (optional)</Form.Label>
             <Form.Control type='text' name="email" value={formik.values.email} onChange={formik.handleChange} />
-            <p style={{ color: "red" }}> {formik.errors.email}</p>
+            <p style={{ color: "#18B0B0" }}><em>{formik.errors.email}</em> </p>
             <Form.Label>Username *</Form.Label>
             <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-            <p style={{ color: "red" }}> {formik.errors.username}</p>
+            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.username}</em></p>
            {notUnique ? 
            <Alert severity="error">
             <AlertTitle>Error</AlertTitle>
@@ -137,10 +140,11 @@ export default function Signup({handleSwitchView, showSignup}) {
             <Form.Label>Password *</Form.Label>
             <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}
              />
-             <p style={{ color: "red" }}> {formik.errors.password}</p>
-            <Button type = 'submit'>Sign Up</Button>
+             <p style={{ color: "#18B0B0" }}><em>{formik.errors.password}</em> </p>
+            <Button type = 'submit' style={{color:'#116979'}}>Sign Up</Button>
         </Form> 
-        <Button onClick={handleSwitchView}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
+        <Button onClick={handleSwitchView}
+        style={{color:'#116979'}}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
         <Copyright sx={{ mt: 5 }} />
         </Box>
         </Grid>
