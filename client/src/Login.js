@@ -97,7 +97,7 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                 />
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square
                 sx={{
-                background: '#EFEFEF'}}>
+                background: '#F0EBE3'}}>
                 <Box
                     sx={{
                     my: 8,
@@ -108,22 +108,23 @@ export default function Login({setDesigns, showSignup, handleSwitchView}) {
                     padding: "200px 0",
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: '#41644A' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Form onSubmit={formik.handleSubmit} >
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label style={{ color: "#263A29" }}>Username</Form.Label>
                         <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label style={{ color: "#263A29" }}>Password</Form.Label>
                         <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}/>
-                        <Button type = 'submit'>Log In</Button>
+                        <Button type = 'submit' style={{color:'#41644A'}}>Log In</Button>
                         {noMatch ? 
                         <Alert severity="error">
                         <AlertTitle>Error</AlertTitle>
                         <strong>Username and password do not match</strong>
                         </Alert>: <></>}
                     </Form>
-                    <Button onClick={handleSwitchView}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
+                    <Button onClick={handleSwitchView}
+                    style={{color:'#41644A'}}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
                     <Copyright sx={{ mt: 5 }} />
                 </Box>
             </Grid>

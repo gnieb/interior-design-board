@@ -103,7 +103,7 @@ export default function Signup({handleSwitchView, showSignup}) {
             }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square
-        sx={{background:'#DEE3E2'}}>
+        sx={{background:'#F0EBE3'}}>
           <Box
             sx={{
               my: 8,
@@ -115,36 +115,36 @@ export default function Signup({handleSwitchView, showSignup}) {
               
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: '#116979' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#41644A' }}>
               <LockOutlinedIcon />
             </Avatar>
           <p>Required fields *</p>
         <Form onSubmit= {formik.handleSubmit} >
-            <Form.Label>First Name *</Form.Label>
+            <Form.Label style={{ color: "#263A29" }}>First Name *</Form.Label>
             <Form.Control type='text' name="first_name" value={formik.values.first_name} onChange={formik.handleChange} />
-            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.first_name}</em></p>
-            <Form.Label>Last Name *</Form.Label>
+            <p style={{ color: "#E86A33" }}> <em>{formik.errors.first_name}</em></p>
+            <Form.Label style={{ color: "#263A29" }}>Last Name *</Form.Label>
             <Form.Control type='text' name="last_name" value={formik.values.last_name} onChange={formik.handleChange} />
-            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.last_name}</em></p>
-            <Form.Label>Email (optional)</Form.Label>
+            <p style={{ color: "#E86A33" }}> <em>{formik.errors.last_name}</em></p>
+            <Form.Label style={{ color: "#263A29" }}>Email (optional)</Form.Label>
             <Form.Control type='text' name="email" value={formik.values.email} onChange={formik.handleChange} />
-            <p style={{ color: "#18B0B0" }}><em>{formik.errors.email}</em> </p>
-            <Form.Label>Username *</Form.Label>
+            <p style={{ color: "#E86A33" }}><em>{formik.errors.email}</em> </p>
+            <Form.Label style={{ color: "#263A29" }}>Username *</Form.Label>
             <Form.Control type = 'text' name="username" value={formik.values.username} onChange={formik.handleChange}/>
-            <p style={{ color: "#18B0B0" }}> <em>{formik.errors.username}</em></p>
+            <p style={{ color: "#E86A33" }}> <em>{formik.errors.username}</em></p>
            {notUnique ? 
            <Alert severity="error">
             <AlertTitle>Error</AlertTitle>
                 {formik.values.username} is already taken — <strong>please choose a different username!</strong>
             </Alert> : <></> }
-            <Form.Label>Password *</Form.Label>
+            <Form.Label style={{ color: "#263A29" }}>Password *</Form.Label>
             <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}
              />
-             <p style={{ color: "#18B0B0" }}><em>{formik.errors.password}</em> </p>
-            <Button type = 'submit' style={{color:'#116979'}}>Sign Up</Button>
+             <p style={{ color: "#E86A33" }}><em>{formik.errors.password}</em> </p>
+            <Button type = 'submit' style={{color:'#41644A'}}>Sign Up</Button>
         </Form> 
         <Button onClick={handleSwitchView}
-        style={{color:'#116979'}}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
+        style={{color:'#41644A'}}>{ showSignup ? "Already Have an Account?" :"Don't Have an Account?"}</Button>
         <Copyright sx={{ mt: 5 }} />
         </Box>
         </Grid>
