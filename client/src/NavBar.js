@@ -33,13 +33,14 @@ export default function NavBar () {
         })
     }
 
+
+
     return (
-        <div>
+        <div id="menu">
             <NavLink className="menuItem" to='/' exact >HOME</NavLink>
             <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
             <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>
             <NavLink className="menuItem" to='/designs' exact>DESIGNS</NavLink>
-            <NavLink className="menuItem" to='/designs/new' exact >NEW DESIGN</NavLink>
             <div>
                 <Button
                     id="basic-button"
@@ -48,7 +49,9 @@ export default function NavBar () {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClickMenu}
                 >
-                <Avatar>{designer.name}</Avatar>
+                <Avatar
+                style={{background:'#263A29'}}
+                >{Array.from(designer.first_name)[0]}</Avatar>
                 </Button>
                 <Menu
                     id="basic-menu"

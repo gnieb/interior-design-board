@@ -1,18 +1,44 @@
 import { useState } from "react"
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea, CardActions } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+
+
+
+const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
 
 export default function Piece ({p, removePiece}) {
     const {name, type, style, image, color, id} = p
     const [showDesigns, setShowDesigns] = useState(false)
     const handleShowDesigns = (e) => setShowDesigns(!showDesigns)
+    const [expanded, setExpanded] = useState(false);
 
-// do we need this conditional logic??
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
     const displayAssociatedDesigns = p.designs ? (p.designs.map(d => {
         return (
-            <h2 key={d.id}>{d.name}</h2>
+            <h6 key={d.id}>{d.name}</h6>
         )
     })) :
-
     (<h2>no designs associated yet</h2>)
 
 
@@ -33,17 +59,46 @@ export default function Piece ({p, removePiece}) {
 
 
     return (
-       <div>
-        <h3>{name}</h3>
-        <img src={image} alt={name} />
-        <p>{type}</p>
-        <p>{style}</p>
-        <p>{color}</p>
-        <Button onClick={handleDelete}>Remove from Collection</Button>
-        <Button onClick={handleShowDesigns}>{ showDesigns ? "Hide Designs":"Show Assocciated Designs"}</Button>
-        {showDesigns ? 
-        displayAssociatedDesigns :
-        <div></div>}
-       </div> 
+        <Grid item xs={6} md={4}>
+        <Card sx={{ maxWidth: 345 }}>
+            <CardActionArea>
+                <CardMedia
+                component="img"
+                height="250"
+                image={image}
+                alt={name}
+                sx={{ 
+                    objectFit:'cover'
+                     }}
+                />
+                <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                    {name}
+                </Typography>
+                </CardContent>
+            </CardActionArea>
+            <CardActions>
+                <Button onClick={handleDelete}>Remove from Collection</Button>
+                <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                >
+                <ExpandMoreIcon />
+                </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                <Typography paragraph><strong>Associated Designs:</strong></Typography>
+                <Typography paragraph>
+                    {displayAssociatedDesigns}
+                </Typography>
+                <Typography paragraph><strong>Design Style -</strong> {style}</Typography>
+                <Typography paragraph><strong>Interior Element Category -</strong> {type}</Typography>
+                </CardContent>
+            </Collapse>
+        </Card>
+        </Grid>
     )
 }

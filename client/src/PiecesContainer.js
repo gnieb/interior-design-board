@@ -2,6 +2,9 @@ import NewPiece from "./NewPiece"
 import Piece from "./Piece"
 import { useState, useEffect } from "react"
 import FilterBy from "./FilterBy"
+import Grid from '@mui/material/Grid';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Button from '@mui/material/Button';
 
 export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
     const [openForm, setOpenForm] = useState(false)
@@ -49,14 +52,24 @@ export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
 
 
     return (
-        <>
-        <button onClick={handleOpenForm}>{openForm ? "Cancel" : "Add New"}</button>
+        <main id="collectionPage">
         {openForm ?
-        <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> :
+        <>
+        <Button variant="outlined" onClick={handleOpenForm}>CANCEL</Button>
+        <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> 
+        </>:
         (<>
-        <FilterBy handleStyleFilter={handleStyleFilter} handleTFilter={handleTFilter} />
-        {displayPieces}
+        <Grid container spacing={3}>
+          <Grid item >
+          <Button variant="outlined" onClick={handleOpenForm}>
+            ADD NEW <AddCircleIcon />
+          </Button>
+            <FilterBy handleStyleFilter={handleStyleFilter} handleTFilter={handleTFilter} />
+          </Grid>
+          {displayPieces}
+          
+        </Grid>
         </>)}
-        </>
+        </main>
     )
 }

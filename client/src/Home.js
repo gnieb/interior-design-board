@@ -1,5 +1,6 @@
 import { UserContext } from "./context/user"
 import { useContext, useEffect } from "react"
+import Menu from "./Menu"
 
 
 export default function Home () {
@@ -7,8 +8,8 @@ export default function Home () {
    
 
         return (
-        <>
-            <h1>WELCOME, {designer.first_name.toUpperCase()}</h1> 
-        </>
-    )
+        <main id="home">
+            <Menu /> 
+        </main>
+        )
 }

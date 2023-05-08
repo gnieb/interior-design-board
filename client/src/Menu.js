@@ -1,7 +1,7 @@
 import NavBar from "./NavBar"
 
 
-export default function Sidebar() {
+export default function Menu() {
 
 
     return (

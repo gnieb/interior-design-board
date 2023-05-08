@@ -4,6 +4,7 @@ import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 import NewDesign from "./NewDesign";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom";
 
 export default function DesignContainer ({piecesLibrary, 
                                         setPiecesLibrary ,
@@ -53,6 +54,7 @@ export default function DesignContainer ({piecesLibrary,
         <>
         <h2>My Designs</h2>
         {designMenu}
+        <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
         <Switch>
             <Route exact path='/designs/new'>
                 <NewDesign designs={designs} handleNewD={handleNewD} />

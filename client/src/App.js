@@ -2,7 +2,7 @@ import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
-import Sidebar from './Sidebar';
+import Menu from './Menu';
 import Explore from './Explore';
 import DesignContainer from './DesignContainer';
 import PiecesContainer from './PiecesContainer';
@@ -55,9 +55,7 @@ function App() {
     <div className="App">
       {designer ? (
         <>
-        <div id="sidebar">
-        <Sidebar />
-        </div> 
+        {/* <Menu /> */}
         <main id="main">
         <Switch >
           <Route exact path='/'>
