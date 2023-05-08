@@ -1,7 +1,6 @@
 .App {
   font-family: Arial, Helvetica, sans-serif;
   background: #EEEEEE;
-  padding: 20px;
 }
 
 #main {
@@ -48,6 +47,10 @@
   justify-content:flex-end
 }
 
+#collectionPage {
+  padding: 20px;
+}
+
 .moodboard {
   border-style: solid;
   border-color: gray;
@@ -58,4 +61,11 @@
 
 .pieceLibrary:hover {
   background-color: gray;
+}
+
+#welcome {
+  position:sticky;
+  position: -webkit-sticky; /* Safari */
+  top: 50%;
+  color:#263A29;
 }

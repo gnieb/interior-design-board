@@ -9,9 +9,6 @@ import Paper from '@mui/material/Paper';
 
 export default function UpdateProfilePage ({handleEditMode}) {
     const {designer, setDesigner} = useContext(UserContext)
-    // const [newFirst, setNewFirst] = useState('')
-    // const [newLast, setNewLast] = useState('')
-    // const [newEmail, setNewEmail] = useState('')
 
     const des = {
         first_name: designer.first_name,
@@ -52,8 +49,6 @@ export default function UpdateProfilePage ({handleEditMode}) {
             }
         })
     }
-
-   
 
     return (
         <div id="update">

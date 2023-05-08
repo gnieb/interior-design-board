@@ -26,7 +26,7 @@ export default function Article ({a}) {
     const randomPic = imageArray[Math.floor(Math.random() * imageArray.length)];
 
     return (
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={10} md={10}>
         <CardActionArea component="a" href={a.href} target="_blank" style={{padding: "20px"}}>
             <Card sx={{ display: 'flex' }}>
                 <CardContent sx={{ flex: 1 }}>

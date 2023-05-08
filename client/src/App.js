@@ -55,7 +55,6 @@ function App() {
     <div className="App">
       {designer ? (
         <>
-        {/* <Menu /> */}
         <main id="main">
         <Switch >
           <Route exact path='/'>
