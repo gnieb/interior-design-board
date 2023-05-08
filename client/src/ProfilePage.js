@@ -6,11 +6,20 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MailIcon from '@mui/icons-material/Mail';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 
 export default function ProfilePage () {
     const {designer} = useContext(UserContext)
-    const {first_name, last_name, email, city} = designer
+    const {first_name, last_name, email, city, username} = designer
     const [editMode, setEditMode] = useState(false)
 
    
@@ -26,21 +35,45 @@ export default function ProfilePage () {
        (<div id="profile">
        <Menu />
        <Grid container component="main" >
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} 
+        <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} 
             sx={{
                 margin:'10px'
             }}>
-            <Box
+            <List
             sx={{color:'#263A29', 
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'left',}}>
-            <h2><strong>PROFILE</strong></h2>
-            <h3>NAME {first_name} {last_name}</h3>
-            <h3>EMAIL - {email}</h3>
-            <h3>LOCATION - {city}</h3>
+            alignItems: 'center',}}>
+                <Divider variant="middle" component="div" role="presentation"/>
+                <ListItem>
+                    <ListItemAvatar>
+                    <Avatar
+                    style={{background:'#263A29'}}>
+                    {Array.from(designer.first_name)[0]}</Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={`${first_name.toUpperCase()} ${last_name.toUpperCase()}`} secondary={username} />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem>
+                    <ListItemAvatar>
+                    <Avatar
+                    style={{background:'#263A29'}}>
+                    <MailIcon/>
+                    </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary='EMAIL' secondary={email} />
+                </ListItem>
+                <ListItem>
+                    <ListItemAvatar>
+                    <Avatar
+                    style={{background:'#263A29'}}>
+                    <LocationOnIcon/>
+                    </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="LOCATION" secondary={city} />
+                </ListItem>
             <Button onClick={handleEditMode}>Edit</Button>
-            </Box>
+            </List>
         </Grid>
         </Grid>
         </div> )}

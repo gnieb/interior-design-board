@@ -14,7 +14,9 @@
 
 #title {
   padding-right: 30px;
-  font-family: Cormorant Garamond;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .menuItem {
