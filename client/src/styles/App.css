@@ -13,6 +13,9 @@
   background-size: cover;
   height:100%
 } */
+#title {
+  padding-right: 30px;
+}
 
 .menuItem {
   text-align: center;

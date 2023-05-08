@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 
+
 export default function NavBar () {
     const {designer, setDesigner} = useContext(UserContext)
     const history = useHistory()
@@ -36,6 +37,7 @@ export default function NavBar () {
 
     return (
         <div id="menu">
+            <h4 id="title"className="menuItem">INSPIRED INTERIORS</h4>
             <NavLink className="menuItem" to='/' exact >HOME</NavLink>
             <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
             <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>

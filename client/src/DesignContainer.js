@@ -6,6 +6,9 @@ import NewDesign from "./NewDesign";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import Menu from "./Menu";
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 export default function DesignContainer ({piecesLibrary, 
                                         setPiecesLibrary ,
@@ -54,9 +57,19 @@ export default function DesignContainer ({piecesLibrary,
     return (
         <>
         <Menu />
-        <h2>My Designs</h2>
-        {designMenu}
-        <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
+        <Grid container component='main'>
+            <Grid item
+            sx={{
+                padding:'20px'
+            }}>
+                <h2>My Designs</h2>
+                {designMenu}
+            </Grid>
+            <Grid item
+            sx={{}}>
+                <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
+            </Grid>
+        </Grid>
         <Switch>
             <Route exact path='/designs/new'>
                 <NewDesign designs={designs} handleNewD={handleNewD} />
