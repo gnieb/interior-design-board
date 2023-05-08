@@ -30,13 +30,12 @@ export default function Explore() {
         <Grid container component="main">
             <Grid item
             xs={false}
-            sm={4}
+            sm={false}
             md={6}
             sx={{padding: '200px 30px', }}>
                 <h1 id="exploreHeadline">EXPLORE TRENDS. FIND INSPIRATION.</h1>
             </Grid>
-            <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}
-            sx={{padding:'40px'}}>
+            <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}>
                 {articleList}
             </Grid>
         </Grid>
