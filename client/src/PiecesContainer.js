@@ -5,6 +5,7 @@ import FilterBy from "./FilterBy"
 import Grid from '@mui/material/Grid';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Button from '@mui/material/Button';
+import Menu from "./Menu";
 
 export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
     const [openForm, setOpenForm] = useState(false)
@@ -53,6 +54,7 @@ export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
 
     return (
         <main id="collectionPage">
+          <Menu />
         {openForm ?
         <>
         <Button variant="outlined" onClick={handleOpenForm}>CANCEL</Button>

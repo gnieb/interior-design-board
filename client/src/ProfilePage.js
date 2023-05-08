@@ -1,6 +1,7 @@
 import UpdateProfilePage from "./UpdateProfilePage"
 import { UserContext } from "./context/user"
 import { useContext, useState } from "react"
+import Menu from "./Menu"
 
 
 export default function ProfilePage () {
@@ -19,6 +20,7 @@ export default function ProfilePage () {
         {editMode ?
         <UpdateProfilePage handleEditMode={handleEditMode} /> :
        (<>
+       <Menu />
        <h2>My Profile</h2>
         <h3>First name - {first_name}</h3>
         <h3>Last name - {last_name}</h3>
