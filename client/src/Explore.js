@@ -35,7 +35,8 @@ export default function Explore() {
             sx={{padding: '200px 30px', }}>
                 <h1 id="exploreHeadline">EXPLORE TRENDS. FIND INSPIRATION.</h1>
             </Grid>
-            <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}>
+            <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6}
+            sx={{display:'flex'}}>
                 {articleList}
             </Grid>
         </Grid>

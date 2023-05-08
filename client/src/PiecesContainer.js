@@ -3,13 +3,19 @@ import Piece from "./Piece"
 import { useState, useEffect } from "react"
 import FilterBy from "./FilterBy"
 import Grid from '@mui/material/Grid';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Button from '@mui/material/Button';
 import Menu from "./Menu";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea, CardActions } from '@mui/material';
+import addtocollection from '././styles/addtocollection.png';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
     const [openForm, setOpenForm] = useState(false)
-    // const [pieces, setPieces] = useState([])
     const [styleFilter, setStyleFilter] = useState("")
     const [typeFilter, setTypeFilter] = useState("")
 
@@ -61,15 +67,36 @@ export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
         <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> 
         </>:
         (<>
-        <Grid container spacing={3}>
-          <Grid item >
-          <Button variant="outlined" onClick={handleOpenForm}>
-            ADD NEW <AddCircleIcon />
-          </Button>
-            <FilterBy handleStyleFilter={handleStyleFilter} handleTFilter={handleTFilter} />
-          </Grid>
-          {displayPieces}
+        <Grid container >
+          <Grid item xs={12} sm={4} >
+            <Card sx={{ maxWidth: 345, margin:'50px' }}>
+              <CardActionArea>
+              <CardMedia
+                component="img"
+                height="250"
+                image={addtocollection}
+                alt="addtoCollection"
+                sx={{ 
+                    objectFit:'cover'
+                     }}
+                />
+              </CardActionArea>
+              <CardActions>
+              <Button onClick={handleOpenForm}>
+                ADD TO COLLECTION
+              </Button>
+              </CardActions>
+            </Card>
+            <Box
+            sx={{ maxWidth: 345, margin:'50px' }}>
+              <FilterBy handleStyleFilter={handleStyleFilter} handleTFilter={handleTFilter} />
+            </Box>
           
+          </Grid>
+          <Grid container xs={12} sm={8} spacing={3}
+          sx={{padding:'20px'}}>
+          {displayPieces}
+          </Grid>
         </Grid>
         </>)}
         </main>

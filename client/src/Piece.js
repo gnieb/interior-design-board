@@ -10,6 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 
 
@@ -59,8 +60,8 @@ export default function Piece ({p, removePiece}) {
 
 
     return (
-        <Grid item xs={6} md={4}>
-        <Card sx={{ maxWidth: 345 }}>
+        <Grid item xs={12} sm={6} md={4} >
+        <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }} >
             <CardActionArea>
                 <CardMedia
                 component="img"
