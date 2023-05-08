@@ -9,14 +9,12 @@ import json
 from bs4 import BeautifulSoup
 
 
-
-
-class Home(Resource):
-    def get(self):
-        return make_response({"message":"you can do this!"}, 200)
-
 class Designers(Resource):
     def post(self):
+
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         first_name = request.get_json()['first_name']
         last_name = request.get_json()['last_name']
         email = request.get_json()['email']
@@ -75,6 +73,10 @@ class Logout(Resource):
 
 class DesignerById(Resource):
     def get(self, id):
+
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         designer = Designer.query.filter_by(id = id).first()
         if not designer:
             return make_response({"error":"No designer found, 404"}, 404)
@@ -82,6 +84,9 @@ class DesignerById(Resource):
         return make_response(designer.to_dict(rules=('pieces',)), 200)
     
     def patch(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         designer = Designer.query.filter_by(id = id).first()
         if not designer:
             return make_response({"error":"No designer found, 404"}, 404)
@@ -103,11 +108,17 @@ class DesignerById(Resource):
 
 class Pieces(Resource):
     def get(self):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         pieces= [p.to_dict() for p in Piece.query.all()]
 
         return make_response(pieces, 200)
     
     def post(self):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         data = request.get_json()
         try:
             newP = Piece(
@@ -130,6 +141,9 @@ class Pieces(Resource):
     
 class PieceById(Resource):
     def delete(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         piece = Piece.query.filter_by(id = id).first()
         if not piece:
             return make_response({"error":"404 error: Piece not found"}, 404)
@@ -140,6 +154,9 @@ class PieceById(Resource):
     
 class Designs(Resource):
     def post(self):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         name=request.get_json()['name']
         
         try:
@@ -160,6 +177,9 @@ class Designs(Resource):
 
 class DesignById(Resource):
     def get(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         design = Design.query.filter_by(id=id).first()
 
         if not design:
@@ -168,20 +188,26 @@ class DesignById(Resource):
         return make_response(design.to_dict(rules=('pieces', 'pdinstances')), 200)
     
     def delete(self, id):
-            design = Design.query.filter_by(id=id).first()
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+        
+        design = Design.query.filter_by(id=id).first()
 
-            if not design:
-                return make_response({"error":"404, Design not found"}, 404)
+        if not design:
+            return make_response({"error":"404, Design not found"}, 404)
 
-            try:
-                db.session.delete(design)
-                db.session.commit()
-            except:
-                return make_response({"error":"422 Unprocessable entity"}, 422)
-            
-            return make_response({}, 204)
+        try:
+            db.session.delete(design)
+            db.session.commit()
+        except:
+            return make_response({"error":"422 Unprocessable entity"}, 422)
+        
+        return make_response({}, 204)
     
     def patch(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         design = Design.query.filter_by(id=id).first()
         if not design:
             return make_response({"error":"404, Design not found"}, 404)
@@ -201,6 +227,9 @@ class DesignById(Resource):
     
 class PDInstances(Resource):
     def post(self):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         design_id= request.get_json()['design_id']
         piece_id= request.get_json()['piece_id']
 
@@ -221,6 +250,9 @@ class PDInstances(Resource):
 
 class PDInstanceById(Resource):
     def delete(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+
         instance = PDInstance.query.filter_by(id=id).first()
         if not instance:
             return make_response({"error":"404 Not found" }, 404)
@@ -232,6 +264,8 @@ class PDInstanceById(Resource):
 
 @app.route('/randpalette')
 def randpalette():
+    if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
 
     data = '{"model":"default"}'
     response = requests.post('http://colormind.io/api/', data=data)
@@ -241,6 +275,8 @@ def randpalette():
 
 @app.route('/explore')
 def explore():
+    if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
     url = "https://www.architecturaldigest.com/ad-it-yourself"
     html = requests.get(url)
     doc = BeautifulSoup(html.text, 'html.parser')
@@ -264,7 +300,6 @@ def explore():
 
 
 
-api.add_resource(Home, '/')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Designers, '/designers')
 api.add_resource(DesignerById, '/designers/<int:id>')

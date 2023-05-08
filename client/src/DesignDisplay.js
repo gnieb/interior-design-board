@@ -52,6 +52,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
 
     return (
         <div>
+            <Grid container component="main">
         <h1 id="mainName">{d.name.toUpperCase()}</h1>
         <Button onClick={handleEdit}>{editMode ? "View Moodboard" :"Edit design"}</Button>
         
@@ -96,6 +97,7 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         </Grid>   
         </> 
         }
+        </Grid>
         </div> 
     )
 } 
