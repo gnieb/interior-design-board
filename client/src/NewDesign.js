@@ -1,4 +1,9 @@
 import React, {useState} from "react";
+import Button from '@mui/material/Button';
+import Form from 'react-bootstrap/Form';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 export default function NewDesign ({designs, handleNewD}) {
 
@@ -40,15 +45,17 @@ export default function NewDesign ({designs, handleNewD}) {
 
     return (
         <>
-        <h3>This will actually be where the fancy library magic goes but whatever</h3>
-        <form onSubmit={handleSubmit}>
-            <label>Give your new design a name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-            <button type="submit">Create</button>
-        </form>
+        <Grid container alignItems={'center'} sx={{padding:'30px'}}>
+        <Box sx={{background:'#F0EBE3', padding:'40px 80px'}}>
+        <Form onSubmit={handleSubmit}>
+            <Form.Label>NEW DESIGN </Form.Label>
+            <Form.Control placeholder="Great name here..." type="text" name="name" value={formData.name} onChange={handleChange}/>
+            <Button type="submit">Create</Button>
+        </Form>
+        </Box>
+        </Grid>
         </>
     )
 }
 
-// how are we going to display this..... Konva library??
 

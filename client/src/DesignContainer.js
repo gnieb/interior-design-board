@@ -36,7 +36,7 @@ export default function DesignContainer ({piecesLibrary,
     const designMenu = designs.map(d => {
         return (
             <div key={d.id}>
-                <Link to={`/designs/${d.id}`}>{d.name}</Link>
+                <Link className="designMenuItem" to={`/designs/${d.id}`} style={{}}>{d.name.toUpperCase()}</Link>
             </div>
         )
     })
@@ -55,19 +55,20 @@ export default function DesignContainer ({piecesLibrary,
     })
  
     return (
-        <>
+        <div id="designsPage">
         <Menu />
         <Grid container component='main'>
             <Grid item
             sx={{
                 padding:'20px'
-            }}>
-                <h2>My Designs</h2>
+            }}
+            >
+                <h1 id="myDesigns">MY DESIGNS</h1>
                 {designMenu}
             </Grid>
             <Grid item
-            sx={{}}>
-                <NavLink to='/designs/new' exact >NEW DESIGN</NavLink>
+            sx={{padding: '50px'}}>
+                <NavLink id="newDesign" className="designMenuItem" to='/designs/new' exact >NEW DESIGN</NavLink>
             </Grid>
         </Grid>
         <Switch>
@@ -76,7 +77,7 @@ export default function DesignContainer ({piecesLibrary,
             </Route>
             {displayDesigns}
         </Switch>
-        </>
+        </div>
         
     )
 }

@@ -48,10 +48,28 @@
 }
 
 #designsPage {
-  background-image: url('https://images.unsplash.com/photo-1484308129484-ff3063eea281?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2462&q=80');
+  background-image: url('photo19.avif');
   background-repeat: no-repeat;
   background-size: cover;
   height:100vh
+}
+
+#myDesigns {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-style: italic;
+  color:black;
+}
+
+.designMenuItem {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  padding:10px;
+}
+
+#newDesign {
+  font-size: large;
 }
 
 
