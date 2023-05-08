@@ -10,9 +10,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea, CardActions } from '@mui/material';
 import addtocollection from '././styles/addtocollection.png';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+
 
 export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
     const [openForm, setOpenForm] = useState(false)
@@ -67,7 +66,7 @@ export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
         <NewPiece addNewPiece={addNewPiece} handleOpenForm={handleOpenForm} /> 
         </>:
         (<>
-        <Grid container >
+        <Grid container spacing={3} >
           <Grid item xs={12} sm={4} >
             <Card sx={{ maxWidth: 345, margin:'50px' }}>
               <CardActionArea>
@@ -93,10 +92,7 @@ export default function PiecesContainer ({piecesLibrary, setPiecesLibrary}) {
             </Box>
           
           </Grid>
-          <Grid container xs={12} sm={8} spacing={3}
-          sx={{padding:'20px'}}>
           {displayPieces}
-          </Grid>
         </Grid>
         </>)}
         </main>

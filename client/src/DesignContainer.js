@@ -58,7 +58,7 @@ export default function DesignContainer ({piecesLibrary,
     })
  
     return (
-        <div id={(route === '/designs') ? "designsPage" : "designDisplay"}>
+        <div id="designsPage">
         <Menu />
         <Grid container component='main'>
             <Grid item

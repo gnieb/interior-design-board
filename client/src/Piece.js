@@ -60,7 +60,7 @@ export default function Piece ({p, removePiece}) {
 
 
     return (
-        <Grid item xs={12} sm={6} md={4} >
+        <Grid item xs={12} sm={6} md={3} >
         <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }} >
             <CardActionArea>
                 <CardMedia

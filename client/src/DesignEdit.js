@@ -31,7 +31,6 @@ export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemo
         </ImageListItem>
         {showAssocPD.map((item) => (
         <ImageListItem key={item.id}>
-            {/* {console.log(item)} */}
           <img
             src={`${item.piece.image}?w=248&fit=crop&auto=format`}
             srcSet={`${item.piece.image}?w=248&fit=crop&auto=format&dpr=2 2x`}

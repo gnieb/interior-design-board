@@ -51,10 +51,10 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     const handleEdit = () => setEditMode(!editMode)
 
     return (
-        <div>
-            <Grid container component="main">
+        <div id="designDisplay">
         <h1 id="mainName">{d.name.toUpperCase()}</h1>
-        <Button onClick={handleEdit}>{editMode ? "View Moodboard" :"Edit design"}</Button>
+        
+        <Button onClick={handleEdit}>{editMode ? "Back to Moodboard" :"Edit design"}</Button>
         
         {editMode ?
         <>
@@ -97,7 +97,6 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         </Grid>   
         </> 
         }
-        </Grid>
         </div> 
     )
 } 

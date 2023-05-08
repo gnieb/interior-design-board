@@ -132,10 +132,8 @@ export default function ColorPalette ({d}) {
                <InfoIcon/>
               </IconButton>
             </Tooltip>
-            
             <Button onClick={generateRandomPalette}>Generate Random Palette</Button>
             <Button onClick={handleSavePalette}>Save Palette</Button>
-            
         </div>
 
     )
