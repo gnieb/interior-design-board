@@ -7,14 +7,14 @@
   text-align: center;
 }
 
-/* #explore {
-  background-image: url('https://images.unsplash.com/photo-1484308129484-ff3063eea281?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2462&q=80');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height:100%
-} */
+#menu {
+  display: flex;
+  justify-content:flex-end
+}
+
 #title {
   padding-right: 30px;
+  font-family: Cormorant Garamond;
 }
 
 .menuItem {
@@ -45,10 +45,6 @@
   height:100vh
 }
 
-#menu {
-  display: flex;
-  justify-content:flex-end
-}
 
 #collectionPage {
   padding: 20px;
@@ -66,9 +62,13 @@
   background-color: gray;
 }
 
-#welcome {
+#exploreHeadline {
   position:sticky;
   position: -webkit-sticky; /* Safari */
-  top: 50%;
+  top: 30%;
   color:#263A29;
+  font-family: Cormorant Garamond;
+  font-size: 5vw;
+  padding:20px;
 }
+
