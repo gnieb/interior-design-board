@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import DesignDisplay from "./DesignDisplay"
 import { Switch } from "react-router-dom/cjs/react-router-dom";
 import NewDesign from "./NewDesign";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import Menu from "./Menu";
 import Paper from '@mui/material/Paper';
@@ -17,7 +17,8 @@ export default function DesignContainer ({piecesLibrary,
                                         handleNewD, 
                                         removeDesign, 
                                         addNewPiece}) {
-    
+    const [route, setRoute] = useState('/designs')
+
     useEffect(() => {
         fetch("/check_session")
             .then((r) => {
@@ -33,10 +34,12 @@ export default function DesignContainer ({piecesLibrary,
             })
       }, [])
 
+    
+
     const designMenu = designs.map(d => {
         return (
             <div key={d.id}>
-                <Link className="designMenuItem" to={`/designs/${d.id}`} style={{}}>{d.name.toUpperCase()}</Link>
+                <Link onClick={() => setRoute(`/designs/${d.id}`)} className="designMenuItem" to={`/designs/${d.id}`} style={{}}>{d.name.toUpperCase()}</Link>
             </div>
         )
     })
@@ -55,7 +58,7 @@ export default function DesignContainer ({piecesLibrary,
     })
  
     return (
-        <div id="designsPage">
+        <div id={(route === '/designs') ? "designsPage" : "designDisplay"}>
         <Menu />
         <Grid container component='main'>
             <Grid item

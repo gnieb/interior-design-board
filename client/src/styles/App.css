@@ -72,6 +72,10 @@
   font-size: large;
 }
 
+#designDisplay {
+  background-color: #EEEEEE;
+}
+
 
 #collectionPage {
   padding: 20px;
@@ -83,6 +87,12 @@
   max-width: 1000px;
   height: 800px;
   margin: auto;
+}
+
+#mainName {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .pieceLibrary:hover {

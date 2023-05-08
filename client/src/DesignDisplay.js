@@ -51,8 +51,8 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
     const handleEdit = () => setEditMode(!editMode)
 
     return (
-        <>
-        <h2>{d.name}</h2>
+        <div>
+        <h1 id="mainName">{d.name.toUpperCase()}</h1>
         <Button onClick={handleEdit}>{editMode ? "View Moodboard" :"Edit design"}</Button>
         
         {editMode ?
@@ -96,6 +96,6 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         </Grid>   
         </> 
         }
-        </> 
+        </div> 
     )
 } 

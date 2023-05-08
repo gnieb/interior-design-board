@@ -8,7 +8,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 
 export default function ColorPalette ({d}) {
-    const [color1, setColor1] = useState(d.color1 ? d.color1 : "#EEEEEE" )
+    const [color1, setColor1] = useState(d.color1 ? d.color1 : "#FFFFFF" )
     const [color2, setColor2] = useState(d.color2 ? d.color2 : "#CCCCCC")
     const [color3, setColor3] = useState(d.color3 ? d.color3 : "#999999")
     const [color4, setColor4] = useState(d.color4 ? d.color4 : "#666666")
