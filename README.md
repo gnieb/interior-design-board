@@ -19,6 +19,7 @@ npm i react-loading => loading bubbles for the explore page
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#apis-utilized">API's Utilized</a></li>
       </ul>
     </li>
     <li>
@@ -29,15 +30,13 @@ npm i react-loading => loading bubbles for the explore page
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#whats-next-for-inspired-interiors">What's Next for INSPIRED INTERIORS</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-<br />
 
 ## ABOUT THE PROJECT
 
@@ -56,7 +55,14 @@ This application is an interior design planning and inspiration solution, built 
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![Material UI][MaterialUI.com]][MaterialUI-url]
 
+
+### API's Utilized
+* (Colormind API)[http://colormind.io/api-access/]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Getting Started
+
 
 ### Prerequisites
 
@@ -106,9 +112,18 @@ This application is an interior design planning and inspiration solution, built 
 
 ## Usage
 
+To use the application, a user MUST have an account. Upon visiting the application, User can sign up for the first time or log into an existing account. Upon validation, they can enter the app. Users can use the following features:
+- Explore. The Explore feature brings current trends and design inspiration to the user from an industry classic: Architectural Digest (AD). Users can see the trending articles from AD and click an article to read it at its source ( opens a new tab and takes the reader to the article)
+-  
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## What's Next for INSPIRED INTERIORS
+
+- More Profile Info and perhaps a location specific feature
+
+
 
 ## Contact
 
@@ -122,6 +137,12 @@ Grace Nieboer
 
 
 
+
+
+
+
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
@@ -130,11 +151,11 @@ Grace Nieboer
 [Bootstrap-url]: https://getbootstrap.com
 [Flask.com]: https://img.shields.io/badge/-FLASK-black?style=for-the-badge&logo=superuser
 [Flask-url]: https://flask.palletsprojects.com/en/2.3.x/
-[MaterialUI.com]: https://img.shields.io/badge/-MATERIAL%20UI-black?style=for-the-badge&logo=telegram
+[MaterialUI.com]: https://img.shields.io/badge/-MATERIAL%20UI-blue?style=for-the-badge&logo=telegram
 [MaterialUI-url]: https://mui.com/
 [Python.com]:https://img.shields.io/badge/-Python-black?style=for-the-badge&logo=dependabot
 [Python-url]: https://www.python.org/
-[BeautifulSoup.com]: https://img.shields.io/badge/-Beautiful%20Soup-black?style=for-the-badge&logo=gitlab
+[BeautifulSoup.com]: https://img.shields.io/badge/-Beautiful%20Soup-pink?style=for-the-badge&logo=gitlab
 [BS4-url]: https://beautiful-soup-4.readthedocs.io/en/latest/
 [SQLAlchemy.com]: https://img.shields.io/badge/-SQLAlchemy-black?style=for-the-badge&logo=serverfault
 [SQLalchemy-url]: https://www.sqlalchemy.org/
