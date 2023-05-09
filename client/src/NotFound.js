@@ -7,9 +7,11 @@ export default function NotFound() {
     const goBackOne = () => history.goBack()
 
     return (
-        <div>
-            Whoops, there's nothing here!
+        <div id="notFound">
+            <div id="notFoundContent">
+            <h1>WHOOPS, THERE'S NOTHING HERE!</h1>
             <Button onClick={goBackOne}>back to safety</Button>
+            </div>
         </div>
     )
 }
