@@ -8,7 +8,7 @@ TO DO
 
 
 
-npm i react-loading
+npm i react-loading => loading bubbles for the explore page
 
 
 

@@ -2,7 +2,7 @@ import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useContext, useState} from 'react';
 import { Switch, Route } from "react-router-dom";
-import Menu from './Menu';
+
 import Explore from './Explore';
 import DesignContainer from './DesignContainer';
 import PiecesContainer from './PiecesContainer';
@@ -10,13 +10,13 @@ import ProfilePage from './ProfilePage';
 import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import LandingPage from './LandingPage';
+import Loading from './Loading';
 
 
 function App() {
   const {designer, setDesigner} = useContext(UserContext)
   const [designs, setDesigns] = useState([])
   const [piecesLibrary, setPiecesLibrary] = useState([])
-  const [loadingApp, setLoadingApp] =useState(false)
   const history= useHistory()
 
 
@@ -49,7 +49,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Loading /> */}
       {designer ? (
         <>
         <main id="main">

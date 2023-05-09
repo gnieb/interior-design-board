@@ -5,13 +5,18 @@ import ReactLoading from "react-loading";
 export default function Loading() {
 
     return(
-        <div id="loading">
-            <h2>Loading in ReactJs - GeeksforGeeks</h2>
+        <div id="loading"style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>
+            <h2>CONTENT COMING YOUR WAY</h2>
             <ReactLoading
                 type="spinningBubbles"
-                color="#0000FF"
+                color="#263A29"
                 height={100}
-                width={100}
+                width={200}
             />
         </div>
     )

@@ -3,6 +3,7 @@ import Article from "./Article"
 import Grid from '@mui/material/Grid';
 import Menu from "./Menu";
 import Paper from '@mui/material/Paper';
+import Loading from "./Loading";
 
 
 
@@ -20,13 +21,14 @@ export default function Explore() {
                 }
             })
     }, [])
-
+console.log(articles.length)
 
     const articleList = articles.map((a, i) => <Article key={i} a={a}/>)
 
     return (
         <div id="explore">
             <Menu />
+            {(articles.length > 0) ? 
         <Grid container component="main">
             <Grid item
             xs={false}
@@ -39,7 +41,8 @@ export default function Explore() {
             >
                 {articleList}
             </Grid>
-        </Grid>
+        </Grid>:
+        <Loading /> }
         </div>
     )
 }
