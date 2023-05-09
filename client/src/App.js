@@ -10,6 +10,7 @@ import ProfilePage from './ProfilePage';
 import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import LandingPage from './LandingPage';
+import Loading from './Loading';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <div className="App">
+      <Loading />
       {designer ? (
         <>
         <main id="main">
