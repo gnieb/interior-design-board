@@ -1,20 +1,12 @@
-// all the pieces in and map thru them, give them all a delete button, add a add modal
-// ?
 
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
 import Button from '@mui/material/Button';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemovePiece}) {
 
@@ -35,8 +27,8 @@ export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemo
       <Grid container spacing={3} sx={{padding:'50px'}}>
           {showAssocPD.map((item, i) => {
             return (
-              <Grid item xs={6} sm={4} >
-              <Card key={i} sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }} >
+              <Grid key={i} item xs={6} sm={4} >
+              <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column' }} >
                 <CardActionArea>
                 <CardMedia
                 component="img"

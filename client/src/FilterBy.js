@@ -6,7 +6,7 @@ export default function FilterBy ({handleStyleFilter, handleTFilter}) {
 
     return (
     <>
-    <h4>Filter Collection</h4>
+    <h4 id="filterCollection"><strong>FILTER COLLECTION</strong></h4>
         <select name="style" onChange={handleSChange} >
             <option value="">Filter By Style</option>
             <option value="Any" >Any</option>

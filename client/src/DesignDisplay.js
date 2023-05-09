@@ -6,14 +6,19 @@ import Modal from 'react-bootstrap/Modal';
 import DesignEdit from "./DesignEdit";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
+import EditIcon from '@mui/icons-material/Edit';
+import Form from 'react-bootstrap/Form';
+import Box from '@mui/material/Box';
 
 
-export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, removeDesign, addNewPiece}) {
+export default function DesignDisplay ({ handleRename, piecesLibrary, setPiecesLibrary, d, removeDesign, addNewPiece}) {
     const [showModal, setShowModal] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const handleShow = () => setShowModal(true)
     const handleClose = () => setShowModal(false)
     const [showAssocPD, setShowAssocPD] = useState([])
+    const [showRename, setShowRename] = useState(false)
+    const [rename, setRename] = useState('')
     
     const handleAssociatedPD = (p) => setShowAssocPD([...showAssocPD, p])
     
@@ -48,19 +53,61 @@ export default function DesignDisplay ({ piecesLibrary, setPiecesLibrary, d, rem
         })
     }
 
+    const handleRenameChange = (e) => {
+        setRename(e.target.value)
+    }
+
+    const handleRenameSubmit = (e) => {
+        e.preventDefault()
+        const updatedD = {
+            name: rename
+        }
+        fetch(`/designs/${d.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(updatedD)
+        })
+            .then((r) => {
+                if(r.ok) {
+                    r.json().then(r => {
+                    handleRename(r)
+                    setShowRename(false)
+                    })
+                } else {
+                    console.log(r)
+                }
+            }) 
+    }
+
     const handleEdit = () => setEditMode(!editMode)
 
     return (
         <div id="designDisplay">
         <h1 id="mainName">{d.name.toUpperCase()}</h1>
         
-        <Button onClick={handleEdit}>{editMode ? "Back to Moodboard" :"Edit design"}</Button>
+        <Button onClick={handleEdit}>{editMode ? "Back to View" :"Edit design"}</Button>
         
         {editMode ?
         <>
-        <Button onClick={handleShow} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+        <Button startIcon={<EditIcon/>} onClick={() => setShowRename(true)}>Rename</Button>
+        <Button onClick={handleShow} color="error" startIcon={<DeleteIcon />}>
         Delete
       </Button>
+      {showRename ? 
+      <Box 
+      sx={{
+          my: 4,
+          mx: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center', 
+        //   padding: "20px 0",
+          }}>
+      <Form onSubmit={handleRenameSubmit}>
+        <Form.Label>Rename</Form.Label>
+        <Form.Control type="text" name="rename" value={rename} onChange={handleRenameChange}/>
+        <Button type="submit">SAVE</Button>
+      </Form></Box>: <></>}
         <DesignEdit handleAssociatedPD={handleAssociatedPD}
         showAssocPD={showAssocPD}
          handleRemovePiece={handleRemovePiece}/> 

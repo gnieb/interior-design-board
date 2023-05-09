@@ -34,6 +34,16 @@ export default function DesignContainer ({piecesLibrary,
             })
       }, [])
 
+    const handleRename = (dObj) => {
+        const updatedDesigns = designs.map(d => {
+            if (d.id !== dObj.id) {
+                return d
+            } else{
+                return dObj
+            }
+        })
+        setDesigns(updatedDesigns)
+    }
     
 
     const designMenu = designs.map(d => {
@@ -52,7 +62,8 @@ export default function DesignContainer ({piecesLibrary,
                 removeDesign={removeDesign} 
                 addNewPiece={addNewPiece}
                 setPiecesLibrary={setPiecesLibrary}
-                piecesLibrary={piecesLibrary}/>
+                piecesLibrary={piecesLibrary}
+                handleRename={handleRename}/>
             </Route>
         )
     })
@@ -64,7 +75,7 @@ export default function DesignContainer ({piecesLibrary,
         <Grid container component='main'>
             <Grid item sx={{padding:'30px'}}>
                 <div className="designPageOptions">
-                <h1  id="myDesigns">MY DESIGNS</h1>
+                <h1  id="myDesigns"><strong>MY DESIGNS</strong></h1>
                 {designMenu}
                 </div>
             </Grid>

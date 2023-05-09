@@ -15,8 +15,6 @@
 #title {
   padding-right: 30px;
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
 }
 
 .menuItem {
@@ -56,13 +54,11 @@
 
 .designPageOptions {
   background-color: rgba(0,0,0,.4);
-  padding: 10px;
+  padding: 15px;
 }
 
 #myDesigns {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
   color:black;
 }
 
@@ -96,8 +92,6 @@
 
 #mainName {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
 }
 
 .pieceLibrary:hover {
@@ -118,8 +112,6 @@
   background-color: rgba(0,0,0,.4);
   padding: 30px;
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
   position:absolute;
   top: 50%;
   left: 50%;
@@ -145,8 +137,11 @@
   left:50%;
   transform: translate(-50%, -50%);
   font-family: 'Cormorant Garamond', serif;
+}
+
+#filterCollection {
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
-  font-style: italic;
 }
 
 
