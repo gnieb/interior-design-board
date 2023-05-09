@@ -11,6 +11,7 @@ import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import LandingPage from './LandingPage';
 import Loading from './Loading';
+import NotFound from './NotFound';
 
 
 function App() {
@@ -79,10 +80,7 @@ function App() {
             <ProfilePage />
           </Route>
           <Route path ="*">
-            <>
-            <h1>404 Not Found!!!</h1>
-            <button onClick={goBackOne}>back to safety</button>
-            </>
+           <NotFound/>
           </Route>
         </Switch>
         </main>
@@ -93,10 +91,7 @@ function App() {
             <LandingPage setDesigns={setDesigns} />
           </Route>
           <Route path ="*">
-            <>
-            <h1>404 Not Found!!!</h1>
-            <button onClick={goBackOne}>back to safety</button>
-            </>
+           <NotFound/>
           </Route>
         </Switch>
       )}
