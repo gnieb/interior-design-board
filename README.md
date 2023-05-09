@@ -40,6 +40,8 @@ npm i react-loading => loading bubbles for the explore page
 ```
 * python - download latest version here <https://www.python.org/downloads/>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Installation
 1. Fork and Clone the repo
    ```sh
@@ -70,8 +72,13 @@ npm i react-loading => loading bubbles for the explore page
     ```sh
     python app.py
     ```
+    <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Usage
 
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact
 
