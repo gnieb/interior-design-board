@@ -32,7 +32,7 @@ export default function DesignEdit ({handleAssociatedPD, showAssocPD, handleRemo
 
     return (
 
-      <Grid container spacing={3} >
+      <Grid container spacing={3} sx={{padding:'50px'}}>
           {showAssocPD.map((item, i) => {
             return (
               <Grid item xs={6} sm={4} >
