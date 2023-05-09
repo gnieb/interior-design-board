@@ -5,23 +5,21 @@
 # html = requests.get(url)
 # doc = BeautifulSoup(html.text, 'html.parser')
 
-# articles = doc.find_all("div", class_="SummaryItemContent-gZLXlp jiwQnS summary-item__content")
-# # print(articles)
-
+# articles = doc.find_all("div", class_="SummaryItemContent-eiDYMl jpXMZX summary-item__content")
 
 # articleList =[]
 # for article in articles:
 #     article = {
 #         'href': article.select("a")[0].attrs['href'],
 #         'title':article.select("h3")[0].text,
-#         'subtitle': article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text
+#         'subtitle': article.find_all("div", class_="BaseWrap-sc-gjQpdd BaseText-ewhhUZ SummaryItemDek-CRfsi iUEiRd fvXGjH foOOvF summary-item__dek")[0].text
 #     }
 #     articleList.append(article)
     
     
-    # print(articleList)
+#     print(articleList)
     
-    
+ 
     # print(article.select("a")[0].attrs['href'])
     # print(article.select("h3")[0].text)
     # print(article.select(".BaseWrap-sc-SJwXJ.BaseText-fEohGt.SummaryItemDek-dyrmLu.deUlYF.kCxiOh.iunqBX.summary-item__dek")[0].text)

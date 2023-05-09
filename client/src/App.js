@@ -10,13 +10,13 @@ import ProfilePage from './ProfilePage';
 import { UserContext } from './context/user';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import LandingPage from './LandingPage';
-import Loading from './Loading';
 
 
 function App() {
   const {designer, setDesigner} = useContext(UserContext)
   const [designs, setDesigns] = useState([])
   const [piecesLibrary, setPiecesLibrary] = useState([])
+  const [loadingApp, setLoadingApp] =useState(false)
   const history= useHistory()
 
 
@@ -38,11 +38,6 @@ function App() {
 
     const goBackOne = () => history.goBack()
 
-    // const removePiece = (piece) => {
-    //   const updatedPieces = pieces.filter((p) => p.id !== piece.id)
-    //   setPieces(updatedPieces)
-    // }
-
     const handleNewD = (newDObj) => {
       setDesigns([...designs, newDObj])
     }
@@ -54,7 +49,7 @@ function App() {
 
   return (
     <div className="App">
-      <Loading />
+      {/* <Loading /> */}
       {designer ? (
         <>
         <main id="main">
