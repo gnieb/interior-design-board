@@ -60,18 +60,17 @@ export default function DesignContainer ({piecesLibrary,
     return (
         <div id="designsPage">
         <Menu />
+        
         <Grid container component='main'>
-            <Grid item
-            sx={{
-                padding:'20px'
-            }}
-            >
-                <h1 id="myDesigns">MY DESIGNS</h1>
+            <Grid item sx={{padding:'30px'}}>
+                <div className="designPageOptions">
+                <h1  id="myDesigns">MY DESIGNS</h1>
                 {designMenu}
+                </div>
             </Grid>
             <Grid item
             sx={{padding: '50px'}}>
-                <NavLink id="newDesign" className="designMenuItem" to='/designs/new' exact >NEW DESIGN</NavLink>
+                <NavLink id="newDesign" className="designMenuItem designPageOptions" to='/designs/new' exact >NEW DESIGN</NavLink>
             </Grid>
         </Grid>
         <Switch>

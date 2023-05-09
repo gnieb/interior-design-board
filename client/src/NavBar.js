@@ -37,7 +37,7 @@ export default function NavBar () {
 
     return (
         <div id="menu">
-            <h4 id="title"className="menuItem"><strong>INSPIRED INTERIORS</strong></h4>
+            <h2 id="title"className="menuItem"><strong>INSPIRED INTERIORS</strong></h2>
             <NavLink className="menuItem" to='/' exact >HOME</NavLink>
             <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
             <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>

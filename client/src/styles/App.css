@@ -48,10 +48,15 @@
 }
 
 #designsPage {
-  background-image: url('photo19.avif');
+  background-image: url('photo24.avif');
   background-repeat: no-repeat;
   background-size: cover;
   height:100vh
+}
+
+.designPageOptions {
+  background-color: rgba(0,0,0,.4);
+  padding: 10px;
 }
 
 #myDesigns {

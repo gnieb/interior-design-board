@@ -5,7 +5,6 @@ TO DO
 - color palette help
 - an About Page // how to use this site => maybe include this on the sign up / login 
 - LOGO/ Title across the home pageg??
-- 404 not found page???
 
 
 
