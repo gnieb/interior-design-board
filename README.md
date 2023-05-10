@@ -30,7 +30,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-### [PROJECT WALKTHRU PLACEHOLDER](https://www.example.com)
+### [ **WATCH THE DEMO HERE**](https://youtu.be/WdlVPhtdaCA)
+<br />
+
 ![home page](screenhomepage.png)
 
 This application is an interior design planning and inspiration solution, built to incorporate the critical elements of interior design. 
