@@ -133,7 +133,7 @@ export default function Signup({handleSwitchView, showSignup}) {
            {notUnique ? 
            <Alert severity="error">
             <AlertTitle>Error</AlertTitle>
-                {formik.values.username} is already taken — <strong>please choose a different username!</strong>
+                Username is already taken — <strong>please choose a different username!</strong>
             </Alert> : <></> }
             <Form.Label style={{ color: "#263A29" }}>Password *</Form.Label>
             <Form.Control type = 'password' name="password" value={formik.values.password} onChange={formik.handleChange}
