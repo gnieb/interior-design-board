@@ -1,7 +1,5 @@
 
-- fix the URL for the explore page 
 - an About Page // how to use this site => maybe include this on the sign up / login 
--New Piece form on the collection Page
 - fix the main title  and make it centered vertically with the other links - maybe left align the title or center it with the links around it 
 
 npm i react-loading => loading bubbles for the explore page

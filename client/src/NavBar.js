@@ -6,6 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Grid from '@mui/material/Grid';
 
 
 
@@ -36,13 +37,15 @@ export default function NavBar () {
 
 
     return (
+        
         <div id="menu">
-            <h2 id="title"className="menuItem"><strong>INSPIRED INTERIORS</strong></h2>
+            <h1 id="title"className="menuItem"><strong>INSPIRED INTERIORS</strong></h1>
+            <div id="menuItems">
             <NavLink className="menuItem" to='/' exact >HOME</NavLink>
             <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
             <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>
             <NavLink className="menuItem" to='/designs' exact>DESIGNS</NavLink>
-            <div>
+         
                 <Button
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -66,6 +69,6 @@ export default function NavBar () {
                     <MenuItem onClick={handleClick} >Logout</MenuItem>
                 </Menu>
             </div>
-        </div>  
+        </div>
     )
 }
