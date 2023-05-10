@@ -83,7 +83,7 @@ export default function DesignDisplay ({ handleRename, piecesLibrary, setPiecesL
 
     return (
         <div id="designDisplay">
-        <h1 id="mainName">{d.name.toUpperCase()}</h1>
+        <h1 id="mainName"><strong>{d.name.toUpperCase()}</strong></h1>
         
         <Button onClick={handleEdit}>{editMode ? "Back to View" :"Edit design"}</Button>
         

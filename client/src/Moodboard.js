@@ -237,7 +237,7 @@ export default function Moodboard ({piecesLibrary, setPiecesLibrary, addNewPiece
                 <Modal.Body>
                     <h5>Select any piece from your collection to add it to your {d.name} moodboard...</h5>
                     {galleryToSelect}
-                    <Button onClick={()=> console.log("hi")} >Add New</Button>
+                    <Button onClick={handleShowSecond} >Add New</Button>
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseLibraryForm}>

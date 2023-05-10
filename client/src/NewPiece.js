@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 export default function NewPiece ({addNewPiece, handleOpenForm}) {
 
@@ -56,7 +57,17 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
 
     return (
         <>
-        <h1>New Piece Form Here</h1>
+        <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            //   padding: '0px 0',
+              
+            }}
+          >
         <Form onSubmit={handleSubmit}>
             <Form.Label>Piece Name</Form.Label>
             <Form.Control type="text" id="name" value={formData.name} onChange={handleChange}/>
@@ -107,8 +118,9 @@ export default function NewPiece ({addNewPiece, handleOpenForm}) {
             <Form.Label>Add Image</Form.Label>
             <Form.Control  type="text" id="image" value={formData.image} onChange={handleChange}/>
             <br />
-            <Button type="submit">Add to Collection</Button>
-        </Form>    
+            <Button type="submit" color="success">Add to Collection</Button>
+        </Form> 
+        </Box>   
         </>
     )
 }

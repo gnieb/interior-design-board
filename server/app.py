@@ -286,7 +286,7 @@ def explore():
     articleList =[]
     for article in articles:
         article = {
-            'href': article.select("a")[0].attrs['href'],
+            'href': f'https://www.architecturaldigest.com{article.select("a")[0].attrs["href"]}',
             'title':article.select("h3")[0].text,
             'subtitle': article.find_all("div", class_="BaseWrap-sc-gjQpdd BaseText-ewhhUZ SummaryItemDek-CRfsi iUEiRd fvXGjH foOOvF summary-item__dek")[0].text
         }

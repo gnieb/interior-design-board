@@ -45,12 +45,12 @@ export default function NewDesign ({designs, handleNewD}) {
 
     return (
         <>
-        <Grid container alignItems={'center'} sx={{padding:'30px'}}>
-        <Box sx={{background:'#F0EBE3', padding:'40px 80px'}}>
-        <Form onSubmit={handleSubmit}>
-            <Form.Label>NEW DESIGN </Form.Label>
+        <Grid container alignItems={'center'} sx={{padding:'15px'}}>
+        <Box  sx={{background:'rgba(255,255,255,.6)', padding:'40px 80px'}}>
+        <Form  onSubmit={handleSubmit}>
+            <Form.Label><strong>NEW DESIGN</strong></Form.Label>
             <Form.Control placeholder="Great name here..." type="text" name="name" value={formData.name} onChange={handleChange}/>
-            <Button type="submit">Create</Button>
+            <Button type="submit" variant="contained" color="success"><strong>Create</strong></Button>
         </Form>
         </Box>
         </Grid>

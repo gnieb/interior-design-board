@@ -123,12 +123,12 @@ export default function ColorPalette ({d}) {
                 }}
             />
             
-            <Tooltip title="How to use the palettes: click the generate button to see new palette suggestions. Only click the save button if you'd like to replace your old palette">
+            <Tooltip title={<h5>"Click 'GENERATE RANDOM PALETTE' for color palette suggestions. When you find one you like, click 'SAVE PALETTE'"</h5>}>
                 <IconButton
                 sx={{ color: "gray", m:1 }}
                 aria-label={`How to use the palettes`}
                 // onClick={()=> handleDelete(item) }
-              >
+              > How to Use The Palette  
                <InfoIcon/>
               </IconButton>
             </Tooltip>
