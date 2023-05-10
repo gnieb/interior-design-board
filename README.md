@@ -1,10 +1,4 @@
 
-- an About Page // how to use this site => maybe include this on the sign up / login 
-- fix the main title  and make it centered vertically with the other links - maybe left align the title or center it with the links around it 
-
-npm i react-loading => loading bubbles for the explore page
-
-
 <a name="readme-top"></a>
 
 # INSPIRED INTERIORS 
@@ -117,6 +111,7 @@ This application is an interior design planning and inspiration solution, built 
 
 > **Explore.** The Explore feature brings current trends and design inspiration to the user from an industry classic: Architectural Digest (AD). Users can see the trending articles from AD and click an article to read it at its source ( opens a new tab and takes the reader to the article)
 -  When a user navigates to the explore route, a GET request is sent to a custom route in app.py which then invokes the web scraper. The web scraper was built using **beautiful soup ( BS4)** with python. This tool scrapes the trending page, 'AD It Yourself' and pulls Each article along with it's information and returns it to the front end, where the response is displayed for the user as clickable magazine articles. The user can choose any article to view, and when clicked, it will open a new tab in the browser with the article.
+- this feature can take a minute to load, as it involves more than one request, so I have created and implmented a loading screen using **react-loading** library and the <ReactLoading /> component which is displayed based on a ternary and whether or not the number of articles is > 0 
 
 > **Profile.** The user (designer) can view their own profile information and can edit some information.
 - Full C,R,U actions available for the designer model:
@@ -143,8 +138,11 @@ This application is an interior design planning and inspiration solution, built 
 3. Cancel if the designer changes their mind!
 - Designer can update the design further: they can remove pieces or rename the room design via a PATCH request
 
-> **Color Palette.** The Palette is part of the design model
-
+> **Color Palette.** The Palette is a tool built using the [Colormind API](http://colormind.io/api-access/). The user can click a button, and a new color palette from the API will be displayed in the palette structure. 
+- The front end makes a request to a custom server route which in turn posts a request for a random color palette from the colormind API. The front end translates the rgb to hex and distributes the colors into the pallete structure. 
+- The colors are part of the Design model and therefore:
+- The color palette is able to be saved when the user finds one they like, and this will persist to the database.
+- I have set a default color palette - grayscale- to be displayed upon the creation of a new design as an example for the designer
 
 ## Favorite Features
 
@@ -162,6 +160,7 @@ This application is an interior design planning and inspiration solution, built 
 
 - More Profile Info and perhaps a location specific feature
 - Ability to upload an image! Flask Uploads?
+- an About Page // how to use this site => maybe include this on the sign up / login as well for anyone to see what the site is all about
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
