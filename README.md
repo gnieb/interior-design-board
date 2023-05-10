@@ -28,7 +28,7 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
-## ABOUT THE PROJECT
+## About the Project
 
 ### [PROJECT WALKTHRU PLACEHOLDER](https://www.example.com)
 ![home page](screenhomepage.png)
@@ -119,7 +119,7 @@ This application is an interior design planning and inspiration solution, built 
 - Designers information displayed throughout the site, including association relationships
 - Designers can edit their personal information via their profile using a form that sends a PATCH request onSubmit
 
-> **Collection.** Designer can manage pieces in their collection
+> **Archive.** Designer can manage pieces in their collection
 -C,R,D actions on the Pieces model:
 - Designer can view all pieces associated with their account
 - Each piece also shows the design or deigns it is associated with, displaying the  many-to-many relationship between the Piece and Design through the PDInstance model.
@@ -129,14 +129,17 @@ This application is an interior design planning and inspiration solution, built 
 
 > **Designs.** Designer can view, create, and manage all designs associated with their account. The main design page serves as a container for nested routes which are dynamically rendered. From the main page the designer can either view a design or create a new design.
 - Nested routes are rendered using react-router-dom v5 with < Switch /> and < Routes /> 
-- Full CRUD actions available for the Design model
+- Full CRUD actions available for the Design model (see below)
 - Designer can create a new design with only a name
-- Color palette feature (see Color Palette below) - palette default upon creation is a grayscale
+
+> **Design Moodboard** Each Design is displayed as a moodboard, with all pieces associated and the Color palette feature (see Color Palette below). More CRUD actions available for each individual design
+- The modboard uses the < Responsive Masonry /> component from the react library to display all pieces in a masonry layout
 - Designer can add pieces to their design via the ADD PIECE image with an onClick event which triggers a modal. The modal give the designer three options: 
 1. Add an existing piece from their collection! This opens a NEW modal with a collection of images representing their piece collection. Maybe they have something they'd like to use in multiple rooms! (Flexing that has-many-through relationship!) 
 2. Add a new piece never before used. This creates a new piece and adds it to both the design, and the Collection
 3. Cancel if the designer changes their mind!
-- Designer can update the design further: they can remove pieces or rename the room design via a PATCH request
+- Designer can update the design further: they can remove pieces or rename the room design via  PATCH request
+- Designer can delete the design 
 
 > **Color Palette.** The Palette is a tool built using the [Colormind API](http://colormind.io/api-access/). The user can click a button, and a new color palette from the API will be displayed in the palette structure. 
 - The front end makes a request to a custom server route which in turn posts a request for a random color palette from the colormind API. The front end translates the rgb to hex and distributes the colors into the pallete structure. 

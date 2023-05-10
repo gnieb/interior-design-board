@@ -60,7 +60,7 @@ function App() {
           <Route exact path='/explore'>
             <Explore />
           </Route>
-          <Route exact path='/pieces'>
+          <Route exact path='/archive'>
             <PiecesContainer
             piecesLibrary={piecesLibrary}
             setPiecesLibrary={setPiecesLibrary} 

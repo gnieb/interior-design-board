@@ -43,9 +43,8 @@ export default function NavBar () {
             <div id="menuItems">
             <NavLink className="menuItem" to='/' exact >HOME</NavLink>
             <NavLink className="menuItem" to='/explore'>EXPLORE</NavLink>
-            <NavLink className="menuItem" to='/pieces' exact>COLLECTION</NavLink>
             <NavLink className="menuItem" to='/designs' exact>DESIGNS</NavLink>
-         
+            <NavLink className="menuItem" to='/archive' exact>ARCHIVE</NavLink>
                 <Button
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
