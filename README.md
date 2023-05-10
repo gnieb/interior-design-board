@@ -111,7 +111,7 @@ This application is an interior design planning and inspiration solution, built 
 
 > **Explore.** The Explore feature brings current trends and design inspiration to the user from an industry classic: Architectural Digest (AD). Users can see the trending articles from AD and click an article to read it at its source ( opens a new tab and takes the reader to the article)
 -  When a user navigates to the explore route, a GET request is sent to a custom route in app.py which then invokes the web scraper. The web scraper was built using **beautiful soup ( BS4)** with python. This tool scrapes the trending page, 'AD It Yourself' and pulls Each article along with it's information and returns it to the front end, where the response is displayed for the user as clickable magazine articles. The user can choose any article to view, and when clicked, it will open a new tab in the browser with the article.
-- this feature can take a minute to load, as it involves more than one request, so I have created and implmented a loading screen using **react-loading** library and the <ReactLoading /> component which is displayed based on a ternary and whether or not the number of articles is > 0 
+- this feature can take a minute to load, as it involves more than one request, so I have created and implmented a loading screen using **react-loading** library and the < ReactLoading /> component which is displayed based on a ternary and whether or not the number of articles is > 0 
 
 > **Profile.** The user (designer) can view their own profile information and can edit some information.
 - Full C,R,U actions available for the designer model:
@@ -128,7 +128,7 @@ This application is an interior design planning and inspiration solution, built 
 - For easy access, pieces can be filtered by 'Style'  and 'Piece Type' separately or simultaneously
 
 > **Designs.** Designer can view, create, and manage all designs associated with their account. The main design page serves as a container for nested routes which are dynamically rendered. From the main page the designer can either view a design or create a new design.
-- Nested routes are rendered using react-router-dom v5 with <Switch /> and <Routes /> 
+- Nested routes are rendered using react-router-dom v5 with < Switch /> and < Routes /> 
 - Full CRUD actions available for the Design model
 - Designer can create a new design with only a name
 - Color palette feature (see Color Palette below) - palette default upon creation is a grayscale
