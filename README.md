@@ -30,7 +30,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-### [ **WATCH THE DEMO HERE**](https://youtu.be/WdlVPhtdaCA)
+### [ **WATCH THE DEMO HERE**](https://www.loom.com/share/d2cb126a6bbe4227b5eeaeba2bc0135b)
 <br />
 
 ![home page](screenhomepage.png)

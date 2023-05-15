@@ -1,5 +1,6 @@
 # from bs4 import BeautifulSoup
 # import requests
+
 # # headers = {'user-agent': 'my-app/0.0.1'}, headers=headers ( would go behind url below
 # url = "https://www.architecturaldigest.com/ad-it-yourself"
 # html = requests.get(url)
