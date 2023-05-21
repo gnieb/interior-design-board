@@ -15,19 +15,32 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Modal from 'react-bootstrap/Modal';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function ProfilePage () {
     const {designer} = useContext(UserContext)
     const {first_name, last_name, email, city, username} = designer
     const [editMode, setEditMode] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
    
     const handleEditMode = (e) => {
         setEditMode(!editMode)
     }
 
-
+    const handleDeleteModal = (e) => setShowDeleteModal(!showDeleteModal)
+    const handleClose = (e) => setShowDeleteModal(!showDeleteModal)
+    const handleCloseAndDelete = (e) => {
+        fetch(`/designers/${designer.id}`, {method: "DELETE"})
+            .then(r => {
+                if (r.ok){
+                    setShowDeleteModal(!showDeleteModal)
+                    console.log("account deleted")
+                }
+            })
+    }
     return (
         <>
         {editMode ?
@@ -73,10 +86,28 @@ export default function ProfilePage () {
                     <ListItemText primary="LOCATION" secondary={city} />
                 </ListItem>
             <Button onClick={handleEditMode}>Edit</Button>
+            <Button variant="outlined" color="error" onClick={handleDeleteModal}> Delete Account</Button>
             </List>
         </Grid>
         </Grid>
         </div> )}
+        <Modal show={showDeleteModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>DELETE ACCOUNT</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?
+                THIS WILL DELETE ALL YOUR DESIGN WORK.
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    I CHANGED MY MIND
+                </Button>
+                
+                <Button onClick={handleCloseAndDelete} variant="outlined" color="error" startIcon={<DeleteIcon />}>
+                I'm Sure
+                </Button>
+            </Modal.Footer>
+            </Modal>
         </>
     )
 }

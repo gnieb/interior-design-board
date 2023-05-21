@@ -54,7 +54,7 @@ export default function Signup({handleSwitchView, showSignup}) {
         history.push('/')
       })
     } else {
-      console.log("STATUS:", r.status, )
+      console.log("STATUS:", r.status, "This is not working" )
       setNotUnique(true)
       setTimeout(() => {
         setNotUnique(false)

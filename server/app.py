@@ -12,9 +12,6 @@ from bs4 import BeautifulSoup
 class Designers(Resource):
     def post(self):
 
-        if not session.get('designer_id'):
-            return make_response({"message":"please log in"}, 401)
-
         first_name = request.get_json()['first_name']
         last_name = request.get_json()['last_name']
         email = request.get_json()['email']
