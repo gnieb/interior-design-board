@@ -106,13 +106,15 @@ class DesignerById(Resource):
     def delete(self, id):
         if not session.get('designer_id'):
             return make_response({"message":"please log in"}, 401)
+        
         designer = Designer.query.filter_by(id = id).first()
         if not designer:
             return make_response({"error":"No designer found, 404"}, 404)
         
+        session['designer_id'] = None
         db.session.delete(designer)
         db.session.commit()
-
+        
         return make_response({"message":"designer account deleted"}, 200)
 
 class Pieces(Resource):

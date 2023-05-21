@@ -1,6 +1,7 @@
 import UpdateProfilePage from "./UpdateProfilePage"
 import { UserContext } from "./context/user"
 import { useContext, useState } from "react"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import Menu from "./Menu"
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -20,16 +21,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function ProfilePage () {
-    const {designer} = useContext(UserContext)
+    const {designer, setDesigner} = useContext(UserContext)
     const {first_name, last_name, email, city, username} = designer
     const [editMode, setEditMode] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
+    const history = useHistory()
    
-    const handleEditMode = (e) => {
-        setEditMode(!editMode)
-    }
-
+    const handleEditMode = (e) => setEditMode(!editMode)
     const handleDeleteModal = (e) => setShowDeleteModal(!showDeleteModal)
     const handleClose = (e) => setShowDeleteModal(!showDeleteModal)
     const handleCloseAndDelete = (e) => {
@@ -37,10 +35,14 @@ export default function ProfilePage () {
             .then(r => {
                 if (r.ok){
                     setShowDeleteModal(!showDeleteModal)
-                    console.log("account deleted")
+                    setDesigner(null)
+                    history.push('/')
                 }
             })
     }
+
+
+
     return (
         <>
         {editMode ?
