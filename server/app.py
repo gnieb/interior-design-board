@@ -105,6 +105,18 @@ class DesignerById(Resource):
             return make_response({"error":"Validation error, unprocessable entity, check db constraint"}, 422)
     
         return make_response(designer.to_dict(), 200)
+    
+    def delete(self, id):
+        if not session.get('designer_id'):
+            return make_response({"message":"please log in"}, 401)
+        designer = Designer.query.filter_by(id = id).first()
+        if not designer:
+            return make_response({"error":"No designer found, 404"}, 404)
+        
+        db.session.delete(designer)
+        db.session.commit()
+
+        return make_response({"message":"designer account deleted"}, 200)
 
 class Pieces(Resource):
     def get(self):
