@@ -39,13 +39,14 @@ This application is an interior design planning and inspiration solution, built 
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Flask][Flask.com]][Flask-url]
-* [![Python][Python.com]][Python-url]
-* [![Beautiful Soup][BeautifulSoup.com]][BS4-url]
+* ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
+* ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+* ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
+* ![Beautiful Soup](https://img.shields.io/badge/beautiful_soup-%23121011.svg?style=for-the-badge&logo=data:python/svg?&color=ff69b4)
+* ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 * [![SQLAlchemy][SQLAlchemy.com]][SQLalchemy-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![Material UI][MaterialUI.com]][MaterialUI-url]
+* ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) 
+* ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
 
 ### API's Utilized
@@ -181,18 +182,6 @@ Grace Nieboer
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[Flask.com]: https://img.shields.io/badge/-FLASK-black?style=for-the-badge&logo=superuser
-[Flask-url]: https://flask.palletsprojects.com/en/2.3.x/
-[MaterialUI.com]: https://img.shields.io/badge/-MATERIAL%20UI-blue?style=for-the-badge&logo=telegram
-[MaterialUI-url]: https://mui.com/
-[Python.com]:https://img.shields.io/badge/-Python-black?style=for-the-badge&logo=dependabot
-[Python-url]: https://www.python.org/
-[BeautifulSoup.com]: https://img.shields.io/badge/-Beautiful%20Soup-pink?style=for-the-badge&logo=gitlab
-[BS4-url]: https://beautiful-soup-4.readthedocs.io/en/latest/
 [SQLAlchemy.com]: https://img.shields.io/badge/-SQLAlchemy-black?style=for-the-badge&logo=serverfault
 [SQLalchemy-url]: https://www.sqlalchemy.org/
 
