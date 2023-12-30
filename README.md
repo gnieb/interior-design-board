@@ -2,6 +2,7 @@
 <a name="readme-top"></a>
 
 # INSPIRED INTERIORS 
+## An interior design application designed forexploration, inspiration, and planning
 
 <details>
   <summary>Table of Contents</summary>
